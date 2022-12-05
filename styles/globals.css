@@ -11,3 +11,11 @@ body {
   padding: 0;
   margin: 0;
 }
+.text-large {
+  font-size: 3rem;
+}
+@media (max-width: 768px) {
+  .text-large {
+    font-size: 2rem;
+  }
+}

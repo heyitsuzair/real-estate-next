@@ -1,8 +1,7 @@
 import Image from "next/image";
 import React, { Component } from "react";
 import Slider from "react-slick";
-import Home from "../assets/img/21.png";
-import { AiFillHome } from "react-icons/ai";
+import Home from "../../assets/img/21.png";
 import Link from "next/link";
 
 export default class SimpleSlider extends Component {
@@ -23,7 +22,7 @@ export default class SimpleSlider extends Component {
             <div className="bg-slate-100 p-12 grid grid-cols-12 items-center">
               <div className="pl-8 col-span-12 sm:col-span-12 md:col-span-12 lg:col-span-6">
                 <div className="icon flex items-center gap-2">
-                  <AiFillHome size={15} className="text-red-500" />
+                  <i className="fa-solid fa-house-chimney text-red-500"></i>
                   <span className="text-sm slide-title animated">
                     Real Estate Agency
                   </span>
@@ -58,7 +57,7 @@ export default class SimpleSlider extends Component {
               </div>
               <div className="col-span-12 sm:col-span-12 md:col-span-12 lg:col-span-6 pr-8">
                 <div className="icon flex justify-end items-center gap-2">
-                  <AiFillHome size={15} className="text-red-500" />
+                  <i className="fa-solid fa-house-chimney text-red-500"></i>
                   <span className="text-sm slide-title animated">
                     Real Estate Agency
                   </span>
@@ -87,7 +86,7 @@ export default class SimpleSlider extends Component {
             <div className="bg-slate-100 p-12 grid grid-cols-12 items-center">
               <div className="pl-8 col-span-12 sm:col-span-12 md:col-span-12 lg:col-span-6">
                 <div className="icon flex items-center gap-2">
-                  <AiFillHome size={15} className="text-red-500" />
+                  <i className="fa-solid fa-house-chimney text-red-500"></i>
                   <span className="text-sm slide-title animated">
                     Real Estate Agency
                   </span>

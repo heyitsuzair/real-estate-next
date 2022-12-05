@@ -1,7 +1,6 @@
 import Image from "next/image";
 import React from "react";
-import Logo from "../assets/img/logo.png";
-import { RxCross1 } from "react-icons/rx";
+import Logo from "../../assets/img/logo.png";
 
 interface PropTypes {
   canvasHidden: boolean;
@@ -16,6 +15,7 @@ const Offcanvas = ({ canvasHidden, setCanvasHidden }: PropTypes) => {
           canvasHidden ? `translate-x-full` : `translate-x-0`
         }`}
         tabIndex={-1}
+        style={{ zIndex: 12 }}
         id="offcanvasRight"
         aria-labelledby="offcanvasRightLabel"
       >
@@ -26,12 +26,11 @@ const Offcanvas = ({ canvasHidden, setCanvasHidden }: PropTypes) => {
           >
             <Image alt="Loading..." src={Logo} />
           </h5>
-          <RxCross1
-            size={20}
-            strokeWidth={2}
-            className="text-slate-800"
+
+          <i
+            className="fa-solid fa-xmark text-2xl"
             onClick={() => setCanvasHidden(!canvasHidden)}
-          />
+          ></i>
         </div>
         <div className="offcanvas-body flex-grow p-4 overflow-y-auto">...</div>
       </div>

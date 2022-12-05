@@ -1,7 +1,7 @@
 import React from "react";
-import styles from "../styles/SearchProperty.module.css";
-import MaterialSelect from "./common/MaterialSelect";
-import { AreaMenu, PropertyStatus, PropertyType } from "../menus";
+import styles from "../../styles/SearchProperty.module.css";
+import MaterialSelect from "../common/MaterialSelect";
+import { AreaMenu, PropertyStatus, PropertyType } from "../../menus";
 import { useState, ChangeEvent } from "react";
 
 const SearchProperty = () => {

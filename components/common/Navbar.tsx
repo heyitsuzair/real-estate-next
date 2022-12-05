@@ -1,10 +1,10 @@
 import Image from "next/image";
 import Link from "next/link";
-import Logo from "../assets/img/logo.png";
+import Logo from "../../assets/img/logo.png";
 import Offcanvas from "./Offcanvas";
 import { useState } from "react";
-import NavMenu from "./subcomponents/navbar/NavMenu";
-import NavIcons from "./subcomponents/navbar/NavIcons";
+import NavMenu from "../subcomponents/navbar/NavMenu";
+import NavIcons from "../subcomponents/navbar/NavIcons";
 
 const Navbar = () => {
   const [canvasHidden, setCanvasHidden] = useState<boolean>(true);

@@ -1,6 +1,7 @@
 import Head from "next/head";
-import Hero from "../components/Hero";
-import SearchProperty from "../components/SearchProperty";
+import About from "../components/home/About";
+import Hero from "../components/home/Hero";
+import SearchProperty from "../components/home/SearchProperty";
 
 export default function Home() {
   return (
@@ -11,6 +12,7 @@ export default function Home() {
       </Head>
       <Hero />
       <SearchProperty />
+      <About />
     </div>
   );
 }

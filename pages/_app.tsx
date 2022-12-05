@@ -1,8 +1,8 @@
 import "../styles/globals.css";
 import "../styles/Hero.css";
 import type { AppProps } from "next/app";
-import Topbar from "../components/Topbar";
-import Navbar from "../components/Navbar";
+import Topbar from "../components/common/Topbar";
+import Navbar from "../components/common/Navbar";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
