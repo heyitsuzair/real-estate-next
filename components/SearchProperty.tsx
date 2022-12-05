@@ -2,8 +2,36 @@ import React from "react";
 import styles from "../styles/SearchProperty.module.css";
 import MaterialSelect from "./common/MaterialSelect";
 import { AreaMenu, PropertyStatus, PropertyType } from "../menus";
+import { useState, ChangeEvent } from "react";
 
 const SearchProperty = () => {
+  // Fields For Material Select -------------->
+  const [area, setArea] = useState<string>("");
+  const [status, setStatus] = useState<string>("");
+  const [type, setType] = useState<string>("");
+  // Fields For Material Select -------------->
+
+  // ?Handle Area Change -------------->
+  const handleAreaChange = (e: string) => {
+    const newValue = e;
+    setArea(newValue);
+  };
+  // !Handle Area Change -------------->
+
+  // ?Handle Status Change -------------->
+  const handleStatusChange = (e: string) => {
+    const newValue = e;
+    setStatus(newValue);
+  };
+  // !Handle Status Change -------------->
+
+  // ?Handle Type Change -------------->
+  const handleTypeChange = (e: string) => {
+    const newValue = e;
+    setType(newValue);
+  };
+  // !Handle Type Change -------------->
+
   return (
     <div className="p-4 mb-8">
       <div
@@ -16,7 +44,7 @@ const SearchProperty = () => {
             variant="outlined"
             label="Choose Area"
             options={AreaMenu}
-            change=""
+            change={handleAreaChange}
             disabled={false}
           />
         </div>
@@ -27,7 +55,7 @@ const SearchProperty = () => {
             variant="outlined"
             label="Property Status"
             options={PropertyStatus}
-            change=""
+            change={handleStatusChange}
             disabled={false}
           />
         </div>
@@ -38,7 +66,7 @@ const SearchProperty = () => {
             variant="outlined"
             label="Property Type"
             options={PropertyType}
-            change=""
+            change={handleTypeChange}
             disabled={false}
           />
         </div>

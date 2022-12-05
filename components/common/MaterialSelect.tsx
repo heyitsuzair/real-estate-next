@@ -21,7 +21,7 @@ const MaterialSelect = ({
         color={color}
         size={size}
         label={label}
-        onChange={change}
+        onChange={(e) => change(e)}
         disabled={disabled}
       >
         {options.map((option: Select) => {
