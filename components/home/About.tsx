@@ -4,6 +4,8 @@ import House from "../../assets/img/7.png";
 import Badge from "../common/Badge";
 import IconWithText from "../common/IconWithText";
 import styles from "../../styles/AboutSection.module.css";
+import Quote from "../common/Quote";
+import ButtonRed from "../common/ButtonRed";
 
 const About = () => {
   return (
@@ -11,13 +13,8 @@ const About = () => {
       className={`container mx-auto px-16 mt-0 p-5 sm:mt-48 lg:mt-28 ${styles.about} `}
     >
       <div className="grid grid-cols-12 items-center">
-        <div className="col-span-12 mb-10 md:mb-10 lg:mb-0 md:col-span-12 lg:col-span-6 sm:col-span-12">
-          <Image
-            className="mx-auto"
-            src={House}
-            alt="Loading..."
-            style={{ width: "80%" }}
-          />
+        <div className="col-span-12 lg:pr-10 mb-10 md:mb-10 lg:mb-0 md:col-span-12 lg:col-span-6 sm:col-span-12">
+          <Image className="mx-auto" src={House} alt="Loading..." />
         </div>
         <div className="col-span-12 md:col-span-12 lg:col-span-6 sm:col-span-12">
           <Badge text="About Us" />
@@ -52,6 +49,17 @@ const About = () => {
                 text="Complete 24/7 Security"
               />
             </div>
+          </div>
+
+          <div className="quote-section mt-4">
+            <Quote
+              text="Enimad minim veniam quis nostrud exercitation llamco laboris. Lorem ipsum dolor sit amet"
+              borderColorClass="border-red-500"
+              bgColorClass="bg-red-50"
+            />
+          </div>
+          <div className="btn-section mt-8">
+            <ButtonRed width="inherit" text="Contact Us" handleClick={""} />
           </div>
         </div>
       </div>

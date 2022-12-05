@@ -3,6 +3,7 @@ import styles from "../../styles/SearchProperty.module.css";
 import MaterialSelect from "../common/MaterialSelect";
 import { AreaMenu, PropertyStatus, PropertyType } from "../../menus";
 import { useState, ChangeEvent } from "react";
+import ButtonRed from "../common/ButtonRed";
 
 const SearchProperty = () => {
   // Fields For Material Select -------------->
@@ -71,12 +72,7 @@ const SearchProperty = () => {
           />
         </div>
         <div className="col-span-12 sm:col-span-12 md:col-span-6 lg:col-span-3 text-center flex">
-          <button
-            className="bg-red-500 hover:bg-slate-800 transition-all tracking-wider rounded p-3 w-full text-white"
-            style={{ padding: ".6rem" }}
-          >
-            Find Now
-          </button>
+          <ButtonRed width="full" text="Find Now" handleClick={""} />
         </div>
       </div>
     </div>
