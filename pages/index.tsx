@@ -1,5 +1,5 @@
 import Head from "next/head";
-import Image from "next/image";
+import Hero from "../components/Hero";
 
 export default function Home() {
   return (
@@ -8,6 +8,7 @@ export default function Home() {
         <title>Home</title>
         <meta name="description" content="Real Estate Site My Muhammad Uzair" />
       </Head>
+      <Hero />
     </div>
   );
 }
