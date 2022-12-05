@@ -1,5 +1,6 @@
 import Head from "next/head";
 import About from "../components/home/About";
+import Counters from "../components/home/Counters";
 import Hero from "../components/home/Hero";
 import SearchProperty from "../components/home/SearchProperty";
 
@@ -13,6 +14,7 @@ export default function Home() {
       <Hero />
       <SearchProperty />
       <About />
+      <Counters />
     </div>
   );
 }
