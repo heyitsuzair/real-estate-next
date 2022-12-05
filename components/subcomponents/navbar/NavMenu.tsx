@@ -1,5 +1,5 @@
 import React from "react";
-import { NavbarMenu } from "../../menus";
+import { NavbarMenu } from "../../../menus";
 import Link from "next/link";
 
 interface Menu {

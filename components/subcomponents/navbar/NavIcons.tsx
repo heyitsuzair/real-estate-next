@@ -5,7 +5,7 @@ import {
   AiOutlineShoppingCart,
   AiOutlineMenu,
 } from "react-icons/ai";
-import styles from "../../styles/Navbar.module.css";
+import styles from "../../../styles/Navbar.module.css";
 
 interface PropTypes {
   canvasHidden: boolean;
@@ -27,9 +27,6 @@ const NavIcons = ({ setCanvasHidden, canvasHidden }: PropTypes) => {
       </div>
       <a
         className="shadow-2xl md:hidden lg:hidden hover:bg-slate-800 hover:text-white hover:cursor-pointer shadow-slate-800 p-3 rounded-full"
-        href="#offcanvasRight"
-        role="button"
-        aria-controls="offcanvasRight"
         onClick={() => setCanvasHidden(!canvasHidden)}
       >
         <AiOutlineMenu strokeWidth={15} size={25} />
