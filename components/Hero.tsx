@@ -40,7 +40,7 @@ export default class SimpleSlider extends Component {
                 <div className="slick-button mt-16">
                   <Link
                     href={"/contact"}
-                    className="hover:bg-white hover:text-red-400 hover:cursor-pointer bg-red-500 text-white p-3 rounded transition-all border-red-500 border"
+                    className="hover:bg-slate-800 hover:cursor-pointer bg-red-500 text-white p-3 rounded transition-all"
                   >
                     Make An Inquiry
                   </Link>
@@ -75,7 +75,7 @@ export default class SimpleSlider extends Component {
                 <div className="slick-button mt-16 text-end">
                   <Link
                     href={"/contact"}
-                    className="hover:bg-white hover:text-red-400 hover:cursor-pointer bg-red-500 text-white p-3 rounded transition-all border-red-500 border"
+                    className="hover:bg-slate-800 hover:cursor-pointer bg-red-500 text-white p-3 rounded transition-all"
                   >
                     Make An Inquiry
                   </Link>
@@ -104,7 +104,7 @@ export default class SimpleSlider extends Component {
                 <div className="slick-button mt-16">
                   <Link
                     href={"/contact"}
-                    className="hover:bg-white hover:text-red-400 hover:cursor-pointer bg-red-500 text-white p-3 rounded transition-all border-red-500 border"
+                    className="hover:bg-slate-800 hover:cursor-pointer bg-red-500 text-white p-3 rounded transition-all"
                   >
                     Make An Inquiry
                   </Link>
