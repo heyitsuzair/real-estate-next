@@ -1,0 +1,24 @@
+.searchBox {
+  position: absolute;
+  width: 80%;
+  top: 42rem;
+  z-index: 10;
+  left: 0;
+  right: 0;
+  margin: 0 auto;
+}
+@media (max-width: 1024px) {
+  .searchBox {
+    top: 68rem;
+  }
+}
+@media (max-width: 991px) {
+  .searchBox {
+    top: 72rem;
+  }
+}
+@media (max-width: 392px) {
+  .searchBox {
+    top: 78rem;
+  }
+}
