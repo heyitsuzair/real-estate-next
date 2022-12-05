@@ -1,6 +1,5 @@
-import Head from 'next/head'
-import Image from 'next/image'
-import Topbar from '../components/Topbar'
+import Head from "next/head";
+import Image from "next/image";
 
 export default function Home() {
   return (
@@ -9,7 +8,6 @@ export default function Home() {
         <title>Home</title>
         <meta name="description" content="Real Estate Site My Muhammad Uzair" />
       </Head>
-      <Topbar/>
     </div>
-  )
+  );
 }
