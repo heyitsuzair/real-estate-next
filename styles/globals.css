@@ -27,3 +27,6 @@ body {
     font-size: 1.6rem;
   }
 }
+.px-2 {
+  padding: 0 0.5rem;
+}

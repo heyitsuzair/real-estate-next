@@ -9,12 +9,31 @@ interface PropTypes {
   link: string;
   linkText: string;
   heading: string;
+  index: number;
+  cardActive: any;
+  onCardEnter: any;
 }
 
-const Card = ({ icon, text, link, linkText, heading }: PropTypes) => {
+const Card = ({
+  icon,
+  text,
+  link,
+  linkText,
+  heading,
+  index,
+  cardActive,
+  onCardEnter,
+}: PropTypes) => {
   return (
-    <div className="card shadow-xl p-12 bg-white">
-      <div className="card-item flex flex-col items-center gap-8">
+    <div
+      className="card shadow-xl p-8 sm:p-12 bg-white"
+      onMouseEnter={() => onCardEnter(index)}
+    >
+      <div
+        className={`card-item ${
+          index === cardActive ? "active" : ""
+        } flex flex-col items-center gap-8`}
+      >
         <IconCircle icon={icon} />
         <div className="heading">
           <TextSemiLarge text={heading} />
