@@ -12,23 +12,6 @@
   font-size: 35px;
   opacity: 1;
 }
-.slick-dots li {
-  height: 48px;
-}
-.slick-active {
-  z-index: 10;
-}
-.slick-dots li.slick-active button:before {
-  color: rgb(239 68 68 / 1);
-  opacity: 1;
-  font-size: 15px;
-}
-.slick-dots li button:before {
-  font-size: 10px;
-}
-.slick-dots li button:before:hover {
-  color: rgb(239 68 68 / 1);
-}
 .slick-title {
   font-size: 3.5rem;
   line-height: 4rem;

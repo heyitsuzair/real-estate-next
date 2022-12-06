@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Badge from "../common/Badge";
 import Card from "../common/Card";
 import { MainFocusCards } from "../../cards";
+import TextLarge from "../common/TextLarge";
 
 const MainFocus = () => {
   // Card State ----------------->
@@ -24,7 +25,7 @@ const MainFocus = () => {
         <Badge text="Our Services" />
       </div>
       <div className="heading my-6">
-        <h1 className="text-large font-semibold">Our Main Focus</h1>
+        <TextLarge text="Our Main Focus" />
       </div>
       <div className="my-4 px-20 justify-center gap-6 pb-12 mt-12 cards grid grid-cols-12 container mx-auto">
         {MainFocusCards.map((card, index) => {

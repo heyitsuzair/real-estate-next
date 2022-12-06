@@ -1,0 +1,17 @@
+.slick-dots {
+  bottom: -65px;
+}
+.slick-active {
+  z-index: 10;
+}
+.slick-dots li.slick-active button:before {
+  color: rgb(239 68 68 / 1);
+  opacity: 1;
+  font-size: 15px;
+}
+.slick-dots li button:before {
+  font-size: 10px;
+}
+.slick-dots li button:before:hover {
+  color: rgb(239 68 68 / 1);
+}

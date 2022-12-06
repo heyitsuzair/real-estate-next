@@ -7,16 +7,17 @@ import Link from "next/link";
 export default class SimpleSlider extends Component {
   render() {
     const settings = {
-      dots: true,
+      dots: false,
       infinite: true,
       speed: 500,
       slidesToShow: 1,
       slidesToScroll: 1,
       fade: true,
       adaptiveHeight: true,
+      autoplay: true,
     };
     return (
-      <div>
+      <div id="hero">
         <Slider {...settings}>
           <div>
             <div className="bg-slate-100 p-12 grid grid-cols-12 items-center">
