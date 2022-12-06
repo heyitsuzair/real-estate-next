@@ -2,6 +2,7 @@ import Head from "next/head";
 import About from "../components/home/About";
 import Counters from "../components/home/Counters";
 import Hero from "../components/home/Hero";
+import MainFocus from "../components/home/MainFocus";
 import SearchProperty from "../components/home/SearchProperty";
 
 export default function Home() {
@@ -15,6 +16,7 @@ export default function Home() {
       <SearchProperty />
       <About />
       <Counters />
+      <MainFocus />
     </div>
   );
 }

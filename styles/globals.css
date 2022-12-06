@@ -19,3 +19,11 @@ body {
     font-size: 2rem;
   }
 }
+.text-semilarge {
+  font-size: 2rem;
+}
+@media (max-width: 768px) {
+  .text-semilarge {
+    font-size: 1.6rem;
+  }
+}

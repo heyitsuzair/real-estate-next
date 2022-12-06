@@ -1,0 +1,22 @@
+.card {
+  position: relative;
+}
+.card-item.active::before {
+  width: 100%;
+  opacity: 1;
+  visibility: visible;
+}
+.card-item::before {
+  position: absolute;
+  content: "";
+  left: 0;
+  bottom: 0;
+  width: 0%;
+  height: 4px;
+  background-color: rgb(244 67 54 / 1);
+  -webkit-transition: all 0.5s ease 0s;
+  -o-transition: all 0.5s ease 0s;
+  transition: all 0.5s ease 0s;
+  opacity: 0;
+  visibility: hidden;
+}
