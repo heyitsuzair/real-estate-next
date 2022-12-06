@@ -4,12 +4,19 @@ import Card from "../common/Card";
 import { MainFocusCards } from "../../cards";
 
 const MainFocus = () => {
+  // Card State ----------------->
   const [cardActive, setCardActive] = useState<number>();
+  // Card State ----------------->
 
-  const onCardEnter = (index: number) => {
-    console.log(index);
-    setCardActive(index);
-  };
+  /**
+   * ?Execute Code When Visitor's Mouse Enter The Card
+   *
+   * @param index The Card Index To Make It Active
+   * */
+
+  const onCardEnter = (index: number) => setCardActive(index);
+
+  // !Execute Code When Visitor's Mouse Enter The Card ------------->
 
   return (
     <div className="text-center mt-24 bg-white main-focus">

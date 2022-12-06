@@ -40,7 +40,7 @@ const Card = ({
         </div>
         <span className="text-slate-400 text-sm">{text}</span>
         <Link
-          className="card-link bg-red-500 text-white rounded-full py-3 px-6"
+          className="card-link hover:bg-slate-800 transition-all bg-red-500 text-white rounded-full py-3 px-6"
           href={link}
         >
           {linkText} &nbsp;
