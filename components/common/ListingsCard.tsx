@@ -7,14 +7,25 @@ import {
 } from "@material-tailwind/react";
 import Image from "next/image";
 import Link from "next/link";
+import { useState } from "react";
 import Home from "../../assets/img/21.png";
 import Author from "../../assets/img/author.jpg";
 import styles from "../../styles/ListingCards.module.css";
+import ListingsModal from "./ListingsModal";
 
 export default function ListingsCard() {
+  // State For Modal --------------------->
+  const [size, setSize] = useState<string | null>(null);
+  // State For Modal --------------------->
+
+  // ?Function To Trigger Modal ---------------------------->
+  const handleOpen = (value: string | null) => setSize(value);
+  // !Function To Trigger Modal ---------------------------->
+
   return (
-    <Link href={"/"}>
-      <Card className="w-full w-96 mx-auto">
+    <>
+      <ListingsModal size={size} handleOpen={handleOpen} />
+      <Card className="w-96 mx-auto">
         <CardHeader className="relative h-56">
           <Image src={Home} alt="Loading..." />
         </CardHeader>
@@ -33,8 +44,8 @@ export default function ListingsCard() {
           </Typography>
           <Typography className="text-start poppins">
             The place is close to Barceloneta Beach and bus stop just 2 min by
-            walk and near to "Naviglio" where you can enjoy the main night life
-            in Barcelona.
+            walk and near to where you can enjoy the main night life in
+            Barcelona.
           </Typography>
         </CardBody>
         <CardFooter divider className="flex items-center justify-between py-3">
@@ -46,11 +57,16 @@ export default function ListingsCard() {
             </div>
           </div>
           <div className="icons flex gap-2">
-            <i className="fa-solid fa-arrow-up-right-from-square text-white text-lg px-3 py-2 rounded-full bg-red-500"></i>
-            <i className="fa-solid fa-eye text-white text-lg px-3 py-2 rounded-full bg-red-500"></i>
+            <Link href={"/"}>
+              <i className="fa-solid fa-arrow-up-right-from-square text-white text-lg px-3 py-2 rounded-full bg-red-500"></i>
+            </Link>
+            <i
+              onClick={() => handleOpen("lg")}
+              className="fa-solid fa-eye cursor-pointer text-white text-lg px-3 py-2 rounded-full bg-red-500"
+            ></i>
           </div>
         </CardFooter>
       </Card>
-    </Link>
+    </>
   );
 }
