@@ -20,7 +20,7 @@ const OurTestimonial = () => {
   // !Execute Code When Visitor's Mouse Enter The Card ------------->
 
   return (
-    <div className="text-center mt-24 bg-slate-200 py-20 our-aminities">
+    <div className="text-center mt-24 bg-slate-200 pt-20 pb-40 our-testimonials">
       <div className="badge my-8">
         <Badge text="Our Testimonial" />
       </div>

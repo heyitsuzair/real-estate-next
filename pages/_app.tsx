@@ -7,6 +7,7 @@ import type { AppProps } from "next/app";
 import Topbar from "../components/common/Topbar";
 import Navbar from "../components/common/Navbar";
 import PreFooter from "../components/common/PreFooter";
+import Footer from "../components/common/Footer";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
@@ -15,6 +16,7 @@ export default function App({ Component, pageProps }: AppProps) {
       <Navbar />
       <Component {...pageProps} />
       <PreFooter />
+      <Footer />
     </>
   );
 }

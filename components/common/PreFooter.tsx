@@ -1,14 +1,14 @@
 import { useRouter } from "next/router";
-import React, { useEffect } from "react";
-import ButtonRedWithIcon from "./ButtonRedWithIcon";
-import TextSemiLarge from "./TextSemiLarge";
+import React from "react";
 
 const PreFooter = () => {
   const router = useRouter();
 
+  //? Handle When Someone Clicks On Explore Properties ----------------->
   const onExploreProperitesClick = () => {
     router.push("/shop");
   };
+  //! Handle When Someone Clicks On Explore Properties ----------------->
 
   return (
     <div className="bg-slate-800">
@@ -18,7 +18,7 @@ const PreFooter = () => {
           className="flex flex-col gap-8 md:gap0 md:flex-row justify-between items-center"
         >
           <div className="pre-footer-left flex flex-col gap-8">
-            <h1 className="text-3xl text-white font-bold">
+            <h1 className="text-4xl text-white font-bold">
               Looking For A Dream House?
             </h1>
             <p className="text-white">
@@ -28,7 +28,7 @@ const PreFooter = () => {
           <div className="pre-footer-right">
             <button
               className="bg-white hover:bg-slate-800 hover:text-white transition-all tracking-wider rounded p-3 text-black"
-              style={{ padding: ".6rem" }}
+              style={{ padding: ".6rem 1.5rem" }}
               onClick={() => onExploreProperitesClick()}
             >
               Explore Properties &nbsp;
