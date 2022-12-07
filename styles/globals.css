@@ -30,6 +30,14 @@ body {
     font-size: 1.6rem;
   }
 }
+.text-medium {
+  font-size: 1.3rem;
+}
+@media (max-width: 768px) {
+  .text-medium {
+    font-size: 1rem;
+  }
+}
 .px-2 {
   padding: 0 0.5rem;
 }
