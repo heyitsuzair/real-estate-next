@@ -14,19 +14,21 @@ const OurAminities = () => {
         <TextLarge text="Building Aminities" />
       </div>
       <div className="my-7 container gap-8 mx-auto grid justify-center p-4 md:p-12 grid-cols-12">
-        <div className="col-span-12 sm:col-span-6 md:col-span-4 lg:col-span-3 mb-8">
-          {OurAminitesCard.map((card) => {
-            return (
+        {OurAminitesCard.map((card) => {
+          return (
+            <div
+              key={card.text}
+              className="col-span-12 sm:col-span-6 md:col-span-4 lg:col-span-3 mb-8"
+            >
               <IconBottomCard
-                key={card.text}
                 text={card.text}
                 footerIcon={card.footerIcon}
                 headerIcon={card.headerIcon}
                 link={card.link}
               />
-            );
-          })}
-        </div>
+            </div>
+          );
+        })}
       </div>
     </div>
   );
