@@ -13,7 +13,10 @@ export default function Home() {
     <div>
       <Head>
         <title>Home</title>
-        <meta name="description" content="Real Estate Site My Muhammad Uzair" />
+        <meta
+          name="description"
+          content="Real Estate Site My Muhammad Uzair. Home"
+        />
       </Head>
       <Hero />
       <SearchProperty />

@@ -1,6 +1,9 @@
 import Image from "next/image";
+import Link from "next/link";
+import { useRouter } from "next/router";
 import React from "react";
 import Logo from "../../assets/img/logo.png";
+import { NavbarMenu } from "../../menus";
 
 interface PropTypes {
   canvasHidden: boolean;
@@ -8,6 +11,8 @@ interface PropTypes {
 }
 
 const Offcanvas = ({ canvasHidden, setCanvasHidden }: PropTypes) => {
+  const router = useRouter();
+
   return (
     <>
       <div
@@ -32,7 +37,26 @@ const Offcanvas = ({ canvasHidden, setCanvasHidden }: PropTypes) => {
             onClick={() => setCanvasHidden(!canvasHidden)}
           ></i>
         </div>
-        <div className="offcanvas-body flex-grow p-4 overflow-y-auto">...</div>
+        <div className="offcanvas-body flex-grow p-4 overflow-y-auto">
+          <div className="nav-items flex flex-col gap-7">
+            {NavbarMenu.map((menu) => {
+              return (
+                <Link
+                  className={`text-2xl text-black border-b-4 py-3.5 ${
+                    router.pathname === menu.path
+                      ? "border-red-500"
+                      : "border-gray"
+                  }`}
+                  key={menu.name}
+                  href={menu.path}
+                  onClick={() => setCanvasHidden(!canvasHidden)}
+                >
+                  {menu.name}
+                </Link>
+              );
+            })}
+          </div>
+        </div>
       </div>
     </>
   );

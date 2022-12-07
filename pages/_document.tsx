@@ -32,6 +32,7 @@ export default function Document() {
           crossOrigin="anonymous"
           referrerPolicy="no-referrer"
         />
+        <link rel="icon" href="/favicon.png" />
       </Head>
       <body>
         <Main />
