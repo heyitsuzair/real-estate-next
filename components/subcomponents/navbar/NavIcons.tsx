@@ -13,7 +13,10 @@ const NavIcons = ({ setCanvasHidden, canvasHidden }: PropTypes) => {
       <div className="shadow-2xl transition-all ease-in-out hover:bg-slate-800 hover:text-white hover:cursor-pointer shadow-slate-800 py-3 px-4 rounded-full">
         <i className="fa-solid fa-magnifying-glass"></i>
       </div>
-      <div className="shadow-2xl transition-all ease-in-out hover:bg-slate-800 hover:text-white hover:cursor-pointer shadow-slate-800 py-3 px-4 rounded-full">
+      <div
+        className="shadow-2xl transition-all ease-in-out hover:bg-slate-800 hover:text-white hover:cursor-pointer shadow-slate-800 py-3 rounded-full"
+        style={{ paddingLeft: "1.1rem", paddingRight: "1.1rem" }}
+      >
         <i className="fa-regular fa-user"></i>
       </div>
       <div className="shadow-2xl transition-all ease-in-out hover:bg-slate-800 hover:text-white hover:cursor-pointer shadow-slate-800 py-3 px-4 rounded-full relative">

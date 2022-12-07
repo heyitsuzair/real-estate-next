@@ -22,6 +22,9 @@ module.exports = withMT({
           900: "#0f172a",
         },
       },
+      minWidth: {
+        2: "2rem",
+      },
     },
   },
   plugins: [],
