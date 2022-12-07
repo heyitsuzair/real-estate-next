@@ -6,6 +6,7 @@ import "../styles/SlickDots.css";
 import type { AppProps } from "next/app";
 import Topbar from "../components/common/Topbar";
 import Navbar from "../components/common/Navbar";
+import PreFooter from "../components/common/PreFooter";
 
 export default function App({ Component, pageProps }: AppProps) {
   return (
@@ -13,6 +14,7 @@ export default function App({ Component, pageProps }: AppProps) {
       <Topbar />
       <Navbar />
       <Component {...pageProps} />
+      <PreFooter />
     </>
   );
 }

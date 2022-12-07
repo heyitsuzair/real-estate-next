@@ -1,0 +1,6 @@
+.authorPic {
+  width: 3rem;
+  height: 3rem;
+  object-fit: cover;
+  border-radius: 100%;
+}

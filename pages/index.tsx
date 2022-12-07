@@ -5,6 +5,7 @@ import FeaturedListings from "../components/home/FeaturedListings";
 import Hero from "../components/home/Hero";
 import MainFocus from "../components/home/MainFocus";
 import OurAminities from "../components/home/OurAminities";
+import OurTestimonial from "../components/home/OurTestimonial";
 import SearchProperty from "../components/home/SearchProperty";
 
 export default function Home() {
@@ -21,6 +22,7 @@ export default function Home() {
       <MainFocus />
       <FeaturedListings />
       <OurAminities />
+      <OurTestimonial />
     </div>
   );
 }
