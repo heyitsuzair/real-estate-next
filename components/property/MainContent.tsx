@@ -13,6 +13,7 @@ import TextSemiLarge from "../common/TextSemiLarge";
 import { AminitiesCheckbox } from "../../checkboxes";
 import MaterialCheckbox from "../common/MaterialCheckbox";
 import FactsAndFeatures from "../common/FactsAndFeatures";
+import GoogleMap from "../common/GoogleMap";
 
 const MainContent = () => {
   return (
@@ -79,6 +80,11 @@ const MainContent = () => {
                 })}
               </div>
             </div>
+          </div>
+          <div className="property-location">
+            <HeadingLeftBordered heading="Location" />
+            <div className="location my-7">Location</div>
+            <GoogleMap />
           </div>
         </div>
         <div className="col-span-12 order-1 xl:order-2 xl:col-span-4">
