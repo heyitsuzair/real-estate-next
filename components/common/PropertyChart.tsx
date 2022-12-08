@@ -3,10 +3,10 @@ import React from "react";
 const PropertyChart = () => {
   return (
     <div className="property-details-chart my-10">
-      <div className="chart bg-slate-100 rounded-md shadow-md">
-        <div className="flex justify-evenly items-center">
+      <div className="chart bg-slate-100 p-8 sm:p-0 rounded-md shadow-md">
+        <div className="flex justify-evenly flex-col sm:flex-row sm:items-center">
           <div className="left">
-            <div className="detail-item flex gap-8 my-4">
+            <div className="detail-item flex gap-14 sm:gap-8 my-4">
               <div className="detail-key flex flex-col gap-7">
                 <span className="detail-key text-sm text-gray-600">
                   Property ID:
@@ -33,7 +33,7 @@ const PropertyChart = () => {
               </div>
             </div>
           </div>
-          <div className="separator w-0.5 h-[45vh] bg-gray-300"></div>
+          <div className="separator w-0.5 h-[35vh] hidden sm:flex bg-gray-300"></div>
           <div className="right">
             <div className="detail-item flex gap-8 my-4">
               <div className="detail-key flex flex-col gap-7">

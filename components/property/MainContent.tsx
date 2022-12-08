@@ -10,10 +10,10 @@ import TextSemiLarge from "../common/TextSemiLarge";
 
 const MainContent = () => {
   return (
-    <div className="container mx-auto px-14 pt-12 pb-32">
+    <div className="container mx-auto px-7 pt-2 lg:px-14 lg:pt-12 pb-32">
       <div className="grid grid-cols-12 gap-6">
-        <div className="col-span-8">
-          <div className="meta flex gap-6 items-center">
+        <div className="col-span-12 order-2 xl:order-1 xl:col-span-8">
+          <div className="meta flex flex-col sm:flex-row gap-6 items-center">
             <BadgeFilled text="For Sale" />
             <Date date="May 19, 2022" />
             <CommentsCount totalComments={20} link="comments" />
@@ -43,7 +43,7 @@ const MainContent = () => {
             <PropertyChart />
           </div>
         </div>
-        <div className="col-span-4">
+        <div className="col-span-12 order-1 xl:order-2 xl:col-span-4">
           <OwnerProfile
             ownerBio="Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi
       facilis nobis veritatis. Aspernatur eaque ut labore harum,

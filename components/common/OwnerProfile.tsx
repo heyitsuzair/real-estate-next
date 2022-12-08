@@ -29,7 +29,7 @@ const OwnerProfile = ({
       />
       <h1 className="text-2xl font-semibold my-4">{ownerName}</h1>
       <p className="text-slate-400 text-sm">{ownerHobby}</p>
-      <div className="my-4">
+      <div className="my-8">
         <StarRating reviews={3} rating={5} />
       </div>
       <p className="text-slate-400 ">{ownerBio}</p>

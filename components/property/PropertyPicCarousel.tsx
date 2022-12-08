@@ -18,7 +18,7 @@ const PropertyPicCarousel = () => {
     arrows: false,
     responsive: [
       {
-        breakpoint: 768,
+        breakpoint: 1024,
         settings: {
           centerPadding: "60px",
         },
