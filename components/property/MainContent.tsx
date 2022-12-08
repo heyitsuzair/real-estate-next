@@ -3,6 +3,7 @@ import BadgeFilled from "../common/BadgeFilled";
 import CommentsCount from "../common/CommentsCount";
 import Date from "../common/Date";
 import HeadingLeftBordered from "../common/HeadingLeftBordered";
+import IconWithTextHeading from "../common/IconWithTextHeading";
 import OwnerProfile from "../common/OwnerProfile";
 import PropertyChart from "../common/PropertyChart";
 import PropertyLocation from "../common/PropertyLocation";
@@ -41,6 +42,70 @@ const MainContent = () => {
           <div className="property-detail">
             <HeadingLeftBordered heading="Property Detail" />
             <PropertyChart />
+          </div>
+          <div className="property-facts-features">
+            <HeadingLeftBordered heading="Facts And Features" />
+            <div className="features py-10 grid gap-6 grid-cols-12">
+              <div className="col-span-6 md:col-span-4 lg:col-span-3 mb-7">
+                <IconWithTextHeading
+                  text="20 x 16 sq feet"
+                  heading="Living Room"
+                  Icon="fa-solid fa-house"
+                />
+              </div>
+              <div className="col-span-6 md:col-span-4 lg:col-span-3 mb-7">
+                <IconWithTextHeading
+                  text="20 x 16 sq feet"
+                  heading="Garage"
+                  Icon="fa-solid fa-car px-0.5"
+                />
+              </div>
+              <div className="col-span-6 md:col-span-4 lg:col-span-3 mb-7">
+                <IconWithTextHeading
+                  text="20 x 16 sq feet"
+                  heading="Dinning Area"
+                  Icon="fa-solid fa-spoon"
+                />
+              </div>
+              <div className="col-span-6 md:col-span-4 lg:col-span-3 mb-7">
+                <IconWithTextHeading
+                  text="20 x 16 sq feet"
+                  heading="Bedroom"
+                  Icon="fa-solid fa-bed"
+                />
+              </div>
+              <div className="col-span-6 md:col-span-4 lg:col-span-3 mb-7">
+                <IconWithTextHeading
+                  text="20 x 16 sq feet"
+                  heading="Bathroom"
+                  Icon="fa-solid fa-bath"
+                />
+              </div>
+              <div className="col-span-6 md:col-span-4 lg:col-span-3 mb-7">
+                <IconWithTextHeading
+                  text="20 x 16 sq feet"
+                  heading="Gym Area"
+                  Icon="fa-solid fa-dumbbell"
+                />
+              </div>
+              <div className="col-span-6 md:col-span-4 lg:col-span-3 mb-7">
+                <IconWithTextHeading
+                  text="20 x 16 sq feet"
+                  heading="Garden"
+                  Icon="fa-solid fa-worm px-0.5"
+                />
+              </div>
+              <div className="col-span-6 md:col-span-4 lg:col-span-3 mb-7">
+                <IconWithTextHeading
+                  text="20 x 16 sq feet"
+                  heading="Parking"
+                  Icon="fa-solid fa-square-parking px-0.5"
+                />
+              </div>
+            </div>
+          </div>
+          <div className="property-from-gallert">
+            <HeadingLeftBordered heading="From Our Gallery" />
           </div>
         </div>
         <div className="col-span-12 order-1 xl:order-2 xl:col-span-4">

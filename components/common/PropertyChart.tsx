@@ -33,7 +33,7 @@ const PropertyChart = () => {
               </div>
             </div>
           </div>
-          <div className="separator w-0.5 h-[35vh] hidden sm:flex bg-gray-300"></div>
+          <div className="separator w-0.5 h-[38vh] hidden sm:flex bg-gray-300"></div>
           <div className="right">
             <div className="detail-item flex gap-8 my-4">
               <div className="detail-key flex flex-col gap-7">
