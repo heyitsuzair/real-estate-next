@@ -3,5 +3,11 @@
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
-  height: 50vh;
+  height: 44vh;
+}
+@media (max-width: 768px) {
+  .breadcrumbBg {
+    height: 30vh;
+    background-position: right;
+  }
 }
