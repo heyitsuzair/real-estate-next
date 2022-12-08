@@ -1,3 +1,4 @@
+import Image from "next/image";
 import React from "react";
 import BadgeFilled from "../common/BadgeFilled";
 import CommentsCount from "../common/CommentsCount";
@@ -8,6 +9,8 @@ import OwnerProfile from "../common/OwnerProfile";
 import PropertyChart from "../common/PropertyChart";
 import PropertyLocation from "../common/PropertyLocation";
 import TextSemiLarge from "../common/TextSemiLarge";
+import img from "../../assets/img/logo-og.png";
+import img2 from "../../assets/img/author.jpg";
 
 const MainContent = () => {
   return (
@@ -106,6 +109,33 @@ const MainContent = () => {
           </div>
           <div className="property-from-gallert">
             <HeadingLeftBordered heading="From Our Gallery" />
+            <div className="grid my-10 image-grid gap-6 grid-cols-12">
+              <div className="col-span-12 lg:col-span-6 flex flex-col">
+                <div className="overflow-hidden mb-8 h-[30vh] lg:h-[40vh] rounded-md">
+                  <Image
+                    src={img}
+                    alt="Loading..."
+                    className="hover:scale-125 transition-all duration-500 cursor-pointer object-cover rounded-md w-full h-[30vh] lg:h-[40vh]"
+                  />
+                </div>
+                <div className="overflow-hidden h-[30vh] lg:h-[40vh] rounded-md">
+                  <Image
+                    src={img2}
+                    alt="Loading..."
+                    className="hover:scale-125 transition-all duration-500 cursor-pointer object-cover rounded-md w-full h-[30vh] lg:h-[40vh]"
+                  />
+                </div>
+              </div>
+              <div className="col-span-12 lg:col-span-6">
+                <div className="overflow-hidden h-[30vh] lg:h-[83vh] xl:h-[85vh]">
+                  <Image
+                    src={img}
+                    alt="Loading..."
+                    className="hover:scale-125 transition-all duration-500 cursor-pointer object-cover rounded-md w-full h-[30vh] lg:h-[83vh] xl:h-[85vh]"
+                  />
+                </div>
+              </div>
+            </div>
           </div>
         </div>
         <div className="col-span-12 order-1 xl:order-2 xl:col-span-4">
