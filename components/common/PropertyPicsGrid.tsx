@@ -5,7 +5,7 @@ import Image from "next/image";
 
 const PropertyPicsGrid = () => {
   return (
-    <div className="grid my-10 image-grid gap-6 grid-cols-12">
+    <div className="grid image-grid gap-6 grid-cols-12">
       <div className="col-span-12 lg:col-span-6 flex flex-col">
         <div className="overflow-hidden mb-8 h-[30vh] lg:h-[40vh] rounded-md">
           <Image
@@ -23,7 +23,7 @@ const PropertyPicsGrid = () => {
         </div>
       </div>
       <div className="col-span-12 lg:col-span-6">
-        <div className="overflow-hidden h-[30vh] lg:h-[83vh] xl:h-[85vh]">
+        <div className="overflow-hidden rounded-md h-[30vh] lg:h-[83vh] xl:h-[85vh]">
           <Image
             src={img}
             alt="Loading..."

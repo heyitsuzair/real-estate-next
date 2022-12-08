@@ -1,3 +1,4 @@
+import { Checkbox } from "@material-tailwind/react";
 import React from "react";
 import BadgeFilled from "../common/BadgeFilled";
 import CommentsCount from "../common/CommentsCount";
@@ -9,6 +10,9 @@ import PropertyChart from "../common/PropertyChart";
 import PropertyLocation from "../common/PropertyLocation";
 import PropertyPicsGrid from "../common/PropertyPicsGrid";
 import TextSemiLarge from "../common/TextSemiLarge";
+import { AminitiesCheckbox } from "../../checkboxes";
+import MaterialCheckbox from "../common/MaterialCheckbox";
+import FactsAndFeatures from "../common/FactsAndFeatures";
 
 const MainContent = () => {
   return (
@@ -46,68 +50,36 @@ const MainContent = () => {
           </div>
           <div className="property-facts-features">
             <HeadingLeftBordered heading="Facts And Features" />
-            <div className="features py-10 grid gap-6 grid-cols-12">
-              <div className="col-span-6 md:col-span-4 lg:col-span-3 mb-7">
-                <IconWithTextHeading
-                  text="20 x 16 sq feet"
-                  heading="Living Room"
-                  Icon="fa-solid fa-house"
-                />
-              </div>
-              <div className="col-span-6 md:col-span-4 lg:col-span-3 mb-7">
-                <IconWithTextHeading
-                  text="20 x 16 sq feet"
-                  heading="Garage"
-                  Icon="fa-solid fa-car px-0.5"
-                />
-              </div>
-              <div className="col-span-6 md:col-span-4 lg:col-span-3 mb-7">
-                <IconWithTextHeading
-                  text="20 x 16 sq feet"
-                  heading="Dinning Area"
-                  Icon="fa-solid fa-spoon"
-                />
-              </div>
-              <div className="col-span-6 md:col-span-4 lg:col-span-3 mb-7">
-                <IconWithTextHeading
-                  text="20 x 16 sq feet"
-                  heading="Bedroom"
-                  Icon="fa-solid fa-bed"
-                />
-              </div>
-              <div className="col-span-6 md:col-span-4 lg:col-span-3 mb-7">
-                <IconWithTextHeading
-                  text="20 x 16 sq feet"
-                  heading="Bathroom"
-                  Icon="fa-solid fa-bath"
-                />
-              </div>
-              <div className="col-span-6 md:col-span-4 lg:col-span-3 mb-7">
-                <IconWithTextHeading
-                  text="20 x 16 sq feet"
-                  heading="Gym Area"
-                  Icon="fa-solid fa-dumbbell"
-                />
-              </div>
-              <div className="col-span-6 md:col-span-4 lg:col-span-3 mb-7">
-                <IconWithTextHeading
-                  text="20 x 16 sq feet"
-                  heading="Garden"
-                  Icon="fa-solid fa-worm px-0.5"
-                />
-              </div>
-              <div className="col-span-6 md:col-span-4 lg:col-span-3 mb-7">
-                <IconWithTextHeading
-                  text="20 x 16 sq feet"
-                  heading="Parking"
-                  Icon="fa-solid fa-square-parking px-0.5"
-                />
-              </div>
+            <FactsAndFeatures />
+          </div>
+          <div className="property-from-gallery">
+            <HeadingLeftBordered heading="From Our Gallery" />
+            <div className="my-10">
+              <PropertyPicsGrid />
             </div>
           </div>
-          <div className="property-from-gallert">
-            <HeadingLeftBordered heading="From Our Gallery" />
-            <PropertyPicsGrid />
+          <div className="property-from-gallery">
+            <HeadingLeftBordered heading="Amenities" />
+            <div className="my-10">
+              <div className="amenities-checkboxes grid grid-cols-12">
+                {AminitiesCheckbox.map((checkbox) => {
+                  return (
+                    <div
+                      className="col-span-12 md:col-span-4"
+                      key={checkbox.id}
+                    >
+                      <MaterialCheckbox
+                        name={checkbox.name}
+                        value={checkbox.value}
+                        id={checkbox.id}
+                        checked={true}
+                        handleChange={undefined}
+                      />
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
           </div>
         </div>
         <div className="col-span-12 order-1 xl:order-2 xl:col-span-4">

@@ -1,3 +1,4 @@
+import Head from "next/head";
 import { useRouter } from "next/router";
 import React from "react";
 import BreadCrumb from "../../components/common/BreadCrumb";
@@ -9,11 +10,20 @@ const SinglePropertyPage = () => {
   const { id } = router.query;
 
   return (
-    <div className="product-details">
-      <BreadCrumb text="Product Details" />
-      <PropertyPicCarousel />
-      <MainContent />
-    </div>
+    <>
+      <Head>
+        <title>Property</title>
+        <meta
+          name="description"
+          content="Real Estate Site My Muhammad Uzair. Property"
+        />
+      </Head>
+      <div className="product-details">
+        <BreadCrumb text="Product Details" />
+        <PropertyPicCarousel />
+        <MainContent />
+      </div>
+    </>
   );
 };
 
