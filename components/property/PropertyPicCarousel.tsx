@@ -2,71 +2,64 @@ import Image from "next/image";
 import React from "react";
 import Slider from "react-slick";
 import img from "../../assets/img/logo-og.png";
-import img2 from "../../assets/img/21.png";
-import img3 from "../../assets/img/author.jpg";
-import NextArrow from "../carousels/NextArrow";
+import SliderArrows from "../common/SliderArrows";
 const PropertyPicCarousel = () => {
-  const slider = React.useRef(null);
+  const slider = React.useRef<null>(null);
   const settings = {
     dots: false,
     infinite: true,
     className: "center",
     centerMode: true,
-    centerPadding: "314px",
+    centerPadding: "364px",
     slidesToShow: 1,
     speed: 500,
     slidesToScroll: 1,
     adaptiveHeight: false,
     arrows: false,
+    responsive: [
+      {
+        breakpoint: 768,
+        settings: {
+          centerPadding: "60px",
+        },
+      },
+    ],
   };
 
   return (
     <>
       <div className="mb-24 slider relative">
         <Slider ref={slider} {...settings}>
-          <div>
+          <div className="overflow-hidden">
             <Image
               alt="Loading..."
-              className="mx-auto w-full h-96 object-contain"
-              src={img2}
-            />
-          </div>
-          <div>
-            <Image
-              alt="Loading..."
-              className="mx-auto w-full h-96 object-contain"
+              className="mx-auto w-full h-96 object-cover cursor-pointer transition-all duration-500 hover:scale-150"
               src={img}
             />
           </div>
-          <div>
+          <div className="overflow-hidden">
             <Image
               alt="Loading..."
-              className="mx-auto w-full h-96 object-contain"
+              className="mx-auto w-full h-96 object-cover cursor-pointer transition-all duration-500 hover:scale-150"
               src={img}
             />
           </div>
-          <div>
+          <div className="overflow-hidden">
             <Image
               alt="Loading..."
-              className="mx-auto w-full h-96 object-contain"
-              src={img3}
+              className="mx-auto w-full h-96 object-cover cursor-pointer transition-all duration-500 hover:scale-150"
+              src={img}
+            />
+          </div>
+          <div className="overflow-hidden">
+            <Image
+              alt="Loading..."
+              className="mx-auto w-full h-96 object-cover cursor-pointer transition-all duration-500 hover:scale-150"
+              src={img}
             />
           </div>
         </Slider>
-        <div className="flex justify-between absolute w-full mx-auto px-8 top-40">
-          <button
-            onClick={() => slider.current?.slickPrev()}
-            className="bg-red-500 text-white rounded-full py-4 px-5 hover:bg-white hover:text-red-500 transition-all"
-          >
-            <i className="fa text-2xl fa-arrow-left" aria-hidden="true"></i>
-          </button>
-          <button
-            onClick={() => slider.current?.slickNext()}
-            className="bg-red-500 text-white rounded-full py-4 px-5 hover:bg-white hover:text-red-500 transition-all"
-          >
-            <i className="fa text-2xl fa-arrow-right" aria-hidden="true"></i>
-          </button>
-        </div>
+        <SliderArrows slider={slider} top="top-40" />
       </div>
     </>
   );
