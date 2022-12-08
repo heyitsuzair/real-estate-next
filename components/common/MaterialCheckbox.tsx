@@ -5,7 +5,6 @@ interface PropTypes {
   handleChange: ChangeEventHandler<HTMLInputElement> | undefined;
   value: string;
   name: string;
-  id: string;
   checked: boolean;
 }
 
@@ -13,7 +12,6 @@ const MaterialCheckbox = ({
   handleChange,
   value,
   name,
-  id,
   checked,
 }: PropTypes) => {
   return (
@@ -24,11 +22,14 @@ const MaterialCheckbox = ({
         name={name}
         defaultChecked={checked}
         color="red"
-        id={id}
+        label={value}
+        id={value}
+        labelProps={{
+          style: {
+            fontWeight: "500",
+          },
+        }}
       />
-      <label htmlFor={id} className="text-slate-500 cursor-pointer">
-        {value}
-      </label>
     </div>
   );
 };

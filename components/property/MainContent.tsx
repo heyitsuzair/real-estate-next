@@ -60,18 +60,17 @@ const MainContent = () => {
           </div>
           <div className="property-from-gallery">
             <HeadingLeftBordered heading="Amenities" />
-            <div className="my-10">
-              <div className="amenities-checkboxes grid grid-cols-12">
+            <div className="my-7">
+              <div className="amenities-checkboxes -ml-3 grid grid-cols-12">
                 {AminitiesCheckbox.map((checkbox) => {
                   return (
                     <div
                       className="col-span-12 md:col-span-4"
-                      key={checkbox.id}
+                      key={checkbox.value}
                     >
                       <MaterialCheckbox
                         name={checkbox.name}
                         value={checkbox.value}
-                        id={checkbox.id}
                         checked={true}
                         handleChange={undefined}
                       />
