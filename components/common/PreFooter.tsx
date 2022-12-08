@@ -18,16 +18,16 @@ const PreFooter = () => {
           className="flex flex-col gap-8 md:gap0 md:flex-row justify-between items-center"
         >
           <div className="pre-footer-left flex flex-col gap-8">
-            <h1 className="text-4xl text-white font-bold">
+            <h1 className="text-2xl md:text-4xl text-white text-center md:text-start font-bold">
               Looking For A Dream House?
             </h1>
-            <p className="text-white">
+            <p className="text-white text-center md:text-start">
               We can help you realize your dream of a new home
             </p>
           </div>
           <div className="pre-footer-right">
             <button
-              className="bg-white hover:bg-slate-800 hover:text-white transition-all tracking-wider rounded p-3 text-black"
+              className="bg-white hover:bg-slate-800 hover:text-white transition-all tracking-wider rounded text-black"
               style={{ padding: ".6rem 1.5rem" }}
               onClick={() => onExploreProperitesClick()}
             >

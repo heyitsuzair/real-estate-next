@@ -16,7 +16,7 @@ const HomeCarousel = () => {
     arrows: false,
     responsive: [
       {
-        breakpoint: 1024,
+        breakpoint: 1280,
         settings: {
           slidesToShow: 3,
           slidesToScroll: 1,
@@ -25,7 +25,7 @@ const HomeCarousel = () => {
         },
       },
       {
-        breakpoint: 991,
+        breakpoint: 1024,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 1,
@@ -33,6 +33,7 @@ const HomeCarousel = () => {
           dots: true,
         },
       },
+
       {
         breakpoint: 800,
         settings: {

@@ -33,7 +33,7 @@ export default function ListingsCard() {
     <>
       <ListingsModal size={size} handleOpen={handleOpen} />
       <Link href={"/"}>
-        <Card className="w-96 mx-auto">
+        <Card className="mx-4">
           <CardHeader className="relative h-56">
             <Image src={Home} alt="Loading..." />
           </CardHeader>
@@ -58,9 +58,9 @@ export default function ListingsCard() {
           </CardBody>
           <CardFooter
             divider
-            className="flex items-center justify-between py-3"
+            className="flex items-center flex-col gap-6 xl:flex-row xl:gap-0 justify-between py-3"
           >
-            <div className="flex gap-3">
+            <div className="flex justify-start items-center w-full gap-3">
               <Image
                 src={Author}
                 alt="Loading..."
@@ -71,7 +71,7 @@ export default function ListingsCard() {
                 <span className="text-sm text-gray-500">Estate Agents</span>
               </div>
             </div>
-            <div className="icons flex gap-2">
+            <div className="icons flex w-full justify-between xl:justify-end gap-2">
               <i className="fa-solid fa-arrow-up-right-from-square text-white text-lg px-3 py-2 rounded-full bg-red-500"></i>
               <i
                 onClick={(e) => handleOpen("lg", e)}
