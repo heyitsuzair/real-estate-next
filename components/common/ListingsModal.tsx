@@ -5,6 +5,7 @@ import Home from "../../assets/img/21.png";
 import Image from "next/image";
 import TextLarge from "./TextLarge";
 import ButtonRedWithIcon from "./ButtonRedWithIcon";
+import StarRating from "./StarRatings";
 
 interface Proptypes {
   size: any;
@@ -71,14 +72,8 @@ const ListingsModal = ({ size, handleOpen }: Proptypes) => {
           alt="Loading..."
         />
         <div className="listing-info flex flex-col w-full gap-3">
-          <div className="ratings flex items-center">
-            <StarRatings
-              rating={2.403}
-              starRatedColor="red"
-              starDimension="25px"
-              starSpacing="1px"
-            />
-            <span className="ml-2 poppins text-red-500">(95 Reviews)</span>
+          <div className="w-64">
+            <StarRating rating={2.403} reviews={95} />
           </div>
           <div className="product-name text-black">
             <h1 className="text-2xl poppins font-semibold">
