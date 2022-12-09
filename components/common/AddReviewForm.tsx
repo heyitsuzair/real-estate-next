@@ -1,9 +1,11 @@
-import React, { ChangeEvent, useState } from "react";
+import React, { useState } from "react";
 import { Button, Input, Textarea } from "@material-tailwind/react";
 import dynamic from "next/dynamic";
 import { useFormik } from "formik";
 import { AddReviewFormSchema } from "../../yupSchemas/AddReviewFormSchema";
+import { toast } from "react-toastify";
 import SpinnerSmall from "./SpinnerSmall";
+
 const StarRatings = dynamic(() => import("react-star-ratings"), {
   ssr: false,
 });
@@ -39,8 +41,14 @@ const AddReviewForm = ({ propertyId }: { propertyId: number }) => {
     validationSchema: AddReviewFormSchema,
     onSubmit: (values, action) => {
       setIsLoading(true);
-      console.log(values);
-      action.resetForm();
+
+      setTimeout(() => {
+        toast.success("Review Added!", {
+          position: "bottom-center",
+        });
+        setIsLoading(false);
+        action.resetForm();
+      }, 2000);
     },
   });
   // !Configurations For Formik -------------------------->

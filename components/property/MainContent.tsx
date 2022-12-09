@@ -14,7 +14,7 @@ import FactsAndFeatures from "../common/FactsAndFeatures";
 import Map from "../common/Map";
 import FloorTabs from "../common/FloorTabs";
 import StarRating from "../common/StarRatings";
-import Comment from "../common/comment";
+import Comment from "../common/Comment";
 import AddReviewForm from "../common/AddReviewForm";
 
 const MainContent = () => {
