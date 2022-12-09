@@ -5,9 +5,12 @@ import {
   Tab,
   TabPanel,
 } from "@material-tailwind/react";
+import { numberToString } from "../../utils";
 import Date from "./Date";
 
 const MaterialTabs = () => {
+  const string = numberToString(35);
+
   const data = [
     {
       label: "First Floor",
