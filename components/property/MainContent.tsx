@@ -15,6 +15,7 @@ import Map from "../common/Map";
 import FloorTabs from "../common/FloorTabs";
 import StarRating from "../common/StarRatings";
 import Comment from "../common/comment";
+import AddReviewForm from "../common/AddReviewForm";
 
 const MainContent = () => {
   return (
@@ -104,6 +105,9 @@ const MainContent = () => {
             <Comment />
             <Comment />
             <Comment />
+          </div>
+          <div className="property-add-review my-10">
+            <AddReviewForm propertyId={1} />
           </div>
         </div>
         <div className="col-span-12 order-1 xl:order-2 xl:col-span-4">
