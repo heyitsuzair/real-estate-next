@@ -12,7 +12,7 @@ import { AminitiesCheckbox } from "../../checkboxes";
 import MaterialCheckbox from "../common/MaterialCheckbox";
 import FactsAndFeatures from "../common/FactsAndFeatures";
 import Map from "../common/Map";
-import MaterialTabs from "../common/MaterialTabs";
+import FloorTabs from "../common/FloorTabs";
 
 const MainContent = () => {
   return (
@@ -89,7 +89,7 @@ const MainContent = () => {
           <div className="property-floors">
             <HeadingLeftBordered heading="Floor Plans" />
             <div className="my-10">
-              <MaterialTabs />
+              <FloorTabs />
             </div>
           </div>
         </div>
