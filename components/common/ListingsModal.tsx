@@ -6,6 +6,7 @@ import Image from "next/image";
 import TextLarge from "./TextLarge";
 import ButtonRedWithIcon from "./ButtonRedWithIcon";
 import StarRating from "./StarRatings";
+import { useRouter } from "next/router";
 
 interface Proptypes {
   size: any;
@@ -13,37 +14,13 @@ interface Proptypes {
 }
 
 const ListingsModal = ({ size, handleOpen }: Proptypes) => {
-  // State For Quantity ---------------------->
-  const [quantity, setQuantity] = useState(1);
-  // State For Quantity ---------------------->
+  const router = useRouter();
 
-  // ?Handle When Someone Clicks On Plus Button ------------------->
-  const handleQuantityPlus = () => {
-    const newQuantity = quantity + 1;
-    setQuantity(newQuantity);
+  // ?Handle When Someone Clicks On See Full Info Button ---------------->
+  const handleVisitListing = () => {
+    router.push("/property/1");
   };
-  // !Handle When Someone Clicks On Plus Button ------------------->
-
-  // ?Handle When Someone Clicks On Minus Button ------------------->
-  const handleQuantityMinus = () => {
-    /**
-     * If Quantity Is "1" Prevent User From Going In Negative Value
-     */
-
-    if (quantity === 1) {
-      return;
-    }
-
-    const newQuantity = quantity - 1;
-    setQuantity(newQuantity);
-  };
-  // !Handle When Someone Clicks On Minus Button ------------------->
-
-  // ?Function To Add Item Into Cart ---------------------------->
-  const handleAddToCart = () => {
-    console.log("Add To Cart");
-  };
-  // !Function To Add Item Into Cart ---------------------------->
+  // !Handle When Someone Clicks On See Full Info Button ---------------->
 
   return (
     <Dialog
@@ -91,31 +68,14 @@ const ListingsModal = ({ size, handleOpen }: Proptypes) => {
               <span>mppwdmwdpmw</span>
             </span>
           </div>
-          <div className="product-add-to-cart poppins flex gap-6">
-            <div className="quantity flex items-center gap-3">
-              <span
-                className="bg-red-500 rounded-full text-white px-3.5 py-2 cursor-pointer"
-                onClick={() => handleQuantityMinus()}
-              >
-                <i className="fa fa-minus" aria-hidden="true"></i>
-              </span>
-              <span className="font-semibold text-black min-w-2 text-center">
-                {quantity}
-              </span>
-              <span
-                className="bg-red-500 rounded-full text-white px-3.5 py-2 cursor-pointer"
-                onClick={() => handleQuantityPlus()}
-              >
-                <i className="fa fa-plus" aria-hidden="true"></i>
-              </span>
-            </div>
-            <div className="add-to-cart font-semibold">
+          <div className="product-link poppins flex gap-6">
+            <div className="font-semibold">
               <ButtonRedWithIcon
-                text="Add To Cart"
+                text="See Full Info"
                 width="inherit"
-                icon="fa-solid fa-shopping-cart"
-                iconPosition="left"
-                handleClick={() => handleAddToCart()}
+                icon="fa-solid fa-arrow-up-right-from-square"
+                iconPosition="right"
+                handleClick={() => handleVisitListing()}
               />
             </div>
           </div>

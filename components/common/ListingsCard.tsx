@@ -32,7 +32,7 @@ export default function ListingsCard() {
   return (
     <>
       <ListingsModal size={size} handleOpen={handleOpen} />
-      <Link href={"/"}>
+      <Link href={"/property/1"}>
         <Card className="mx-4">
           <CardHeader className="relative h-56">
             <Image src={Home} alt="Loading..." />

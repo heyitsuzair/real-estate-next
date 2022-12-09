@@ -1,24 +1,27 @@
 import React from "react";
 import { GoogleMap, useJsApiLoader, Marker } from "@react-google-maps/api";
 
-const containerStyle = {
-  width: "100%",
-  height: "400px",
-};
+interface PropTypes {
+  height: string;
+  center: {
+    lat: number;
+    lng: number;
+  };
+  zoom: number;
+}
 
-const Map = () => {
+const Map = ({ height, center, zoom }: PropTypes) => {
   // API KEY -------------------------->
   const API_KEY = process.env.NEXT_PUBLIC_GOOGLE_API;
   // API KEY -------------------------->
 
-  // Props For Map ------------------->
-  const center = {
-    lat: 31.5204,
-    lng: 74.3587,
-  };
-  // Props For Map ------------------->
-
   // ?Map Configuration -------------------------------->
+
+  const containerStyle = {
+    width: "100%",
+    height: height,
+  };
+
   //eslint-disable-next-line
   const [map, setMap] = React.useState(null);
 
@@ -29,8 +32,9 @@ const Map = () => {
 
   const onLoad = React.useCallback(
     function callback(map: any) {
-      const bounds = new window.google.maps.LatLngBounds(center);
-      map.fitBounds(bounds);
+      // const bounds = new window.google.maps.LatLngBounds(center);
+      // map.fitBounds(bounds);
+
       setMap(map);
     },
     //eslint-disable-next-line
@@ -46,7 +50,7 @@ const Map = () => {
     <GoogleMap
       mapContainerStyle={containerStyle}
       center={center}
-      zoom={13}
+      zoom={zoom}
       onLoad={onLoad}
       onUnmount={onUnmount}
     >

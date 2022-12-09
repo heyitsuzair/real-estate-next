@@ -86,7 +86,14 @@ const MainContent = () => {
           <div className="property-location">
             <HeadingLeftBordered heading="Location" />
             <div className="my-10">
-              <Map />
+              <Map
+                zoom={11}
+                height="400px"
+                center={{
+                  lat: 31.5204,
+                  lng: 74.3587,
+                }}
+              />
             </div>
           </div>
           <div className="property-floors">
