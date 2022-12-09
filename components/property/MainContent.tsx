@@ -13,6 +13,8 @@ import MaterialCheckbox from "../common/MaterialCheckbox";
 import FactsAndFeatures from "../common/FactsAndFeatures";
 import Map from "../common/Map";
 import FloorTabs from "../common/FloorTabs";
+import StarRating from "../common/StarRatings";
+import Comment from "../common/comment";
 
 const MainContent = () => {
   return (
@@ -91,6 +93,17 @@ const MainContent = () => {
             <div className="my-10">
               <FloorTabs />
             </div>
+          </div>
+          <div className="property-reviews">
+            <HeadingLeftBordered heading="Customer Reviews" />
+            <div className="my-10 grid grid-cols-12">
+              <div className="col-span-4 -ml-7">
+                <StarRating rating={4.5} reviews={10} />
+              </div>
+            </div>
+            <Comment />
+            <Comment />
+            <Comment />
           </div>
         </div>
         <div className="col-span-12 order-1 xl:order-2 xl:col-span-4">

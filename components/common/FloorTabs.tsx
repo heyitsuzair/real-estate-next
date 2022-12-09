@@ -18,7 +18,14 @@ const Floor = () => {
     {
       label: first + " Floor",
       value: "first-floor",
-      desc: <TabItem />,
+      desc: (
+        <TabItem
+          text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum fuga
+      cupiditate dignissimos, consequatur optio fugiat architecto ut harum
+      cum aliquid."
+          heading="First Floor"
+        />
+      ),
     },
   ];
   // Data For Tab ------------------->
