@@ -14,14 +14,11 @@ const NavIcons = ({ setCanvasHidden, canvasHidden }: PropTypes) => {
         <i className="fa-solid fa-magnifying-glass"></i>
       </div>
       <div
-        className="shadow-2xl transition-all ease-in-out hover:bg-slate-800 hover:text-white hover:cursor-pointer shadow-slate-800 py-3 rounded-full"
-        style={{ paddingLeft: "1.1rem", paddingRight: "1.1rem" }}
+        className="shadow-2xl transition-all ease-in-out hover:bg-slate-800 hover:text-white hover:cursor-pointer shadow-slate-800 rounded-full relative"
+        style={{ padding: ".7rem 1.1rem" }}
       >
-        <i className="fa-regular fa-user"></i>
-      </div>
-      <div className="shadow-2xl transition-all ease-in-out hover:bg-slate-800 hover:text-white hover:cursor-pointer shadow-slate-800 py-3 px-4 rounded-full relative">
         <span className={`absolute ${styles.cartCountSpan}`}>2</span>
-        <i className="fa fa-cart-shopping"></i>
+        <i className="fa-regular fa-user"></i>
       </div>
       <a
         className="shadow-2xl md:hidden lg:hidden hover:bg-slate-800 hover:text-white hover:cursor-pointer shadow-slate-800 py-3 px-4 rounded-full"
