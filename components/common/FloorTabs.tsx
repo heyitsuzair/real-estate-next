@@ -36,7 +36,7 @@ const Floor = () => {
         {data.map(({ value, desc }) => (
           <TabPanel
             key={value}
-            className="bg-slate-100 mt-4 p-0 px-0 lg:px-4 rounded-md"
+            className="bg-slate-100 mt-3 p-0 rounded-md"
             value={value}
           >
             {desc}
