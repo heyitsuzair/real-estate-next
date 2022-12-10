@@ -35,11 +35,20 @@ export default function App({ Component, pageProps }: AppProps) {
     <>
       <ReactToastifyContainer />
       <ProgressBar progress={progress} />
-      <Topbar />
-      <Navbar />
+      {!router.pathname.includes("/dashboard") && (
+        <>
+          <Topbar />
+          <Navbar />
+        </>
+      )}
+
       <Component {...pageProps} />
-      <PreFooter />
-      <Footer />
+      {!router.pathname.includes("/dashboard") && (
+        <>
+          <PreFooter />
+          <Footer />
+        </>
+      )}
     </>
   );
 }
