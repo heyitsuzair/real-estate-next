@@ -1,6 +1,5 @@
 import React from "react";
-
-import styles from "../../../styles/Navbar.module.css";
+import UserPopover from "./UserPopover";
 
 interface PropTypes {
   canvasHidden: boolean;
@@ -13,13 +12,7 @@ const NavIcons = ({ setCanvasHidden, canvasHidden }: PropTypes) => {
       <div className="shadow-2xl transition-all ease-in-out hover:bg-slate-800 hover:text-white hover:cursor-pointer shadow-slate-800 py-3 px-4 rounded-full">
         <i className="fa-solid fa-magnifying-glass"></i>
       </div>
-      <div
-        className="shadow-2xl transition-all ease-in-out hover:bg-slate-800 hover:text-white hover:cursor-pointer shadow-slate-800 rounded-full relative"
-        style={{ padding: ".7rem 1.1rem" }}
-      >
-        <span className={`absolute ${styles.cartCountSpan}`}>2</span>
-        <i className="fa-regular fa-user"></i>
-      </div>
+      <UserPopover />
       <a
         className="shadow-2xl md:hidden lg:hidden hover:bg-slate-800 hover:text-white hover:cursor-pointer shadow-slate-800 py-3 px-4 rounded-full"
         onClick={() => setCanvasHidden(!canvasHidden)}
