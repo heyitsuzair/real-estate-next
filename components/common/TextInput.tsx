@@ -1,4 +1,4 @@
-import React, { ChangeEventHandler } from "react";
+import React, { ChangeEventHandler, FocusEventHandler } from "react";
 
 interface PropTypes {
   id: string;
@@ -7,8 +7,10 @@ interface PropTypes {
   placeholder: string;
   onChange: ChangeEventHandler<HTMLInputElement> | undefined;
   label: string;
-  error: boolean;
-  errorText: string;
+  error: boolean | string | undefined;
+  errorText: boolean | string | undefined;
+  value: string;
+  onBlur: FocusEventHandler<HTMLInputElement> | undefined;
 }
 
 const TextInput = ({
@@ -20,6 +22,8 @@ const TextInput = ({
   label,
   error,
   errorText,
+  value,
+  onBlur,
 }: PropTypes) => {
   return (
     <div>
@@ -32,7 +36,9 @@ const TextInput = ({
       <input
         type={type}
         name={name}
+        onBlur={onBlur}
         id={id}
+        value={value}
         onChange={onChange}
         placeholder={placeholder}
         className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg  block w-full p-2.5 ring-red-500 focus:outline-red-500"

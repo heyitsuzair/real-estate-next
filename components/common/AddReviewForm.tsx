@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Button, Input, Textarea } from "@material-tailwind/react";
 import dynamic from "next/dynamic";
 import { useFormik } from "formik";
-import { AddReviewFormSchema } from "../../yupSchemas/AddReviewFormSchema";
+import { AddReviewFormSchema } from "../../yupSchemas";
 import { toast } from "react-toastify";
 import SpinnerSmall from "./SpinnerSmall";
 
