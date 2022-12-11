@@ -17,6 +17,7 @@ const Register = () => {
   // ?Configurations For Formik -------------------------->
   const initialValues = {
     name: "",
+    phone_no: "",
     email: "",
     password: "",
   };
@@ -75,6 +76,18 @@ const Register = () => {
                     errorText={errors.name}
                     onBlur={handleBlur}
                     placeholder="Muhammad Uzair"
+                    onChange={handleChange}
+                  />
+                  <TextInput
+                    id="phone_no"
+                    type="number"
+                    name="phone_no"
+                    label="Phone No (e.g: 03104864156)"
+                    value={values.phone_no}
+                    error={errors.phone_no && touched.phone_no}
+                    errorText={errors.phone_no}
+                    onBlur={handleBlur}
+                    placeholder="03104864150"
                     onChange={handleChange}
                   />
                   <TextInput

@@ -7,6 +7,19 @@ body {
   font-family: "Poppins", sans-serif;
   /* overflow-x: hidden; */
 }
+/* Hide Input Numbers Arrow */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+/* Hide Input Numbers Arrow */
 .poppins {
   font-family: "Poppins", sans-serif;
 }

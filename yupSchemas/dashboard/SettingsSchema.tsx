@@ -6,4 +6,5 @@ export const SettingsSchema = Yup.object({
     .email("Please Enter Valid Email")
     .required("Please Enter Your Email!"),
   password: Yup.string().min(5, "Password Must Be Of Minimum 5 Characters"),
+  phone_no: Yup.number().required("Please Enter Phone No!"),
 });

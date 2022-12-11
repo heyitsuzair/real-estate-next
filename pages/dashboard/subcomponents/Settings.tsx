@@ -13,6 +13,7 @@ const Settings = () => {
   const initialValues = {
     name: "Muhammad Uzair",
     email: "uzair@gmail.com",
+    phone_no: "03104864150",
     password: "",
   };
 
@@ -52,6 +53,18 @@ const Settings = () => {
             onChange={handleChange}
           />
           <TextInput
+            id="phone_no"
+            type="number"
+            name="phone_no"
+            label="Phone No (e.g: 03104864156)"
+            value={values.phone_no}
+            error={errors.phone_no && touched.phone_no}
+            errorText={errors.phone_no}
+            onBlur={handleBlur}
+            placeholder="03104864150"
+            onChange={handleChange}
+          />
+          <TextInput
             id="email"
             type="email"
             name="email"
@@ -82,7 +95,7 @@ const Settings = () => {
           ) : (
             <button
               type="submit"
-              className="text-white bg-red-500 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center "
+              className="text-white bg-red-500 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-8 py-2.5 text-center "
             >
               Save
             </button>

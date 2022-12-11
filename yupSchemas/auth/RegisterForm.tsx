@@ -8,4 +8,5 @@ export const RegisterFormSchema = Yup.object({
   password: Yup.string()
     .min(5, "Password Must Be Of Minimum 5 Characters")
     .required("Please Enter Password!"),
+  phone_no: Yup.number().required("Please Enter Phone No!"),
 });
