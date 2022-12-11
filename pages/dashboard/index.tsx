@@ -2,6 +2,7 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import React from "react";
 import Sidebar from "../../components/common/Sidebar";
+import AddProperty from "./subcomponents/AddProperty";
 import MyProperties from "./subcomponents/MyProperties";
 import Settings from "./subcomponents/Settings";
 
@@ -20,6 +21,7 @@ const Index = () => {
         <div className="col-span-10">
           {router.query.route === "myProperties" && <MyProperties />}
           {router.query.route === "settings" && <Settings />}
+          {router.query.route === "addProperties" && <AddProperty />}
         </div>
       </div>
     </div>
