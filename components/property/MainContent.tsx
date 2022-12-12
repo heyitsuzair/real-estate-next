@@ -119,10 +119,7 @@ const MainContent = () => {
         </div>
         <div className="col-span-12 order-1 xl:order-2 xl:col-span-4">
           <OwnerProfile
-            ownerBio="Lorem ipsum dolor sit amet consectetur adipisicing elit. Eligendi
-      facilis nobis veritatis. Aspernatur eaque ut labore harum,
-      excepturi corporis ea."
-            ownerHobby="Traveler/Photography"
+            ownerHobby="Property Seller"
             ownerName="Muhammad Uzair"
             isSticky={true}
           />

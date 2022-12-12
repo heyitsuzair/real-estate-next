@@ -11,14 +11,14 @@ const PropertyPicsGrid = () => {
           <Image
             src={img}
             alt="Loading..."
-            className="hover:scale-125 transition-all duration-500 cursor-pointer object-cover rounded-md w-full h-[30vh] lg:h-[40vh]"
+            className="hover:scale-125 transition-all duration-500 object-cover rounded-md w-full h-[30vh] lg:h-[40vh]"
           />
         </div>
         <div className="overflow-hidden h-[30vh] lg:h-[40vh] rounded-md">
           <Image
             src={img2}
             alt="Loading..."
-            className="hover:scale-125 transition-all duration-500 cursor-pointer object-cover rounded-md w-full h-[30vh] lg:h-[40vh]"
+            className="hover:scale-125 transition-all duration-500 object-cover rounded-md w-full h-[30vh] lg:h-[40vh]"
           />
         </div>
       </div>
@@ -27,7 +27,7 @@ const PropertyPicsGrid = () => {
           <Image
             src={img}
             alt="Loading..."
-            className="hover:scale-125 transition-all duration-500 cursor-pointer object-cover rounded-md w-full h-[30vh] lg:h-[83vh] xl:h-[85vh]"
+            className="hover:scale-125 transition-all duration-500 object-cover rounded-md w-full h-[30vh] lg:h-[83vh] xl:h-[85vh]"
           />
         </div>
       </div>

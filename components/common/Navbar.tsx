@@ -17,16 +17,13 @@ const Navbar = () => {
   // State Search Visibility ---------------->
 
   return (
-    <div className="relative">
+    <div className="sticky shadow-lg top-0" style={{ zIndex: 12 }}>
       <SearchForm
         setIsSearchVisible={setIsSearchVisible}
         isSearchVisible={isSearchVisible}
       />
 
-      <div
-        className="grid sticky shadow-lg top-0 bg-white grid-cols-12 items-center py-8"
-        style={{ zIndex: 12 }}
-      >
+      <div className="grid bg-white grid-cols-12 items-center py-8">
         <div className="col-span-12 md:col-span-4 lg:col-span-4 sm:col-span-6 text-center">
           <Link href="/">
             <Image
