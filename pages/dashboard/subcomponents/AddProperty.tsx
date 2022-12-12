@@ -1,5 +1,6 @@
 import React from "react";
 import PropertyForm from "../../../components/common/PropertyForm";
+import { AddPropertySchema } from "../../../yupSchemas";
 
 const AddProperty = () => {
   const initialValues = {
@@ -29,9 +30,12 @@ const AddProperty = () => {
       <h1 className="text-3xl mx-5 poppins font-bold my-5">Add Property</h1>
       <PropertyForm
         initialValues={initialValues}
+        yupSchema={AddPropertySchema}
         state="add"
         property_id={undefined}
-        imgSources={[]}
+        imgSources={[
+          "https://techcrunch.com/wp-content/uploads/2021/07/GettyImages-1207206237.jpg?w=730&crop=1",
+        ]}
       />
     </>
   );

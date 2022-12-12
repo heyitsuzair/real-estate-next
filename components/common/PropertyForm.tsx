@@ -1,8 +1,7 @@
-import React, { ChangeEvent, HTMLInputTypeAttribute, useState } from "react";
+import React, { ChangeEvent, useState } from "react";
 import TextInput from "./TextInput";
 import { useFormik } from "formik";
 import SpinnerSmall from "./SpinnerSmall";
-import { AddPropertySchema } from "../../yupSchemas";
 import TextArea from "./Textarea";
 import MaterialSelectWithValidation from "./MaterialSelectWithValidation";
 import { AreaMenu, PropertyStatus, PropertyType } from "../../menus";
@@ -36,6 +35,7 @@ interface PropTypes {
   state: "update" | "add";
   property_id: undefined | number;
   imgSources: string[];
+  yupSchema: any;
 }
 
 const PropertyForm = ({
@@ -43,6 +43,7 @@ const PropertyForm = ({
   state,
   property_id,
   imgSources,
+  yupSchema,
 }: PropTypes) => {
   // ?State For Loading ---------------------------->
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -112,7 +113,7 @@ const PropertyForm = ({
     setFieldValue,
   } = useFormik({
     initialValues: initialValues,
-    validationSchema: AddPropertySchema,
+    validationSchema: yupSchema,
     onSubmit: (values, action) => {
       alert(state);
       setIsLoading(true);
