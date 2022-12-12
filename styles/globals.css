@@ -19,6 +19,7 @@ input::-webkit-inner-spin-button {
 input[type="number"] {
   -moz-appearance: textfield;
 }
+
 /* Hide Input Numbers Arrow */
 .poppins {
   font-family: "Poppins", sans-serif;
@@ -59,4 +60,10 @@ input[type="number"] {
 }
 .top-43 {
   top: 43%;
+}
+.top-87 {
+  top: 87%;
+}
+.width-90 {
+  width: 90%;
 }

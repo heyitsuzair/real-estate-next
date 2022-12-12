@@ -25,7 +25,7 @@ const OwnerProfile = ({ ownerName, ownerHobby, isSticky }: PropTypes) => {
       <h1 className="text-2xl font-semibold mt-4">{ownerName}</h1>
       <p className="text-slate-400 text-md">{ownerHobby}</p>
       <div className="my-4">
-        <StarRating reviews={3} rating={5} />
+        <StarRating justify="justify-center" reviews={3} rating={5} />
       </div>
       <ButtonRedWithIcon
         text="Call Seller"

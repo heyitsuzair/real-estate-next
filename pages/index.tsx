@@ -6,7 +6,6 @@ import Hero from "../components/home/Hero";
 import MainFocus from "../components/home/MainFocus";
 import OurAminities from "../components/home/OurAminities";
 import OurTestimonial from "../components/home/OurTestimonial";
-import SearchProperty from "../components/home/SearchProperty";
 
 export default function Home() {
   return (
@@ -19,7 +18,6 @@ export default function Home() {
         />
       </Head>
       <Hero />
-      <SearchProperty />
       <About />
       <Counters />
       <MainFocus />

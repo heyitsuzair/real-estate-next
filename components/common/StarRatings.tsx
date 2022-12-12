@@ -7,12 +7,14 @@ const StarRatings = dynamic(() => import("react-star-ratings"), {
 const StarRating = ({
   rating,
   reviews,
+  justify,
 }: {
   rating: number;
   reviews: number;
+  justify: string;
 }) => {
   return (
-    <div className="ratings flex items-center justify-center">
+    <div className={`ratings flex items-center ${justify}`}>
       <StarRatings
         rating={rating}
         starRatedColor="red"

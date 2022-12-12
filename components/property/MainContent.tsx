@@ -105,8 +105,8 @@ const MainContent = () => {
           <div className="property-reviews">
             <HeadingLeftBordered heading="Customer Reviews" />
             <div className="my-10 grid grid-cols-12">
-              <div className="col-span-4 -ml-7">
-                <StarRating rating={4.5} reviews={10} />
+              <div className="col-span-12">
+                <StarRating justify="justify-start" rating={4.5} reviews={10} />
               </div>
             </div>
             <Comment />

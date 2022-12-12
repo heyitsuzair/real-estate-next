@@ -50,7 +50,7 @@ const ListingsModal = ({ size, handleOpen }: Proptypes) => {
         />
         <div className="listing-info flex flex-col w-full gap-3">
           <div className="w-64">
-            <StarRating rating={2.403} reviews={95} />
+            <StarRating justify="justify-start" rating={2.403} reviews={95} />
           </div>
           <div className="product-name text-black">
             <h1 className="text-2xl poppins font-semibold">

@@ -1,8 +1,7 @@
 import React from "react";
-import styles from "../../styles/SearchProperty.module.css";
 import MaterialSelect from "../common/MaterialSelect";
 import { AreaMenu, PropertyStatus, PropertyType } from "../../menus";
-import { useState, ChangeEvent } from "react";
+import { useState } from "react";
 import ButtonRed from "../common/ButtonRed";
 
 const SearchProperty = () => {
@@ -36,7 +35,7 @@ const SearchProperty = () => {
   return (
     <div className="p-4 mb-8">
       <div
-        className={`${styles.searchBox} bg-white p-10 rounded-lg search-property-box shadow-2xl shadow-slate-300 mx-40 grid grid-cols-12 gap-4 items-center`}
+        className={`left-0 top-87 width-90 right-0 mx-auto absolute bg-white p-10 rounded-lg search-property-box shadow-2xl shadow-slate-300 grid grid-cols-12 gap-4 items-center`}
       >
         <div className="col-span-12 sm:col-span-12 md:col-span-6 lg:col-span-3 text-center">
           <MaterialSelect

@@ -71,11 +71,11 @@ export default function ListingsCard() {
                 <span className="text-sm text-gray-500">Estate Agents</span>
               </div>
             </div>
-            <div className="icons flex w-full justify-between xl:justify-end gap-2">
+            <div className="icons flex w-full justify-end gap-2">
               <i className="fa-solid fa-arrow-up-right-from-square text-white text-lg px-3 py-2 rounded-full bg-red-500"></i>
               <i
                 onClick={(e) => handleOpen("lg", e)}
-                className="fa-solid fa-eye cursor-pointer text-white text-lg px-3 py-2 rounded-full bg-red-500"
+                className="fa-solid hidden md:block fa-eye cursor-pointer text-white text-lg px-3 py-2 rounded-full bg-red-500"
               ></i>
             </div>
           </CardFooter>
