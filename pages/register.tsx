@@ -125,6 +125,7 @@ const Register = () => {
                     <Packages
                       errors={errors}
                       touched={touched}
+                      value={values.package}
                       handleChange={handleChange}
                     />
                   </div>

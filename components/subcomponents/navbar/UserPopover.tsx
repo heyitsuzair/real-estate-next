@@ -27,18 +27,21 @@ const UserPopover = () => {
         >
           <Link
             href={"/login"}
+            onClick={() => setPopover(!popover)}
             className="text-black hover:text-red-500 transition-all duration-300 border-b-2 hover:border-red-500 pb-2 px-10 block my-6 font-semibold"
           >
             Login
           </Link>
           <Link
             href={"/register"}
+            onClick={() => setPopover(!popover)}
             className="text-black hover:text-red-500 transition-all duration-300 border-b-2 hover:border-red-500 pb-2 px-10 block my-6 font-semibold"
           >
             Register
           </Link>
           <Link
             href={"/dashboard?route=myProperties"}
+            onClick={() => setPopover(!popover)}
             className="text-black hover:text-red-500 transition-all duration-300 border-b-2 hover:border-red-500 pb-2 px-10 block my-6 font-semibold"
           >
             Dashboard

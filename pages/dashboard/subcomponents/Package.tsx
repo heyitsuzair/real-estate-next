@@ -44,6 +44,7 @@ const Package = () => {
           <div className="-ml-3">
             <Packages
               errors={errors}
+              value={values.package}
               touched={touched}
               handleChange={handleChange}
             />
