@@ -7,7 +7,7 @@ interface PropTypes {
   onChange: ChangeEventHandler<HTMLInputElement> | undefined;
   label: string;
   error: boolean | "" | undefined;
-  errorText: string | undefined;
+  errorText: string | string[] | undefined;
   previewSource: string[];
 }
 
