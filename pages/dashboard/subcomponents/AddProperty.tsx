@@ -7,6 +7,9 @@ import TextArea from "../../../components/common/Textarea";
 import MaterialSelectWithValidation from "../../../components/common/MaterialSelectWithValidation";
 import { AreaMenu, PropertyStatus, PropertyType } from "../../../menus";
 import FileUpload from "../../../components/common/FileUpload";
+import GooglePlacesAutoComplete from "../../../components/common/GooglePlacesAutoComplete";
+import { geocodeByPlaceId } from "react-google-places-autocomplete";
+
 const AddProperty = () => {
   // ?State For Loading ---------------------------->
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -27,7 +30,7 @@ const AddProperty = () => {
     status: "",
     type: "",
     listing_media: "",
-    property_address: "",
+    property_place_id: "",
     property_size: "",
     property_lot_size: "",
     property_rooms: "",
@@ -57,6 +60,12 @@ const AddProperty = () => {
   };
   // !Handle When Values Of Material Select With Validation Changes -------------->
 
+  // ?Handle When Value Of Google Places Autocomplete Change -------------->
+  const handleAddressChange = (e: any) => {
+    setFieldValue("property_place_id", e.value.place_id);
+  };
+  // !Handle When Value Of Google Places Autocomplete Change -------------->
+
   // ?Handle When Listing Media Changes -------------->
 
   const previewFiles = (files: FileList | null) => {
@@ -65,7 +74,6 @@ const AddProperty = () => {
       for (let i = 0; i < files.length; i++) {
         const reader = new FileReader();
         reader.readAsDataURL(files[i]);
-
         reader.onloadend = () => {
           filesArray.push(reader.result);
           setPreviewSource(filesArray);
@@ -234,6 +242,28 @@ const AddProperty = () => {
                 onChange={handleChangeListingMedia}
                 error={errors.listing_media && touched.listing_media}
                 errorText={errors.listing_media}
+              />
+            </div>
+            <div className="col-span-6 pt-1">
+              <GooglePlacesAutoComplete
+                label="Property Address*"
+                error={errors.property_place_id && touched.property_place_id}
+                errorText={errors.property_place_id}
+                handleOnChange={handleAddressChange}
+              />
+            </div>
+            <div className="col-span-6">
+              <TextInput
+                id="property_size"
+                type="number"
+                name="property_size"
+                label="Property Size* (In SQFT)"
+                value={values.property_size}
+                error={errors.property_size && touched.property_size}
+                errorText={errors.property_size}
+                onBlur={handleBlur}
+                placeholder="Property Size"
+                onChange={handleChange}
               />
             </div>
           </div>

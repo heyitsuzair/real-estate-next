@@ -12,7 +12,7 @@ export const AddPropertySchema = Yup.object({
   listing_media: Yup.array().required(
     "Please Upload Listing Media (Pictures)!"
   ),
-  property_address: Yup.string().required("Please Enter Property Address!"),
+  property_place_id: Yup.string().required("Please Enter Property Address!"),
   property_size: Yup.string().required("Please Enter Property Size!"),
   property_lot_size: Yup.string().required("Please Enter Property Lot Size!"),
   property_rooms: Yup.number().required("Please Enter Total Rooms!"),
