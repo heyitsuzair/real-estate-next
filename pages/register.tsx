@@ -8,6 +8,8 @@ import TextInput from "../components/common/TextInput";
 import { useFormik } from "formik";
 import { RegisterFormSchema } from "../yupSchemas";
 import SpinnerSmall from "../components/common/SpinnerSmall";
+import MaterialRadioWithLabel from "../components/common/MaterialRadioWithLabel";
+import CreditCardForm from "../components/common/CreditCardForm";
 
 const Register = () => {
   // ?State For Loading ---------------------------->
@@ -20,6 +22,11 @@ const Register = () => {
     phone_no: "",
     email: "",
     password: "",
+    package: "",
+    card_no: "",
+    card_cvc: "",
+    expiry_month: "",
+    expiry_year: "",
   };
 
   const { values, touched, errors, handleBlur, handleChange, handleSubmit } =
@@ -80,7 +87,7 @@ const Register = () => {
                   />
                   <TextInput
                     id="phone_no"
-                    type="number"
+                    type="text"
                     name="phone_no"
                     label="Phone No (e.g: 03104864156)"
                     value={values.phone_no}
@@ -114,6 +121,47 @@ const Register = () => {
                     placeholder="••••••••"
                     onChange={handleChange}
                   />
+                  <div className="flex items-center justify-start -ml-5 gap-4">
+                    <div>
+                      <MaterialRadioWithLabel
+                        value="1"
+                        label="Standard"
+                        name="package"
+                        checked={false}
+                        handleChange={handleChange}
+                      />
+                    </div>
+                    <div>
+                      <MaterialRadioWithLabel
+                        value="2"
+                        label="Professional"
+                        name="package"
+                        checked={false}
+                        handleChange={handleChange}
+                      />
+                    </div>
+                    <div>
+                      <MaterialRadioWithLabel
+                        value="3"
+                        label="Premium"
+                        name="package"
+                        checked={false}
+                        handleChange={handleChange}
+                      />
+                    </div>
+                  </div>
+                  {errors.package && touched.package && (
+                    <p className="text-red-500 text-sm">{errors.package}</p>
+                  )}
+                  {values.package && (
+                    <CreditCardForm
+                      handleBlur={handleBlur}
+                      handleChange={handleChange}
+                      values={values}
+                      errors={errors}
+                      touched={touched}
+                    />
+                  )}
                   {isLoading ? (
                     <div className="text-center">
                       <SpinnerSmall />

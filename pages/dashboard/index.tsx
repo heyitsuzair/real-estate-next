@@ -1,6 +1,5 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
-import Script from "next/script";
 import React from "react";
 import Sidebar from "../../components/common/Sidebar";
 import AddProperty from "./subcomponents/AddProperty";
@@ -15,10 +14,7 @@ const Index = () => {
       <Head>
         <title>Dashboard</title>
       </Head>
-      <Script
-        type="text/javascript"
-        src={`https://maps.googleapis.com/maps/api/js?key=${process.env.NEXT_PUBLIC_GOOGLE_API}&libraries=places`}
-      />
+
       <div className="grid grid-cols-12 gap-3">
         <div className="col-span-2">
           <Sidebar />

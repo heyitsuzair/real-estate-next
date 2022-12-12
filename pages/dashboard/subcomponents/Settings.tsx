@@ -54,7 +54,7 @@ const Settings = () => {
           />
           <TextInput
             id="phone_no"
-            type="number"
+            type="text"
             name="phone_no"
             label="Phone No (e.g: 03104864156)"
             value={values.phone_no}
