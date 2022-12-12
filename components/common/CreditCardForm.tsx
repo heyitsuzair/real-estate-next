@@ -18,9 +18,6 @@ const CreditCardForm = ({
 }: PropTypes) => {
   return (
     <div className="credit-card-form">
-      <div className="allowed-listings my-3">
-        <strong>This Package Includes 10 Listings</strong>
-      </div>
       <div className="grid grid-cols-12 gap-3">
         <div className="col-span-12">
           <TextInput

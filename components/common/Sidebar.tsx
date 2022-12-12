@@ -40,6 +40,21 @@ const Sidebar = () => {
 
           <li>
             <Link
+              href="/dashboard?route=package"
+              className={`flex items-center p-2 text-base font-normal rounded-lg  ${
+                router.query.route === "package"
+                  ? "bg-red-500 text-white"
+                  : "hover:bg-gray-100 text-gray-900"
+              }`}
+            >
+              <i className="fa fa-user" aria-hidden="true"></i>
+              <span className="flex-1 ml-3 whitespace-nowrap text-sm">
+                Package
+              </span>
+            </Link>
+          </li>
+          <li>
+            <Link
               href="/dashboard?route=settings"
               className={`flex items-center p-2 text-base font-normal rounded-lg  ${
                 router.query.route === "settings"

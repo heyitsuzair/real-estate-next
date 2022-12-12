@@ -8,8 +8,8 @@ import TextInput from "../components/common/TextInput";
 import { useFormik } from "formik";
 import { RegisterFormSchema } from "../yupSchemas";
 import SpinnerSmall from "../components/common/SpinnerSmall";
-import MaterialRadioWithLabel from "../components/common/MaterialRadioWithLabel";
 import CreditCardForm from "../components/common/CreditCardForm";
+import Packages from "../components/common/Packages";
 
 const Register = () => {
   // ?State For Loading ---------------------------->
@@ -121,38 +121,14 @@ const Register = () => {
                     placeholder="••••••••"
                     onChange={handleChange}
                   />
-                  <div className="flex items-center justify-start -ml-5 gap-4">
-                    <div>
-                      <MaterialRadioWithLabel
-                        value="1"
-                        label="Standard"
-                        name="package"
-                        checked={false}
-                        handleChange={handleChange}
-                      />
-                    </div>
-                    <div>
-                      <MaterialRadioWithLabel
-                        value="2"
-                        label="Professional"
-                        name="package"
-                        checked={false}
-                        handleChange={handleChange}
-                      />
-                    </div>
-                    <div>
-                      <MaterialRadioWithLabel
-                        value="3"
-                        label="Premium"
-                        name="package"
-                        checked={false}
-                        handleChange={handleChange}
-                      />
-                    </div>
+                  <div className="-ml-5">
+                    <Packages
+                      errors={errors}
+                      touched={touched}
+                      handleChange={handleChange}
+                    />
                   </div>
-                  {errors.package && touched.package && (
-                    <p className="text-red-500 text-sm">{errors.package}</p>
-                  )}
+
                   {values.package && (
                     <CreditCardForm
                       handleBlur={handleBlur}

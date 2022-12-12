@@ -4,6 +4,7 @@ import React from "react";
 import Sidebar from "../../components/common/Sidebar";
 import AddProperty from "./subcomponents/AddProperty";
 import MyProperties from "./subcomponents/MyProperties";
+import Package from "./subcomponents/Package";
 import Settings from "./subcomponents/Settings";
 
 const Index = () => {
@@ -23,6 +24,7 @@ const Index = () => {
           {router.query.route === "myProperties" && <MyProperties />}
           {router.query.route === "settings" && <Settings />}
           {router.query.route === "addProperties" && <AddProperty />}
+          {router.query.route === "package" && <Package />}
         </div>
       </div>
     </div>
