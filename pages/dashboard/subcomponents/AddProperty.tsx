@@ -274,26 +274,8 @@ const AddProperty = () => {
                 options={PropertyType}
               />
             </div>
-            <div className="col-span-12">
-              <FileUpload
-                id="listing_media"
-                label="Upload Media"
-                name="listing_media"
-                previewSource={previewSource}
-                onChange={handleChangeListingMedia}
-                error={errors.listing_media && touched.listing_media}
-                errorText={errors.listing_media}
-              />
-            </div>
-            <div className="col-span-6 pt-1">
-              <GooglePlacesAutoComplete
-                label="Property Address*"
-                error={errors.property_place_id && touched.property_place_id}
-                errorText={errors.property_place_id}
-                handleOnChange={handleAddressChange}
-              />
-            </div>
-            <div className="col-span-6">
+
+            <div className="col-span-4">
               <TextInput
                 id="property_size"
                 type="number"
@@ -429,12 +411,32 @@ const AddProperty = () => {
                     </div>
                   );
                 })}
-                <div className="col-span-12">
-                  {errors.property_amenities && touched.property_amenities && (
-                    <p className="text-red-500">{errors.property_amenities}</p>
-                  )}
-                </div>
               </div>
+              <div className="col-span-12">
+                {errors.property_amenities && touched.property_amenities && (
+                  <p className="text-red-500">{errors.property_amenities}</p>
+                )}
+              </div>
+            </div>
+
+            <div className="col-span-12 pt-1">
+              <GooglePlacesAutoComplete
+                label="Property Address*"
+                error={errors.property_place_id && touched.property_place_id}
+                errorText={errors.property_place_id}
+                handleOnChange={handleAddressChange}
+              />
+            </div>
+            <div className="col-span-12">
+              <FileUpload
+                id="listing_media"
+                label="Upload Media"
+                name="listing_media"
+                previewSource={previewSource}
+                onChange={handleChangeListingMedia}
+                error={errors.listing_media && touched.listing_media}
+                errorText={errors.listing_media}
+              />
             </div>
           </div>
           {isLoading ? (
