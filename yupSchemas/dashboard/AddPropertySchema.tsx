@@ -25,5 +25,7 @@ export const AddPropertySchema = Yup.object({
   property_garages_size: Yup.string().required(
     "Please Enter Property Garages Sizes!"
   ),
-  property_amenities: Yup.array().required("Please Choose Property Amenities!"),
+  property_amenities: Yup.object().required(
+    "Please Choose Property Amenities!"
+  ),
 });

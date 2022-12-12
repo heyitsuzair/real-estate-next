@@ -24,7 +24,7 @@ const GooglePlacesAutoComplete = ({
           id: "places-autocomplete",
           placeholder: "Please Enter Address",
           styles: {
-            input: (provided) => ({
+            input: (provided: object) => ({
               ...provided,
               padding: ".23rem 0",
             }),

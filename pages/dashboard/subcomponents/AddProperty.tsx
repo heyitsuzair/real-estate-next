@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, HTMLInputTypeAttribute, useState } from "react";
 import TextInput from "../../../components/common/TextInput";
 import { useFormik } from "formik";
 import SpinnerSmall from "../../../components/common/SpinnerSmall";
@@ -8,7 +8,8 @@ import MaterialSelectWithValidation from "../../../components/common/MaterialSel
 import { AreaMenu, PropertyStatus, PropertyType } from "../../../menus";
 import FileUpload from "../../../components/common/FileUpload";
 import GooglePlacesAutoComplete from "../../../components/common/GooglePlacesAutoComplete";
-import { geocodeByPlaceId } from "react-google-places-autocomplete";
+import MaterialCheckbox from "../../../components/common/MaterialCheckbox";
+import { AminitiesCheckbox } from "../../../checkboxes";
 
 const AddProperty = () => {
   // ?State For Loading ---------------------------->
@@ -18,6 +19,23 @@ const AddProperty = () => {
   // ?State For Preview Source Base64 ---------------------------->
   const [previewSource, setPreviewSource] = useState<any>([]);
   // !State For Preview Source Base64 ---------------------------->
+
+  // ?State For Amenities Checkbox ---------------------------->
+  const [amenities, setAmenites] = useState<any>({
+    airConditioning: false,
+    bbq: false,
+    refrigerator: false,
+    gym: false,
+    recreation: false,
+    windowCoverings: false,
+    microwave: false,
+    washer: false,
+    swimmingPool: false,
+    basketballCout: false,
+    security: false,
+    wifi: false,
+  });
+  // !State For Amenities Checkbox ---------------------------->
 
   // ?Configurations For Formik -------------------------->
   const initialValues = {
@@ -66,6 +84,28 @@ const AddProperty = () => {
   };
   // !Handle When Value Of Google Places Autocomplete Change -------------->
 
+  // ?Handle When Amenities Checkbox Changes --------------------->
+
+  const handleCheckboxChange = (e: ChangeEvent<HTMLInputElement>) => {
+    if (e.target.checked) {
+      // Find The Key By Name And Update The Value Accordingly
+      setAmenites({ ...amenities, [e.target.name]: true });
+      setFieldValue("property_amenities", {
+        ...amenities,
+        [e.target.name]: true,
+      });
+    } else {
+      // Find The Key By Name And Update The Value Accordingly
+      setAmenites({ ...amenities, [e.target.name]: false });
+      setFieldValue("property_amenities", {
+        ...amenities,
+        [e.target.name]: false,
+      });
+    }
+  };
+
+  // !Handle When Amenities Checkbox Changes --------------------->
+
   // ?Handle When Listing Media Changes -------------->
 
   const previewFiles = (files: FileList | null) => {
@@ -107,6 +147,7 @@ const AddProperty = () => {
       setTimeout(() => {
         setIsLoading(false);
         action.resetForm();
+        setPreviewSource([]);
       }, 2000);
     },
   });
@@ -265,6 +306,135 @@ const AddProperty = () => {
                 placeholder="Property Size"
                 onChange={handleChange}
               />
+            </div>
+            <div className="col-span-4">
+              <TextInput
+                id="property_lot_size"
+                type="number"
+                name="property_lot_size"
+                label="Property Lot Size* (In SQFT)"
+                value={values.property_lot_size}
+                error={errors.property_lot_size && touched.property_lot_size}
+                errorText={errors.property_lot_size}
+                onBlur={handleBlur}
+                placeholder="Property Lot Size"
+                onChange={handleChange}
+              />
+            </div>
+            <div className="col-span-4">
+              <TextInput
+                id="property_rooms"
+                type="number"
+                name="property_rooms"
+                label="Property Rooms* (In Numbers)"
+                value={values.property_rooms}
+                error={errors.property_rooms && touched.property_rooms}
+                errorText={errors.property_rooms}
+                onBlur={handleBlur}
+                placeholder="Total Rooms"
+                onChange={handleChange}
+              />
+            </div>
+            <div className="col-span-4">
+              <TextInput
+                id="property_bed_rooms"
+                type="number"
+                name="property_bed_rooms"
+                label="Property Bed Rooms* (In Numbers)"
+                value={values.property_bed_rooms}
+                error={errors.property_bed_rooms && touched.property_bed_rooms}
+                errorText={errors.property_bed_rooms}
+                onBlur={handleBlur}
+                placeholder="Total Bedrooms"
+                onChange={handleChange}
+              />
+            </div>
+            <div className="col-span-4">
+              <TextInput
+                id="property_bath_rooms"
+                type="number"
+                name="property_bath_rooms"
+                label="Property Bath Rooms* (In Numbers)"
+                value={values.property_bath_rooms}
+                error={
+                  errors.property_bath_rooms && touched.property_bath_rooms
+                }
+                errorText={errors.property_bath_rooms}
+                onBlur={handleBlur}
+                placeholder="Total Bathrooms"
+                onChange={handleChange}
+              />
+            </div>
+            <div className="col-span-4">
+              <TextInput
+                id="property_garages"
+                type="number"
+                name="property_garages"
+                label="Property Garages* (In Numbers)"
+                value={values.property_garages}
+                error={errors.property_garages && touched.property_garages}
+                errorText={errors.property_garages}
+                onBlur={handleBlur}
+                placeholder="Total Garages"
+                onChange={handleChange}
+              />
+            </div>
+            <div className="col-span-4">
+              <TextInput
+                id="property_year_built"
+                type="number"
+                name="property_year_built"
+                label="Property Year Built*"
+                value={values.property_year_built}
+                error={
+                  errors.property_year_built && touched.property_year_built
+                }
+                errorText={errors.property_year_built}
+                onBlur={handleBlur}
+                placeholder="Year Built"
+                onChange={handleChange}
+              />
+            </div>
+            <div className="col-span-4">
+              <TextInput
+                id="property_garages_size"
+                type="number"
+                name="property_garages_size"
+                label="Property Garages Size* (In SQFT)"
+                value={values.property_garages_size}
+                error={
+                  errors.property_garages_size && touched.property_garages_size
+                }
+                errorText={errors.property_garages_size}
+                onBlur={handleBlur}
+                placeholder="Garages Size"
+                onChange={handleChange}
+              />
+            </div>
+            <div className="col-span-12">
+              <h1 className="text-3xl my-5 font-bold">Amenities</h1>
+              <div className="amenities-checkboxes -ml-3 grid grid-cols-12">
+                {AminitiesCheckbox.map((checkbox) => {
+                  return (
+                    <div
+                      className="col-span-12 md:col-span-4"
+                      key={checkbox.value}
+                    >
+                      <MaterialCheckbox
+                        name={checkbox.name}
+                        value={checkbox.value}
+                        checked={amenities[checkbox.name]}
+                        handleChange={handleCheckboxChange}
+                      />
+                    </div>
+                  );
+                })}
+                <div className="col-span-12">
+                  {errors.property_amenities && touched.property_amenities && (
+                    <p className="text-red-500">{errors.property_amenities}</p>
+                  )}
+                </div>
+              </div>
             </div>
           </div>
           {isLoading ? (
