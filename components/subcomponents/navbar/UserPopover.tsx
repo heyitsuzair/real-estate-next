@@ -37,6 +37,12 @@ const UserPopover = () => {
           >
             Register
           </Link>
+          <Link
+            href={"/dashboard?route=myProperties"}
+            className="text-black hover:text-red-500 transition-all duration-300 border-b-2 hover:border-red-500 pb-2 px-10 block my-6 font-semibold"
+          >
+            Dashboard
+          </Link>
         </div>
       </li>
     </ul>

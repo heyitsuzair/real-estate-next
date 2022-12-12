@@ -32,7 +32,7 @@ const Topbar = () => {
               <i className="fa-brands fa-github"></i>
             </a>
             <Link
-              href="/"
+              href="/dashboard?route=addProperties"
               className="bg-red-500 py-3 px-8 font-semibold text-sm"
             >
               Add Listing
