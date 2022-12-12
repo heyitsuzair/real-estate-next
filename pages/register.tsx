@@ -121,7 +121,7 @@ const Register = () => {
                     placeholder="••••••••"
                     onChange={handleChange}
                   />
-                  <div className="-ml-5">
+                  <div className="-ml-2 md:-ml-5">
                     <Packages
                       errors={errors}
                       touched={touched}
