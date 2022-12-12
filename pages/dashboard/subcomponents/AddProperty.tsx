@@ -6,10 +6,15 @@ import { AddPropertySchema } from "../../../yupSchemas";
 import TextArea from "../../../components/common/Textarea";
 import MaterialSelectWithValidation from "../../../components/common/MaterialSelectWithValidation";
 import { AreaMenu, PropertyStatus, PropertyType } from "../../../menus";
+import FileUpload from "../../../components/common/FileUpload";
 const AddProperty = () => {
   // ?State For Loading ---------------------------->
   const [isLoading, setIsLoading] = useState<boolean>(false);
   // !State For Loading ---------------------------->
+
+  // ?State For Preview Source Base64 ---------------------------->
+  const [previewSource, setPreviewSource] = useState<any>([]);
+  // !State For Preview Source Base64 ---------------------------->
 
   // ?Configurations For Formik -------------------------->
   const initialValues = {
@@ -21,6 +26,7 @@ const AddProperty = () => {
     area: "",
     status: "",
     type: "",
+    listing_media: "",
     property_address: "",
     property_size: "",
     property_lot_size: "",
@@ -30,7 +36,7 @@ const AddProperty = () => {
     property_garages: "",
     property_year_built: "",
     property_garages_size: "",
-    property_amenities: [],
+    property_amenities: "",
   };
 
   // ?Handle When Values Of Material Select With Validation Changes -------------->
@@ -50,6 +56,31 @@ const AddProperty = () => {
     setFieldValue("type", e);
   };
   // !Handle When Values Of Material Select With Validation Changes -------------->
+
+  // ?Handle When Listing Media Changes -------------->
+
+  const previewFiles = (files: FileList | null) => {
+    let filesArray: any = [];
+    if (files !== null) {
+      for (let i = 0; i < files.length; i++) {
+        const reader = new FileReader();
+        reader.readAsDataURL(files[i]);
+
+        reader.onloadend = () => {
+          filesArray.push(reader.result);
+          setPreviewSource(filesArray);
+          setFieldValue("listing_media", filesArray);
+        };
+      }
+    }
+  };
+
+  const handleChangeListingMedia = (e: ChangeEvent<HTMLInputElement>) => {
+    let files: FileList | null = e.target.files;
+
+    previewFiles(files);
+  };
+  // !Handle When Listing Media Changes -------------->
 
   const {
     values,
@@ -72,6 +103,7 @@ const AddProperty = () => {
     },
   });
   // !Configurations For Formik -------------------------->
+
   return (
     <>
       <h1 className="text-3xl mx-5 poppins font-bold my-5">Add Property</h1>
@@ -114,7 +146,7 @@ const AddProperty = () => {
                 id="price"
                 type="number"
                 name="price"
-                label="Property Price"
+                label="Property Price (In Rs)"
                 value={values.price}
                 error={errors.price && touched.price}
                 errorText={errors.price}
@@ -193,6 +225,17 @@ const AddProperty = () => {
                 options={PropertyType}
               />
             </div>
+            <div className="col-span-12">
+              <FileUpload
+                id="listing_media"
+                label="Upload Media"
+                name="listing_media"
+                previewSource={previewSource}
+                onChange={handleChangeListingMedia}
+                error={errors.listing_media && touched.listing_media}
+                errorText={errors.listing_media}
+              />
+            </div>
           </div>
           {isLoading ? (
             <div className="text-start">
@@ -201,9 +244,10 @@ const AddProperty = () => {
           ) : (
             <button
               type="submit"
-              className="text-white bg-red-500 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-8 py-2.5 text-center "
+              className="text-white bg-red-500 hover:bg-red-600 focus:outline-none font-medium rounded-lg text-sm px-8 py-2.5 text-center flex items-center gap-2"
             >
-              Save
+              <span>Add Property</span>
+              <i className="fa fa-plus-circle mt-0.5" aria-hidden="true"></i>
             </button>
           )}
         </form>

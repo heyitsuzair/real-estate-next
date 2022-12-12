@@ -22,6 +22,7 @@ const MaterialSelectWithValidation = ({
       <Select
         variant={variant}
         color={color}
+        className="bg-gray-50 text-gray-900"
         value={value}
         size={size}
         label={label}

@@ -95,7 +95,7 @@ const Settings = () => {
           ) : (
             <button
               type="submit"
-              className="text-white bg-red-500 hover:bg-red-600 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-8 py-2.5 text-center "
+              className="text-white bg-red-500 hover:bg-red-600  focus:outline-none font-medium rounded-lg text-sm px-8 py-2.5 text-center "
             >
               Save
             </button>
