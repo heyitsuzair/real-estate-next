@@ -12,7 +12,7 @@ interface PropTypes {
 
 const Map = ({ height, center, zoom }: PropTypes) => {
   // API KEY -------------------------->
-  const API_KEY = process.env.NEXT_PUBLIC_GOOGLE_API;
+  const API_KEY: string = process.env.NEXT_PUBLIC_GOOGLE_API || "";
   // API KEY -------------------------->
 
   // ?Map Configuration -------------------------------->
