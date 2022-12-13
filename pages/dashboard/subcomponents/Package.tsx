@@ -35,7 +35,16 @@ const Package = () => {
   return (
     <>
       <h1 className="text-3xl mx-5 poppins font-bold my-5">My Package</h1>
+
       <div className="m-4 shadow-xl sm:rounded-lg p-10">
+        <div className="mb-5">
+          <span className="text-md font-bold">Note:</span>
+          <span className="text-gray-500">
+            &nbsp; Updating Package Will Update Remaining Listings By Adding
+            Your Remaining Listings With The New Quantity According To The
+            Package You Choose
+          </span>
+        </div>
         <form
           className="space-y-4 md:space-y-6"
           onSubmit={handleSubmit}
