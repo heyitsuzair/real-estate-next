@@ -37,13 +37,13 @@ const New_Password = () => {
   return (
     <div>
       <Head>
-        <title>New Password</title>
+        <title>Set New Password</title>
         <meta
           name="description"
-          content="Real Estate Site My Muhammad Uzair. New Password"
+          content="Real Estate Site My Muhammad Uzair. Set New Password"
         />
       </Head>
-      <BreadCrumb text="New Password" />
+      <BreadCrumb text="Set New Password" />
       <div className="form py-20 pb-52 bg-gray-50">
         <section>
           <div className="flex flex-col items-center justify-start px-6 mx-auto">
@@ -56,7 +56,7 @@ const New_Password = () => {
             <div className="w-full bg-white rounded-lg shadow-xl md:mt-0 sm:max-w-md xl:p-0">
               <div className="p-6 space-y-4 md:space-y-6 sm:p-8">
                 <h1 className="text-xl font-bold leading-tight tracking-tight text-gray-900 md:text-2xl ">
-                  New Password
+                  Set New Password
                 </h1>
                 <form
                   className="space-y-4 md:space-y-6"
