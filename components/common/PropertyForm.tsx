@@ -35,7 +35,7 @@ interface PropTypes {
     property_garages_size: string;
     property_amenities: string[];
     property_floors: {
-      floor_title: string;
+      floor_heading: string;
       floor_description: string;
       floor_media: string;
     }[];
