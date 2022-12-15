@@ -10,11 +10,34 @@ import { RegisterFormSchema } from "../yupSchemas";
 import SpinnerSmall from "../components/common/SpinnerSmall";
 import CreditCardForm from "../components/common/CreditCardForm";
 import Packages from "../components/common/Packages";
+import { fetchPackages } from "../functions";
 
-const Register = () => {
+interface PropTypes {
+  packagesArray: {
+    _id: string;
+    label: string;
+    price: number;
+    allowed_listings: number;
+    __v: number;
+  }[];
+}
+
+interface PackagesType {
+  _id: string;
+  label: string;
+  price: number;
+  allowed_listings: number;
+  __v: number;
+}
+
+const Register = ({ packagesArray }: PropTypes) => {
   // ?State For Loading ---------------------------->
   const [isLoading, setIsLoading] = useState<boolean>(false);
   // !State For Loading ---------------------------->
+
+  // ?State For Packages ---------------------------->
+  const [packages, setPackages] = useState<PackagesType[]>(packagesArray);
+  // !State For Packages ---------------------------->
 
   // ?Configurations For Formik -------------------------->
   const initialValues = {
@@ -126,6 +149,7 @@ const Register = () => {
                       errors={errors}
                       touched={touched}
                       value={values.package}
+                      packages={packages}
                       handleChange={handleChange}
                     />
                   </div>
@@ -170,5 +194,13 @@ const Register = () => {
     </div>
   );
 };
+
+export async function getServerSideProps(context: any) {
+  const packagesArray = await fetchPackages();
+
+  return {
+    props: { packagesArray }, // will be passed to the page component as props
+  };
+}
 
 export default Register;

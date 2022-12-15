@@ -9,7 +9,7 @@ export const RegisterFormSchema = Yup.object({
     .min(5, "Password Must Be Of Minimum 5 Characters")
     .required("Please Enter Password"),
   phone_no: Yup.string().required("Please Enter Phone No"),
-  package: Yup.number().required("Please Choose Package"),
+  package: Yup.string().required("Please Choose Package"),
   card_no: Yup.string()
     .min(16, "Card Number Must Be 16 Digit")
     .max(16, "Card Number Must Be 16 Digit")
