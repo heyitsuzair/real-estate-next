@@ -24,4 +24,15 @@ export const AddPropertySchema = Yup.object({
     "Please Enter Property Garages Sizes"
   ),
   property_amenities: Yup.array().min(1, "Please Choose Amenities"),
+  property_floors: Yup.array()
+    .of(
+      Yup.object().shape({
+        floor_heading: Yup.string().required("Please Enter Floor Heading"),
+        floor_description: Yup.string().required(
+          "Please Type Some Description"
+        ),
+        floor_media: Yup.string().required("Please Upload Floor Sketch"),
+      })
+    )
+    .min(1, "Please Add Info About Property Floors"),
 });

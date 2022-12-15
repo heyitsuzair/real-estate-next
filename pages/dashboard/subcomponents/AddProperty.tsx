@@ -23,6 +23,13 @@ const AddProperty = () => {
     property_year_built: "",
     property_garages_size: "",
     property_amenities: [],
+    property_floors: [
+      {
+        floor_heading: "",
+        floor_description: "",
+        floor_media: "",
+      },
+    ],
   };
 
   return (
@@ -33,9 +40,11 @@ const AddProperty = () => {
         yupSchema={AddPropertySchema}
         state="add"
         property_id={undefined}
-        imgSources={[
-          "https://techcrunch.com/wp-content/uploads/2021/07/GettyImages-1207206237.jpg?w=730&crop=1",
-        ]}
+        imgSources={
+          [
+            // "https://techcrunch.com/wp-content/uploads/2021/07/GettyImages-1207206237.jpg?w=730&crop=1",
+          ]
+        }
       />
     </>
   );

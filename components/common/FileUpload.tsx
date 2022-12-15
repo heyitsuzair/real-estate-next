@@ -1,11 +1,11 @@
 import Image from "next/image";
-import React, { ChangeEventHandler } from "react";
+import React, { ChangeEventHandler, RefObject } from "react";
 
 interface PropTypes {
   id: string;
   name: string;
+  reference: RefObject<HTMLInputElement>;
   onChange: ChangeEventHandler<HTMLInputElement> | undefined;
-  label: string;
   error: boolean | "" | undefined;
   errorText: string | string[] | undefined;
   previewSource: string[];
@@ -14,25 +14,21 @@ interface PropTypes {
 const FileUpload = ({
   id,
   name,
+  reference,
   onChange,
-  label,
   error,
   errorText,
   previewSource,
 }: PropTypes) => {
   return (
     <>
-      <label
-        className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-        htmlFor={id}
-      >
-        {label}
-      </label>
       <input
-        className="block w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none"
+        className="w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none"
         name={name}
         id={id}
         type="file"
+        ref={reference}
+        hidden
         onChange={onChange}
         accept="image/x-png,image/gif,image/jpeg"
         multiple

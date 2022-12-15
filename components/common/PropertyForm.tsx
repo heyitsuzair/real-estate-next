@@ -1,4 +1,4 @@
-import React, { ChangeEvent, useState } from "react";
+import React, { ChangeEvent, RefObject, useRef, useState } from "react";
 import TextInput from "./TextInput";
 import { useFormik } from "formik";
 import SpinnerSmall from "./SpinnerSmall";
@@ -9,6 +9,8 @@ import FileUpload from "./FileUpload";
 import GooglePlacesAutoComplete from "./GooglePlacesAutoComplete";
 import MaterialCheckbox from "./MaterialCheckbox";
 import { AminitiesCheckbox } from "../../checkboxes";
+import { Button } from "@material-tailwind/react";
+import ButtonRedWithIcon from "./ButtonRedWithIcon";
 
 interface PropTypes {
   initialValues: {
@@ -45,6 +47,10 @@ const PropertyForm = ({
   imgSources,
   yupSchema,
 }: PropTypes) => {
+  // ?Reference To File Inputs --------------->
+  const uploadMediaRef = useRef<HTMLInputElement>(null);
+  // !Reference To File Inputs --------------->
+
   // ?State For Loading ---------------------------->
   const [isLoading, setIsLoading] = useState<boolean>(false);
   // !State For Loading ---------------------------->
@@ -405,7 +411,102 @@ const PropertyForm = ({
                 )}
               </div>
             </div>
+            <div className="col-span-12">
+              <h1 className="text-3xl my-5 font-bold">Property Floors</h1>
+              <div className="grid grid-cols-12">
+                {initialValues.property_floors.map(
+                  (floor: any, index: number) => {
+                    const isNotErrorEmpty = JSON.stringify(errors) !== "{}";
+                    const isNotTouchedEmpty = JSON.stringify(touched) !== "{}";
 
+                    return (
+                      <div
+                        key={index}
+                        className="col-span-12 grid grid-cols-12 items-center gap-4 justify-between"
+                      >
+                        <div className="floor-heading col-span-4">
+                          <TextInput
+                            id="property_floor_heading"
+                            type="text"
+                            name={`property_floors[${index}].floor_heading`}
+                            label="Floor Heading*"
+                            value={values.property_floors[index].floor_heading}
+                            error={
+                              isNotErrorEmpty &&
+                              isNotTouchedEmpty &&
+                              errors.property_floors[index].floor_heading &&
+                              touched.property_floors[index].floor_heading
+                            }
+                            errorText={
+                              isNotErrorEmpty &&
+                              errors.property_floors[index].floor_heading
+                            }
+                            onBlur={handleBlur}
+                            placeholder="Floor Heading"
+                            onChange={handleChange}
+                          />
+                        </div>
+                        <div className="floor-description col-span-4">
+                          <TextInput
+                            id="property_floor_description"
+                            type="text"
+                            name={`property_floors[${index}].floor_description`}
+                            label="Floor Description*"
+                            value={
+                              values.property_floors[index].floor_description
+                            }
+                            error={
+                              isNotErrorEmpty &&
+                              isNotTouchedEmpty &&
+                              errors.property_floors[index].floor_description &&
+                              touched.property_floors[index].floor_description
+                            }
+                            errorText={
+                              isNotErrorEmpty &&
+                              errors.property_floors[index].floor_description
+                            }
+                            onBlur={handleBlur}
+                            placeholder="Floor Description"
+                            onChange={handleChange}
+                          />
+                        </div>
+                        <div className="floor-media col-span-4">
+                          <Button
+                            size="sm"
+                            className="poppins"
+                            onClick={() => uploadMediaRef.current?.click()}
+                          >
+                            Upload Pictures
+                          </Button>
+
+                          <FileUpload
+                            id="listing_media"
+                            name="listing_media"
+                            reference={uploadMediaRef}
+                            previewSource={previewSource}
+                            onChange={handleChangeListingMedia}
+                            error={
+                              errors.listing_media && touched.listing_media
+                            }
+                            errorText={errors.listing_media}
+                          />
+                        </div>
+                      </div>
+                    );
+                  }
+                )}
+
+                <div className="col-span-12 mt-8">
+                  <ButtonRedWithIcon
+                    text="Add Floor"
+                    handleClick={undefined}
+                    width="full"
+                    icon="fa fa-plus"
+                    iconPosition="right"
+                  />
+                </div>
+              </div>
+            </div>
             <div className="col-span-12 pt-1">
               <GooglePlacesAutoComplete
                 label="Property Address*"
@@ -415,10 +516,18 @@ const PropertyForm = ({
               />
             </div>
             <div className="col-span-12">
+              <Button
+                size="sm"
+                className="poppins"
+                onClick={() => uploadMediaRef.current?.click()}
+              >
+                Upload Pictures
+              </Button>
+
               <FileUpload
                 id="listing_media"
-                label="Upload Media"
                 name="listing_media"
+                reference={uploadMediaRef}
                 previewSource={previewSource}
                 onChange={handleChangeListingMedia}
                 error={errors.listing_media && touched.listing_media}
