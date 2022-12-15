@@ -138,9 +138,19 @@ const PropertyForm = ({
       { floor_heading: "", floor_description: "", floor_media: "" },
     ];
     setFieldValue("property_floors", newFloorAddedValue);
-    console.log(values.property_floors);
   };
   // !Handle When Someone Clicks On Plus Icon To Add Floor -------------->
+
+  // ?Handle When Someone Clicks On Cross Icon To Remove Floor -------------->
+  const onCrossFloor = () => {
+    /**
+     * Removing Last Element
+     */
+    values.property_floors.pop();
+
+    setFieldValue("property_floors", values.property_floors);
+  };
+  // !Handle When Someone Clicks On Cross Icon To Remove Floor -------------->
 
   const {
     values,
@@ -404,6 +414,14 @@ const PropertyForm = ({
                 onChange={handleChange}
               />
             </div>
+            <div className="col-span-12 pt-1">
+              <GooglePlacesAutoComplete
+                label="Property Address*"
+                error={errors.property_place_id && touched.property_place_id}
+                errorText={errors.property_place_id}
+                handleOnChange={handleAddressChange}
+              />
+            </div>
             <div className="col-span-12">
               <h1 className="text-3xl my-5 font-bold">Amenities</h1>
               <div className="amenities-checkboxes -ml-3 grid grid-cols-12">
@@ -458,11 +476,21 @@ const PropertyForm = ({
                         touched={touched}
                         handleChangeFloorMedia={handleChangeFloorMedia}
                       />
+                      {index !== 0 &&
+                        index === values.property_floors.length - 1 && (
+                          <div className="text-center mt-5">
+                            <i
+                              onClick={onCrossFloor}
+                              className="fa fa-xmark cursor-pointer text-xl border-2 mb-5 text-red-500 border-red-500 py-1 px-3 rounded-full"
+                              aria-hidden="true"
+                            ></i>
+                          </div>
+                        )}
                     </div>
                   );
                 })}
 
-                <div className="col-span-12 text-center mt-2">
+                <div className="col-span-12 mt-7 text-center">
                   <Button
                     size="lg"
                     className="poppins w-full"
@@ -473,6 +501,7 @@ const PropertyForm = ({
                 </div>
               </div>
             </div>
+
             <div className="col-span-12">
               <Button
                 size="md"
@@ -491,14 +520,6 @@ const PropertyForm = ({
                 onChange={handleChangeListingMedia}
                 error={errors.listing_media && touched.listing_media}
                 errorText={errors.listing_media}
-              />
-            </div>
-            <div className="col-span-12 pt-1">
-              <GooglePlacesAutoComplete
-                label="Property Address*"
-                error={errors.property_place_id && touched.property_place_id}
-                errorText={errors.property_place_id}
-                handleOnChange={handleAddressChange}
               />
             </div>
           </div>
