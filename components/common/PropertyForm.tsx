@@ -11,6 +11,7 @@ import MaterialCheckbox from "./MaterialCheckbox";
 import { AminitiesCheckbox } from "../../checkboxes";
 import { Button } from "@material-tailwind/react";
 import ButtonRedWithIcon from "./ButtonRedWithIcon";
+import FloorFields from "./FloorFields";
 
 interface PropTypes {
   initialValues: {
@@ -36,7 +37,6 @@ interface PropTypes {
   };
   state: "update" | "add";
   property_id: undefined | number;
-  imgSources: string[];
   yupSchema: any;
 }
 
@@ -44,20 +44,17 @@ const PropertyForm = ({
   initialValues,
   state,
   property_id,
-  imgSources,
   yupSchema,
 }: PropTypes) => {
   // ?Reference To File Inputs --------------->
   const uploadMediaRef = useRef<HTMLInputElement>(null);
+
+  const floorsMediaRef = useRef<HTMLInputElement>(null);
   // !Reference To File Inputs --------------->
 
   // ?State For Loading ---------------------------->
   const [isLoading, setIsLoading] = useState<boolean>(false);
   // !State For Loading ---------------------------->
-
-  // ?State For Preview Source Base64 ---------------------------->
-  const [previewSource, setPreviewSource] = useState<any>(imgSources);
-  // !State For Preview Source Base64 ---------------------------->
 
   // ?Configurations For Formik -------------------------->
 
@@ -95,7 +92,6 @@ const PropertyForm = ({
         reader.readAsDataURL(files[i]);
         reader.onloadend = () => {
           filesArray.push(reader.result);
-          setPreviewSource(filesArray);
           setFieldValue("listing_media", filesArray);
         };
       }
@@ -108,6 +104,25 @@ const PropertyForm = ({
     previewFiles(files);
   };
   // !Handle When Listing Media Changes -------------->
+
+  // ?Handle When Floor Media Changes -------------->
+  const handleChangeFloorMedia = (
+    e: ChangeEvent<HTMLInputElement>,
+    index: number
+  ) => {
+    let file: any = e.target.files ? e.target.files[0] : "";
+    /**
+     * Preparing Field For setFieldValue
+     */
+    const field = `property_floors[${index}].floor_media`;
+
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onloadend = () => {
+      setFieldValue(field, reader.result);
+    };
+  };
+  // !Handle When Floor Media Changes -------------->
 
   const {
     values,
@@ -127,7 +142,6 @@ const PropertyForm = ({
       setTimeout(() => {
         setIsLoading(false);
         // action.resetForm();
-        setPreviewSource([]);
       }, 2000);
     },
   });
@@ -420,77 +434,18 @@ const PropertyForm = ({
                     const isNotTouchedEmpty = JSON.stringify(touched) !== "{}";
 
                     return (
-                      <div
-                        key={index}
-                        className="col-span-12 grid grid-cols-12 items-center gap-4 justify-between"
-                      >
-                        <div className="floor-heading col-span-4">
-                          <TextInput
-                            id="property_floor_heading"
-                            type="text"
-                            name={`property_floors[${index}].floor_heading`}
-                            label="Floor Heading*"
-                            value={values.property_floors[index].floor_heading}
-                            error={
-                              isNotErrorEmpty &&
-                              isNotTouchedEmpty &&
-                              errors.property_floors[index].floor_heading &&
-                              touched.property_floors[index].floor_heading
-                            }
-                            errorText={
-                              isNotErrorEmpty &&
-                              errors.property_floors[index].floor_heading
-                            }
-                            onBlur={handleBlur}
-                            placeholder="Floor Heading"
-                            onChange={handleChange}
-                          />
-                        </div>
-                        <div className="floor-description col-span-4">
-                          <TextInput
-                            id="property_floor_description"
-                            type="text"
-                            name={`property_floors[${index}].floor_description`}
-                            label="Floor Description*"
-                            value={
-                              values.property_floors[index].floor_description
-                            }
-                            error={
-                              isNotErrorEmpty &&
-                              isNotTouchedEmpty &&
-                              errors.property_floors[index].floor_description &&
-                              touched.property_floors[index].floor_description
-                            }
-                            errorText={
-                              isNotErrorEmpty &&
-                              errors.property_floors[index].floor_description
-                            }
-                            onBlur={handleBlur}
-                            placeholder="Floor Description"
-                            onChange={handleChange}
-                          />
-                        </div>
-                        <div className="floor-media col-span-4">
-                          <Button
-                            size="sm"
-                            className="poppins"
-                            onClick={() => uploadMediaRef.current?.click()}
-                          >
-                            Upload Pictures
-                          </Button>
-
-                          <FileUpload
-                            id="listing_media"
-                            name="listing_media"
-                            reference={uploadMediaRef}
-                            previewSource={previewSource}
-                            onChange={handleChangeListingMedia}
-                            error={
-                              errors.listing_media && touched.listing_media
-                            }
-                            errorText={errors.listing_media}
-                          />
-                        </div>
+                      <div className="col-span-12" key={index}>
+                        <FloorFields
+                          index={index}
+                          handleChange={handleChange}
+                          handleBlur={handleBlur}
+                          values={values}
+                          isNotErrorEmpty={isNotErrorEmpty}
+                          isNotTouchedEmpty={isNotTouchedEmpty}
+                          errors={errors}
+                          touched={touched}
+                          handleChangeFloorMedia={handleChangeFloorMedia}
+                        />
                       </div>
                     );
                   }
@@ -498,10 +453,10 @@ const PropertyForm = ({
 
                 <div className="col-span-12 mt-8">
                   <ButtonRedWithIcon
-                    text="Add Floor"
+                    text=""
                     handleClick={undefined}
                     width="full"
-                    icon="fa fa-plus"
+                    icon="fa fa-circle-plus text-xl"
                     iconPosition="right"
                   />
                 </div>
@@ -517,7 +472,7 @@ const PropertyForm = ({
             </div>
             <div className="col-span-12">
               <Button
-                size="sm"
+                size="md"
                 className="poppins"
                 onClick={() => uploadMediaRef.current?.click()}
               >
@@ -527,8 +482,9 @@ const PropertyForm = ({
               <FileUpload
                 id="listing_media"
                 name="listing_media"
+                multiple={true}
                 reference={uploadMediaRef}
-                previewSource={previewSource}
+                previewSource={values.listing_media}
                 onChange={handleChangeListingMedia}
                 error={errors.listing_media && touched.listing_media}
                 errorText={errors.listing_media}

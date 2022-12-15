@@ -40,11 +40,6 @@ const AddProperty = () => {
         yupSchema={AddPropertySchema}
         state="add"
         property_id={undefined}
-        imgSources={
-          [
-            // "https://techcrunch.com/wp-content/uploads/2021/07/GettyImages-1207206237.jpg?w=730&crop=1",
-          ]
-        }
       />
     </>
   );

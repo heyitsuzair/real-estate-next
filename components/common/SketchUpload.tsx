@@ -4,23 +4,23 @@ import React, { ChangeEventHandler, RefObject } from "react";
 interface PropTypes {
   id: string;
   name: string;
+  index: number;
   reference: RefObject<HTMLInputElement>;
   multiple: boolean;
-  onChange: ChangeEventHandler<HTMLInputElement> | undefined;
+  onChange: any;
   error: boolean | "" | undefined;
   errorText: string | string[] | undefined;
-  previewSource: string[];
 }
 
-const FileUpload = ({
+const SketchUpload = ({
   id,
   name,
+  index,
   reference,
   multiple,
   onChange,
   error,
   errorText,
-  previewSource,
 }: PropTypes) => {
   return (
     <>
@@ -31,30 +31,13 @@ const FileUpload = ({
         type="file"
         ref={reference}
         hidden
-        onChange={onChange}
+        onChange={(e) => onChange(e, index)}
         accept="image/x-png,image/gif,image/jpeg"
         multiple={multiple}
       />
-      {previewSource.length > 0 && (
-        <div className="grid grid-cols-12 gap-6">
-          {previewSource.map((source, index) => {
-            return (
-              <div className="col-span-2" key={index}>
-                <Image
-                  src={source}
-                  className="my-4 rounded"
-                  width={200}
-                  height={200}
-                  alt="Loading..."
-                />
-              </div>
-            );
-          })}
-        </div>
-      )}
       {error && <p className="text-red-500 text-sm my-2">{errorText}</p>}
     </>
   );
 };
 
-export default FileUpload;
+export default SketchUpload;
