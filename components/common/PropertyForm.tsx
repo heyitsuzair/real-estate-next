@@ -34,6 +34,11 @@ interface PropTypes {
     property_year_built: string;
     property_garages_size: string;
     property_amenities: string[];
+    property_floors: {
+      floor_title: string;
+      floor_description: string;
+      floor_media: string;
+    }[];
   };
   state: "update" | "add";
   property_id: undefined | number;
@@ -48,8 +53,6 @@ const PropertyForm = ({
 }: PropTypes) => {
   // ?Reference To File Inputs --------------->
   const uploadMediaRef = useRef<HTMLInputElement>(null);
-
-  const floorsMediaRef = useRef<HTMLInputElement>(null);
   // !Reference To File Inputs --------------->
 
   // ?State For Loading ---------------------------->
@@ -112,7 +115,7 @@ const PropertyForm = ({
   ) => {
     let file: any = e.target.files ? e.target.files[0] : "";
     /**
-     * Preparing Field For setFieldValue
+     * Preparing Field For setFieldValue By Targeting Index of property_floors
      */
     const field = `property_floors[${index}].floor_media`;
 
@@ -123,6 +126,21 @@ const PropertyForm = ({
     };
   };
   // !Handle When Floor Media Changes -------------->
+
+  // ?Handle When Someone Clicks On Plus Icon To Add Floor -------------->
+  const onAddFloor = () => {
+    /**
+     * Setting Field Value Of Property Floors By Concatenating Current Value With An Empty Object Of Fields
+     * (floor_heading,floor_description,floor_media)
+     */
+    const newFloorAddedValue = [
+      ...values.property_floors,
+      { floor_heading: "", floor_description: "", floor_media: "" },
+    ];
+    setFieldValue("property_floors", newFloorAddedValue);
+    console.log(values.property_floors);
+  };
+  // !Handle When Someone Clicks On Plus Icon To Add Floor -------------->
 
   const {
     values,
@@ -428,47 +446,32 @@ const PropertyForm = ({
             <div className="col-span-12">
               <h1 className="text-3xl my-5 font-bold">Property Floors</h1>
               <div className="grid grid-cols-12">
-                {initialValues.property_floors.map(
-                  (floor: any, index: number) => {
-                    const isNotErrorEmpty = JSON.stringify(errors) !== "{}";
-                    const isNotTouchedEmpty = JSON.stringify(touched) !== "{}";
+                {values.property_floors.map((floor: any, index: number) => {
+                  return (
+                    <div className="col-span-12" key={index}>
+                      <FloorFields
+                        index={index}
+                        handleChange={handleChange}
+                        handleBlur={handleBlur}
+                        values={values}
+                        errors={errors}
+                        touched={touched}
+                        handleChangeFloorMedia={handleChangeFloorMedia}
+                      />
+                    </div>
+                  );
+                })}
 
-                    return (
-                      <div className="col-span-12" key={index}>
-                        <FloorFields
-                          index={index}
-                          handleChange={handleChange}
-                          handleBlur={handleBlur}
-                          values={values}
-                          isNotErrorEmpty={isNotErrorEmpty}
-                          isNotTouchedEmpty={isNotTouchedEmpty}
-                          errors={errors}
-                          touched={touched}
-                          handleChangeFloorMedia={handleChangeFloorMedia}
-                        />
-                      </div>
-                    );
-                  }
-                )}
-
-                <div className="col-span-12 mt-8">
-                  <ButtonRedWithIcon
-                    text=""
-                    handleClick={undefined}
-                    width="full"
-                    icon="fa fa-circle-plus text-xl"
-                    iconPosition="right"
-                  />
+                <div className="col-span-12 text-center mt-2">
+                  <Button
+                    size="lg"
+                    className="poppins w-full"
+                    onClick={onAddFloor}
+                  >
+                    <i className="fa fa-plus" aria-hidden="true"></i>
+                  </Button>
                 </div>
               </div>
-            </div>
-            <div className="col-span-12 pt-1">
-              <GooglePlacesAutoComplete
-                label="Property Address*"
-                error={errors.property_place_id && touched.property_place_id}
-                errorText={errors.property_place_id}
-                handleOnChange={handleAddressChange}
-              />
             </div>
             <div className="col-span-12">
               <Button
@@ -488,6 +491,14 @@ const PropertyForm = ({
                 onChange={handleChangeListingMedia}
                 error={errors.listing_media && touched.listing_media}
                 errorText={errors.listing_media}
+              />
+            </div>
+            <div className="col-span-12 pt-1">
+              <GooglePlacesAutoComplete
+                label="Property Address*"
+                error={errors.property_place_id && touched.property_place_id}
+                errorText={errors.property_place_id}
+                handleOnChange={handleAddressChange}
               />
             </div>
           </div>

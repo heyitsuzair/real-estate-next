@@ -42,7 +42,7 @@ const FileUpload = ({
               <div className="col-span-2" key={index}>
                 <Image
                   src={source}
-                  className="my-4 rounded"
+                  className="my-4 rounded h-[18vh] object-cover"
                   width={200}
                   height={200}
                   alt="Loading..."

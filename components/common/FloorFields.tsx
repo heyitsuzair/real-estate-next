@@ -6,8 +6,6 @@ import TextInput from "./TextInput";
 interface PropTypes {
   index: number;
   values: any;
-  isNotErrorEmpty: boolean;
-  isNotTouchedEmpty: boolean;
   errors: any;
   touched: any;
   handleBlur: (obj: any) => void;
@@ -18,9 +16,8 @@ interface PropTypes {
 const FloorFields = ({
   index,
   values,
-  isNotErrorEmpty,
-  isNotTouchedEmpty,
   errors,
+  touched,
   handleBlur,
   handleChange,
   handleChangeFloorMedia,
@@ -30,7 +27,7 @@ const FloorFields = ({
   // !Floor Media Ref --------------->
 
   return (
-    <div className="grid grid-cols-12 gap-4 items-start justify-between">
+    <div className="grid my-5 grid-cols-12 gap-4 items-start justify-between">
       <div className="floor-heading col-span-3">
         <TextInput
           id="property_floor_heading"
@@ -39,13 +36,10 @@ const FloorFields = ({
           label="Floor Heading*"
           value={values.property_floors[index].floor_heading}
           error={
-            isNotErrorEmpty &&
-            isNotTouchedEmpty &&
-            errors.property_floors[index].floor_heading
+            touched.property_floors?.[index] &&
+            errors.property_floors?.[index]?.floor_heading
           }
-          errorText={
-            isNotErrorEmpty && errors.property_floors[index].floor_heading
-          }
+          errorText={errors.property_floors?.[index]?.floor_heading}
           onBlur={handleBlur}
           placeholder="Floor Heading"
           onChange={handleChange}
@@ -59,13 +53,10 @@ const FloorFields = ({
           label="Floor Description*"
           value={values.property_floors[index].floor_description}
           error={
-            isNotErrorEmpty &&
-            isNotTouchedEmpty &&
-            errors.property_floors[index].floor_description
+            touched.property_floors?.[index] &&
+            errors.property_floors?.[index]?.floor_description
           }
-          errorText={
-            isNotErrorEmpty && errors.property_floors[index].floor_description
-          }
+          errorText={errors.property_floors?.[index]?.floor_description}
           onBlur={handleBlur}
           placeholder="Floor Description"
           onChange={handleChange}
@@ -100,13 +91,10 @@ const FloorFields = ({
           multiple={false}
           onChange={handleChangeFloorMedia}
           error={
-            isNotErrorEmpty &&
-            isNotTouchedEmpty &&
-            errors.property_floors[index].floor_media
+            touched.property_floors?.[index] &&
+            errors.property_floors?.[index]?.floor_media
           }
-          errorText={
-            isNotErrorEmpty && errors.property_floors[index].floor_media
-          }
+          errorText={errors.property_floors?.[index]?.floor_media}
         />
       </div>
     </div>
