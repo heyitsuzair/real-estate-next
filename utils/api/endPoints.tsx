@@ -6,3 +6,4 @@ export const loginUser = HOST + "auth/login-user";
 export const recoverEmail = HOST + "auth/recover-email/";
 export const resetPassword = HOST + "auth/reset-password/";
 export const getUserProfile = HOST + "auth/get-user-profile";
+export const updateUserProfile = HOST + "auth/update-user-profile";

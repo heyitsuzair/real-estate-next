@@ -68,7 +68,7 @@ export const newPassword = async (
 export const fetchUserProfile = async () => {
   let token: null | string = null;
   if (typeof window !== "undefined") {
-    token = JSON.parse(localStorage.getItem("re-user"));
+    token = JSON.parse(localStorage.getItem("re-user") || "");
   }
 
   try {

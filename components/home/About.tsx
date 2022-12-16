@@ -6,8 +6,11 @@ import IconWithText from "../common/IconWithText";
 import styles from "../../styles/AboutSection.module.css";
 import Quote from "../common/Quote";
 import ButtonRed from "../common/ButtonRed";
+import { useRouter } from "next/router";
 
 const About = () => {
+  const router = useRouter();
+
   return (
     <div
       className={`container mx-auto px-16 mt-0 p-5 sm:mt-48 lg:mt-28 ${styles.about} `}
@@ -59,7 +62,11 @@ const About = () => {
             />
           </div>
           <div className="btn-section mt-8">
-            <ButtonRed width="inherit" text="Contact Us" handleClick={""} />
+            <ButtonRed
+              width="inherit"
+              text="Contact Us"
+              handleClick={() => router.push("/contact")}
+            />
           </div>
         </div>
       </div>

@@ -9,7 +9,11 @@ const Topbar = () => {
           <div className="flex items-center gap-2 justify-center md:justify-start lg:justify-start sm:justify-center sm:my-5 md:my-0 lg:my-0">
             <div className="item-1 flex gap-1 items-center">
               <i className="fa-regular fa-envelope text-red-500"></i>
-              <span className="text-sm">info@webmail.com</span>
+              <span className="text-sm">
+                <a href="mailto:uzairdeveloper354123@gmail.com">
+                  uzairdeveloper354123@gmail.com
+                </a>
+              </span>
             </div>
             <div className="item-2 flex gap-1 items-center">
               <i className="fa-solid fa-location-dot text-red-500"></i>
