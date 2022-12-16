@@ -1,6 +1,7 @@
 import axios from "axios";
 import {
   addUser,
+  getUserProfile,
   loginUser,
   recoverEmail,
   resetPassword,
@@ -62,5 +63,22 @@ export const newPassword = async (
     return data;
   } catch (error: any) {
     return error.response.data;
+  }
+};
+export const fetchUserProfile = async () => {
+  let token: null | string = null;
+  if (typeof window !== "undefined") {
+    token = JSON.parse(localStorage.getItem("re-user"));
+  }
+
+  try {
+    const { data } = await axios.get(getUserProfile, {
+      headers: {
+        Authorization: token,
+      },
+    });
+    return data;
+  } catch (error: any) {
+    return error;
   }
 };

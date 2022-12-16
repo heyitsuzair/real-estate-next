@@ -1,8 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import TextInput from "../../../components/common/TextInput";
 import { useFormik } from "formik";
 import SpinnerSmall from "../../../components/common/SpinnerSmall";
 import { SettingsSchema } from "../../../yupSchemas";
+import { fetchUserProfile } from "../../../functions";
+import SpinnerLarge from "../../../components/common/SpinnerLarge";
 
 const Settings = () => {
   // ?State For Loading ---------------------------->
@@ -11,29 +13,56 @@ const Settings = () => {
 
   // ?Configurations For Formik -------------------------->
   const initialValues = {
-    name: "Muhammad Uzair",
-    email: "uzair@gmail.com",
-    phone_no: "03104864150",
+    name: "",
+    email: "",
+    phone_no: "",
     password: "",
   };
 
-  const { values, touched, errors, handleBlur, handleChange, handleSubmit } =
-    useFormik({
-      initialValues: initialValues,
-      validationSchema: SettingsSchema,
-      onSubmit: (values, action) => {
-        setIsLoading(true);
-        console.log(values);
-        setTimeout(() => {
-          setIsLoading(false);
-          action.resetForm();
-        }, 2000);
-      },
-    });
+  const {
+    values,
+    touched,
+    errors,
+    handleBlur,
+    setFieldValue,
+    handleChange,
+    handleSubmit,
+  } = useFormik({
+    initialValues: initialValues,
+    validationSchema: SettingsSchema,
+    onSubmit: (values, action) => {
+      setIsLoading(true);
+      console.log(values);
+      setTimeout(() => {
+        setIsLoading(false);
+        setFieldValue("password", "");
+      }, 2000);
+    },
+  });
   // !Configurations For Formik -------------------------->
+
+  // ?Fetching User Profile From Backend --------->
+  const fetchProfile = async () => {
+    const userProfile = await fetchUserProfile();
+
+    /**
+     * Setting Fields Value
+     * */
+    setFieldValue("name", userProfile.name);
+    setFieldValue("email", userProfile.email);
+    setFieldValue("phone_no", userProfile.phone_no);
+  };
+  // !Fetching User Profile From Backend --------->
+
+  useEffect(() => {
+    fetchProfile();
+    //eslint-disable-next-line
+  }, []);
+
   return (
     <>
       <h1 className="text-3xl mx-5 poppins font-bold my-5">Settings</h1>
+
       <div className="m-4 shadow-xl sm:rounded-lg p-10">
         <form
           className="space-y-4 md:space-y-6"

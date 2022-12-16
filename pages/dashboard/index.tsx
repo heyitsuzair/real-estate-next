@@ -23,7 +23,7 @@ const Index = () => {
       return;
     }
     //eslint-disable-next-line
-  }, [localStorage.getItem("re-user")]);
+  }, []);
 
   return (
     <div>
