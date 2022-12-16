@@ -57,7 +57,7 @@ const CreditCardForm = ({
             error={errors.expiry_year && touched.expiry_year}
             errorText={errors.expiry_year}
             onBlur={handleBlur}
-            placeholder="123"
+            placeholder="2024"
             onChange={handleChange}
           />
         </div>
@@ -71,7 +71,7 @@ const CreditCardForm = ({
             error={errors.expiry_month && touched.expiry_month}
             errorText={errors.expiry_month}
             onBlur={handleBlur}
-            placeholder="2024"
+            placeholder="12"
             onChange={handleChange}
           />
         </div>

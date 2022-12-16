@@ -38,7 +38,7 @@ const Packages = ({
                 value={item._id}
                 label={item.label}
                 name="package"
-                checked={false}
+                checked={value === item._id}
                 handleChange={handleChange}
               />
             </div>
@@ -49,7 +49,7 @@ const Packages = ({
         <p className="text-red-500 text-sm ml-3 my-2">{errors.package}</p>
       )}
       {value && (
-        <div className="allowed-listings text-center text-sm md:text-xl ml-3 my-2">
+        <div className="allowed-listings text-sm md:text-xl ml-3 my-2">
           <strong>
             Includes {retrievedPackage.allowed_listings} Listings (Rs{" "}
             {retrievedPackage.price})

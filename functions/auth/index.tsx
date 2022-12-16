@@ -5,6 +5,7 @@ import {
   loginUser,
   recoverEmail,
   resetPassword,
+  updateUserPackage,
   updateUserProfile,
 } from "../../utils/api/endPoints";
 
@@ -30,6 +31,12 @@ interface editProfileTypes {
   email: string;
   password: string;
   phone_no: string;
+}
+interface editPackageType {
+  card_no: string;
+  card_cvc: string;
+  expiry_month: string;
+  expiry_year: string;
 }
 
 export const registerUser = async (values: registerUserTypes) => {
@@ -97,6 +104,25 @@ export const editUserProfile = async (values: editProfileTypes) => {
   }
   try {
     const { data } = await axios.put(updateUserProfile, values, {
+      headers: {
+        Authorization: token,
+      },
+    });
+    return data;
+  } catch (error: any) {
+    return error.response.data;
+  }
+};
+export const editUserPackage = async (
+  card: editPackageType,
+  packageId: string
+) => {
+  let token: null | string = null;
+  if (typeof window !== "undefined") {
+    token = JSON.parse(localStorage.getItem("re-user") || "");
+  }
+  try {
+    const { data } = await axios.put(updateUserPackage + packageId, card, {
       headers: {
         Authorization: token,
       },

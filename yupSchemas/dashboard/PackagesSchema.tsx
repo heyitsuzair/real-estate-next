@@ -1,7 +1,7 @@
 import * as Yup from "yup";
 
 export const PackagesSchema = Yup.object({
-  package: Yup.number().required("Please Choose Package"),
+  package: Yup.string().required("Please Choose Package"),
   card_no: Yup.string()
     .min(16, "Card Number Must Be 16 Digit")
     .max(16, "Card Number Must Be 16 Digit")
