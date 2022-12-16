@@ -4,3 +4,4 @@ export const getPackages = HOST + "packages/get-packages";
 export const addUser = HOST + "auth/add-user";
 export const loginUser = HOST + "auth/login-user";
 export const recoverEmail = HOST + "auth/recover-email/";
+export const resetPassword = HOST + "auth/reset-password/";

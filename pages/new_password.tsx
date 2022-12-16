@@ -8,6 +8,8 @@ import { NewPasswordSchema } from "../yupSchemas";
 import TextInput from "../components/common/TextInput";
 import { useFormik } from "formik";
 import { useRouter } from "next/router";
+import { newPassword } from "../functions";
+import { toast } from "react-toastify";
 
 const New_Password = () => {
   // ?State For Loading ---------------------------->
@@ -26,13 +28,28 @@ const New_Password = () => {
     useFormik({
       initialValues: initialValues,
       validationSchema: NewPasswordSchema,
-      onSubmit: (values, action) => {
+      onSubmit: async (values, action) => {
         setIsLoading(true);
-        console.log(values);
-        setTimeout(() => {
-          setIsLoading(false);
-          action.resetForm();
-        }, 2000);
+
+        const email: string | string[] | undefined = router.query.email;
+        const token: string | string[] | undefined = router.query.token;
+        const password: string = values.password;
+
+        const isPasswordChanged = await newPassword(email, token, password);
+
+        /**
+         * If URL Is Changed By Spam, Show An Alert And Push It To Home Else Navigate To Login
+         */
+        if (isPasswordChanged.error) {
+          toast.error(isPasswordChanged.msg, {
+            position: "top-right",
+          });
+          router.push("/");
+          return;
+        }
+
+        toast.success(isPasswordChanged.msg);
+        router.push("/login");
       },
     });
   // !Configurations For Formik -------------------------->
@@ -42,7 +59,15 @@ const New_Password = () => {
    */
   useEffect(() => {
     if (localStorage.getItem("re-user")) {
-      router.push("/dashboard?route=myProperties");
+      router.push("/");
+    }
+    /**
+     * Push To Home If Email Or Token Is Not Present In URL Query
+     */
+    if (router.isReady) {
+      if (!router.query.email || !router.query.token) {
+        router.push("/");
+      }
     }
     //eslint-disable-next-line
   }, []);

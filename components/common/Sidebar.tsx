@@ -72,8 +72,8 @@ const Sidebar = () => {
           <li>
             <div
               onClick={() => {
-                logoutUser();
                 router.push("/");
+                logoutUser();
               }}
               className={`flex cursor-pointer items-center p-2 text-base font-normal rounded-lg  hover:bg-gray-100 text-gray-900`}
             >

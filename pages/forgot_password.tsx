@@ -52,7 +52,7 @@ const Forgot_Password = () => {
    */
   useEffect(() => {
     if (localStorage.getItem("re-user")) {
-      router.push("/dashboard?route=myProperties");
+      router.push("/");
     }
     //eslint-disable-next-line
   }, []);
