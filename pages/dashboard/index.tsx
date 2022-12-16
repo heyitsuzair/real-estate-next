@@ -1,6 +1,7 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
 import React, { useEffect } from "react";
+import { toast } from "react-toastify";
 import Sidebar from "../../components/common/Sidebar";
 import AddProperty from "./subcomponents/AddProperty";
 import MyProperties from "./subcomponents/MyProperties";
@@ -16,6 +17,10 @@ const Index = () => {
   useEffect(() => {
     if (!localStorage.getItem("re-user")) {
       router.push("/login");
+      toast.warn("Login To Access Dashboard!", {
+        position: "bottom-center",
+      });
+      return;
     }
     //eslint-disable-next-line
   }, [localStorage.getItem("re-user")]);

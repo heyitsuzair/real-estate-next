@@ -71,7 +71,9 @@ const Register = ({ packagesArray }: PropTypes) => {
           setIsLoading(false);
           return;
         }
-        toast.success(isUserRegistered.msg);
+        toast.success(isUserRegistered.msg, {
+          position: "bottom-center",
+        });
         router.push("/login");
       },
     });
