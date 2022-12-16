@@ -1,5 +1,5 @@
 import axios from "axios";
-import { addUser, loginUser } from "../../utils/api/endPoints";
+import { addUser, loginUser, recoverEmail } from "../../utils/api/endPoints";
 
 interface registerUserTypes {
   name: string;
@@ -36,4 +36,12 @@ export const authenticateUser = async (values: authenticateUserTypes) => {
 };
 export const logoutUser = async () => {
   localStorage.removeItem("re-user");
+};
+export const forgotPassword = async (email: string) => {
+  try {
+    const { data } = await axios.post(recoverEmail + email);
+    return data;
+  } catch (error: any) {
+    return error.response.data;
+  }
 };

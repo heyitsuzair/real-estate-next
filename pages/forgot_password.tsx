@@ -8,6 +8,8 @@ import { ForgotPasswordSchema } from "../yupSchemas";
 import TextInput from "../components/common/TextInput";
 import { useFormik } from "formik";
 import { useRouter } from "next/router";
+import { forgotPassword } from "../functions";
+import { toast } from "react-toastify";
 
 const Forgot_Password = () => {
   // ?State For Loading ---------------------------->
@@ -25,13 +27,22 @@ const Forgot_Password = () => {
     useFormik({
       initialValues: initialValues,
       validationSchema: ForgotPasswordSchema,
-      onSubmit: (values, action) => {
+      onSubmit: async (values, action) => {
         setIsLoading(true);
-        console.log(values);
-        setTimeout(() => {
+        const isEmailSent = await forgotPassword(values.email);
+
+        /**
+         * Show An Error In Toast If API Returns An Error Else Show Message
+         */
+        if (isEmailSent.error) {
+          toast.error(isEmailSent.msg);
           setIsLoading(false);
-          action.resetForm();
-        }, 2000);
+          return;
+        }
+        toast.success(isEmailSent.msg, {
+          position: "bottom-center",
+        });
+        router.push("/");
       },
     });
   // !Configurations For Formik -------------------------->
