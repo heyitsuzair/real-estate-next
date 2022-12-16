@@ -12,6 +12,9 @@ import { AminitiesCheckbox } from "../../checkboxes";
 import { Button } from "@material-tailwind/react";
 import ButtonRedWithIcon from "./ButtonRedWithIcon";
 import FloorFields from "./FloorFields";
+import { addProperty } from "../../functions";
+import { toast } from "react-toastify";
+import { useRouter } from "next/router";
 
 interface PropTypes {
   initialValues: {
@@ -58,6 +61,8 @@ const PropertyForm = ({
   // ?State For Loading ---------------------------->
   const [isLoading, setIsLoading] = useState<boolean>(false);
   // !State For Loading ---------------------------->
+
+  const router = useRouter();
 
   // ?Configurations For Formik -------------------------->
 
@@ -163,14 +168,24 @@ const PropertyForm = ({
   } = useFormik({
     initialValues: initialValues,
     validationSchema: yupSchema,
-    onSubmit: (values, action) => {
-      alert(state);
+    onSubmit: async (values, action) => {
       setIsLoading(true);
-      console.log(values);
-      setTimeout(() => {
+
+      if (state === "add") {
+        const isPropertyAdded = await addProperty(values);
+
+        if (isPropertyAdded.error) {
+          toast.error(isPropertyAdded.msg);
+          setIsLoading(false);
+          return;
+        }
+
+        toast.success(isPropertyAdded.msg, {
+          position: "bottom-center",
+        });
         setIsLoading(false);
-        // action.resetForm();
-      }, 2000);
+        router.push("/dashboard?route=myProperties");
+      }
     },
   });
   // !Configurations For Formik -------------------------->

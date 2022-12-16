@@ -8,3 +8,4 @@ export const resetPassword = HOST + "auth/reset-password/";
 export const getUserProfile = HOST + "auth/get-user-profile";
 export const updateUserProfile = HOST + "auth/update-user-profile";
 export const updateUserPackage = HOST + "auth/update-user-package/";
+export const addPropertyPoint = HOST + "property/add-property";
