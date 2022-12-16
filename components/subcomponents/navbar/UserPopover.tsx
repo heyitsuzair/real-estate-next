@@ -39,7 +39,9 @@ const UserPopover = () => {
           style={{ padding: ".75rem 1.1rem" }}
           onClick={() => setPopover(!popover)}
         >
-          <span className={`absolute ${styles.cartCountSpan}`}>2</span>
+          <span className={`absolute ${styles.cartCountSpan}`}>
+            {user ? 99 : 0}
+          </span>
           <i className="fa-regular fa-user"></i>
         </div>
         <div

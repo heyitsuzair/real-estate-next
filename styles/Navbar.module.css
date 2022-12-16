@@ -3,11 +3,11 @@
   right: -0.5rem;
   background: red;
   color: white;
-  width: 1.5rem;
-  height: 1.5rem;
+  width: 1.7rem;
+  height: 1.7rem;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  font-size: 14px;
+  font-size: 13px;
 }
