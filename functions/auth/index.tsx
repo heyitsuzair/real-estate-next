@@ -5,6 +5,7 @@ import {
   loginUser,
   recoverEmail,
   resetPassword,
+  updateUserProfile,
 } from "../../utils/api/endPoints";
 
 interface registerUserTypes {
@@ -22,6 +23,13 @@ interface registerUserTypes {
 interface authenticateUserTypes {
   email: string;
   password: string;
+}
+
+interface editProfileTypes {
+  name: string;
+  email: string;
+  password: string;
+  phone_no: string;
 }
 
 export const registerUser = async (values: registerUserTypes) => {
@@ -79,6 +87,22 @@ export const fetchUserProfile = async () => {
     });
     return data;
   } catch (error: any) {
-    return error;
+    return error.response.data;
+  }
+};
+export const editUserProfile = async (values: editProfileTypes) => {
+  let token: null | string = null;
+  if (typeof window !== "undefined") {
+    token = JSON.parse(localStorage.getItem("re-user") || "");
+  }
+  try {
+    const { data } = await axios.put(updateUserProfile, values, {
+      headers: {
+        Authorization: token,
+      },
+    });
+    return data;
+  } catch (error: any) {
+    return error.response.data;
   }
 };

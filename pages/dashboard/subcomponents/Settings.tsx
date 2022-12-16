@@ -3,8 +3,9 @@ import TextInput from "../../../components/common/TextInput";
 import { useFormik } from "formik";
 import SpinnerSmall from "../../../components/common/SpinnerSmall";
 import { SettingsSchema } from "../../../yupSchemas";
-import { fetchUserProfile } from "../../../functions";
+import { editUserProfile, fetchUserProfile } from "../../../functions";
 import SpinnerLarge from "../../../components/common/SpinnerLarge";
+import { toast } from "react-toastify";
 
 const Settings = () => {
   // ?State For Loading ---------------------------->
@@ -30,13 +31,20 @@ const Settings = () => {
   } = useFormik({
     initialValues: initialValues,
     validationSchema: SettingsSchema,
-    onSubmit: (values, action) => {
+    onSubmit: async (values, action) => {
       setIsLoading(true);
-      console.log(values);
-      setTimeout(() => {
+
+      const isProfileUpdated = await editUserProfile(values);
+
+      if (isProfileUpdated.error) {
+        toast.error(isProfileUpdated.msg);
         setIsLoading(false);
-        setFieldValue("password", "");
-      }, 2000);
+        return;
+      }
+
+      toast.success(isProfileUpdated.msg);
+      setIsLoading(false);
+      setFieldValue("password", "");
     },
   });
   // !Configurations For Formik -------------------------->
