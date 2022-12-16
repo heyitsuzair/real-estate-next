@@ -29,8 +29,16 @@ export const retrievePackageAllowedListings = (
   );
 
   /**
-   * @return Allowed Listings Of Package If Found, Else Return 0 If It Is Undefined
+   * @return Allowed Listings And Price Of Package If Found, Else Return 0 If It Is Undefined
    */
 
-  return filteredPackage ? filteredPackage.allowed_listings : 0;
+  return filteredPackage
+    ? {
+        allowed_listings: filteredPackage.allowed_listings,
+        price: filteredPackage.price,
+      }
+    : {
+        allowed_listings: 0,
+        price: 0,
+      };
 };

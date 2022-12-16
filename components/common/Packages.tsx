@@ -24,34 +24,36 @@ const Packages = ({
   packages,
 }: PropTypes) => {
   /**
-   * Retrieve Allowed Listings In Selected Package
+   * Retrieve Allowed Listings And Price Of Selected Package
    */
-  const ALLOWED_LISTINGS = retrievePackageAllowedListings(packages, value);
+  const retrievedPackage = retrievePackageAllowedListings(packages, value);
 
   return (
     <>
       <div className="grid grid-cols-12 justify-start gap-4">
-        <div className="col-span-12 md:col-span-4">
-          {packages.map((item) => {
-            return (
+        {packages.map((item) => {
+          return (
+            <div key={item._id} className="col-span-12 md:col-span-4">
               <MaterialRadioWithLabel
-                key={item._id}
                 value={item._id}
                 label={item.label}
                 name="package"
                 checked={false}
                 handleChange={handleChange}
               />
-            );
-          })}
-        </div>
+            </div>
+          );
+        })}
       </div>
       {errors.package && touched.package && (
         <p className="text-red-500 text-sm ml-3 my-2">{errors.package}</p>
       )}
       {value && (
-        <div className="allowed-listings text-sm md:text-xl ml-3 my-2">
-          <strong>Selected Package Includes {ALLOWED_LISTINGS} Listings</strong>
+        <div className="allowed-listings text-center text-sm md:text-xl ml-3 my-2">
+          <strong>
+            Includes {retrievedPackage.allowed_listings} Listings (Rs{" "}
+            {retrievedPackage.price})
+          </strong>
         </div>
       )}
     </>

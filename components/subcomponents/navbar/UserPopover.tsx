@@ -1,12 +1,36 @@
 import Link from "next/link";
-import React, { MouseEventHandler, useState } from "react";
-
+import { useRouter } from "next/router";
+import React, { MouseEventHandler, useEffect, useState } from "react";
+import { logoutUser } from "../../../functions";
 import styles from "../../../styles/Navbar.module.css";
 
 const UserPopover = () => {
+  // ?State For Popover ---------->
   const [popover, setPopover] = useState<
     boolean | MouseEventHandler<HTMLAnchorElement>
   >(false);
+  // !State For Popover ---------->
+
+  const router = useRouter();
+  const [user, setUser] = useState<string | null>(null);
+
+  /**
+   * Handle When Someone Clicks Logout (Only For Logged In User)
+   */
+  const handleLogout = () => {
+    logoutUser();
+    router.push("/");
+    setUser(null);
+  };
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      // Perform localStorage action
+      setUser(localStorage.getItem("re-user"));
+    }
+    //eslint-disable-next-line
+  }, [user]);
+
   return (
     <ul>
       <li className="relative">
@@ -25,27 +49,61 @@ const UserPopover = () => {
               : "opacity-0 -right-16 top-24 sm:-right-0 invisible"
           } transition-all duration-300 bg-white rounded-lg ease-in-out px-6 shadow-2xl py-3 right-0`}
         >
-          <Link
-            href={"/login"}
-            onClick={() => setPopover(!popover)}
-            className="text-black hover:text-red-500 transition-all duration-300 border-b-2 hover:border-red-500 pb-2 px-10 block my-6 font-semibold"
-          >
-            Login
-          </Link>
-          <Link
-            href={"/register"}
-            onClick={() => setPopover(!popover)}
-            className="text-black hover:text-red-500 transition-all duration-300 border-b-2 hover:border-red-500 pb-2 px-10 block my-6 font-semibold"
-          >
-            Register
-          </Link>
-          <Link
-            href={"/dashboard?route=myProperties"}
-            onClick={() => setPopover(!popover)}
-            className="text-black hover:text-red-500 transition-all duration-300 border-b-2 hover:border-red-500 pb-2 px-10 block my-6 font-semibold"
-          >
-            Dashboard
-          </Link>
+          {user ? (
+            <>
+              <Link
+                href={"/dashboard?route=myProperties"}
+                onClick={() => setPopover(!popover)}
+                className="text-black hover:text-red-500 transition-all duration-300 border-b-2 hover:border-red-500 pb-2 block my-6 font-semibold w-[13vw]"
+              >
+                My Properties
+              </Link>
+              <Link
+                href={"/dashboard?route=addProperties"}
+                onClick={() => setPopover(!popover)}
+                className="text-black hover:text-red-500 transition-all duration-300 border-b-2 hover:border-red-500 pb-2 block my-6 font-semibold w-[13vw]"
+              >
+                Add Property
+              </Link>
+              <Link
+                href={"/dashboard?route=package"}
+                onClick={() => setPopover(!popover)}
+                className="text-black hover:text-red-500 transition-all duration-300 border-b-2 hover:border-red-500 pb-2 block my-6 font-semibold w-[13vw]"
+              >
+                Package
+              </Link>
+              <Link
+                href={"/dashboard?route=settings"}
+                onClick={() => setPopover(!popover)}
+                className="text-black hover:text-red-500 transition-all duration-300 border-b-2 hover:border-red-500 pb-2 block my-6 font-semibold w-[13vw]"
+              >
+                Settings
+              </Link>
+              <div
+                onClick={handleLogout}
+                className="text-black hover:text-red-500 cursor-pointer transition-all duration-300 border-b-2 hover:border-red-500 pb-2 block my-6 font-semibold w-[13vw]"
+              >
+                Logout
+              </div>
+            </>
+          ) : (
+            <>
+              <Link
+                href={"/login"}
+                onClick={() => setPopover(!popover)}
+                className="text-black hover:text-red-500 transition-all duration-300 border-b-2 hover:border-red-500 pb-2 block my-6 font-semibold w-[13vw]"
+              >
+                Login
+              </Link>
+              <Link
+                href={"/register"}
+                onClick={() => setPopover(!popover)}
+                className="text-black hover:text-red-500 transition-all duration-300 border-b-2 hover:border-red-500 pb-2 block my-6 font-semibold w-[13vw]"
+              >
+                Register
+              </Link>
+            </>
+          )}
         </div>
       </li>
     </ul>

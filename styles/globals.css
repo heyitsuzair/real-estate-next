@@ -22,7 +22,7 @@ input[type="number"] {
 
 /* Hide Input Numbers Arrow */
 .poppins {
-  font-family: "Poppins", sans-serif;
+  font-family: "Poppins", sans-serif !important;
 }
 * {
   padding: 0;

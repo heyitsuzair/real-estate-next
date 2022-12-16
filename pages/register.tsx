@@ -1,6 +1,6 @@
 import Head from "next/head";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import BreadCrumb from "../components/common/BreadCrumb";
 import Logo from "../assets/img/logo.png";
 import Link from "next/link";
@@ -10,7 +10,9 @@ import { RegisterFormSchema } from "../yupSchemas";
 import SpinnerSmall from "../components/common/SpinnerSmall";
 import CreditCardForm from "../components/common/CreditCardForm";
 import Packages from "../components/common/Packages";
-import { fetchPackages } from "../functions";
+import { fetchPackages, registerUser } from "../functions";
+import { toast } from "react-toastify";
+import { useRouter } from "next/router";
 
 interface PropTypes {
   packagesArray: {
@@ -39,6 +41,8 @@ const Register = ({ packagesArray }: PropTypes) => {
   const [packages, setPackages] = useState<PackagesType[]>(packagesArray);
   // !State For Packages ---------------------------->
 
+  const router = useRouter();
+
   // ?Configurations For Formik -------------------------->
   const initialValues = {
     name: "",
@@ -56,16 +60,32 @@ const Register = ({ packagesArray }: PropTypes) => {
     useFormik({
       initialValues: initialValues,
       validationSchema: RegisterFormSchema,
-      onSubmit: (values, action) => {
+      onSubmit: async (values, action) => {
         setIsLoading(true);
-        console.log(values);
-        setTimeout(() => {
+        const isUserRegistered = await registerUser(values);
+        /**
+         * Show An Error If API Returns An Error Else Navigate To Login Page
+         */
+        if (isUserRegistered.error) {
+          toast.error(isUserRegistered.msg);
           setIsLoading(false);
-          action.resetForm();
-        }, 2000);
+          return;
+        }
+        toast.success(isUserRegistered.msg);
+        router.push("/login");
       },
     });
   // !Configurations For Formik -------------------------->
+
+  /**
+   * Protected Route
+   */
+  useEffect(() => {
+    if (localStorage.getItem("re-user")) {
+      router.push("/dashboard?route=myProperties");
+    }
+    //eslint-disable-next-line
+  }, []);
 
   return (
     <div>

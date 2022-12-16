@@ -1,17 +1,20 @@
 import Head from "next/head";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import BreadCrumb from "../components/common/BreadCrumb";
 import Logo from "../assets/img/logo.png";
 import SpinnerSmall from "../components/common/SpinnerSmall";
 import { ForgotPasswordSchema } from "../yupSchemas";
 import TextInput from "../components/common/TextInput";
 import { useFormik } from "formik";
+import { useRouter } from "next/router";
 
 const Forgot_Password = () => {
   // ?State For Loading ---------------------------->
   const [isLoading, setIsLoading] = useState<boolean>(false);
   // !State For Loading ---------------------------->
+
+  const router = useRouter();
 
   // ?Configurations For Formik -------------------------->
   const initialValues = {
@@ -32,6 +35,16 @@ const Forgot_Password = () => {
       },
     });
   // !Configurations For Formik -------------------------->
+
+  /**
+   * Protected Route
+   */
+  useEffect(() => {
+    if (localStorage.getItem("re-user")) {
+      router.push("/dashboard?route=myProperties");
+    }
+    //eslint-disable-next-line
+  }, []);
 
   return (
     <div>

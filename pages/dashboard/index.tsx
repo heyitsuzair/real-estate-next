@@ -1,6 +1,6 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
-import React from "react";
+import React, { useEffect } from "react";
 import Sidebar from "../../components/common/Sidebar";
 import AddProperty from "./subcomponents/AddProperty";
 import MyProperties from "./subcomponents/MyProperties";
@@ -9,6 +9,16 @@ import Settings from "./subcomponents/Settings";
 
 const Index = () => {
   const router = useRouter();
+
+  /**
+   * Protected Route
+   */
+  useEffect(() => {
+    if (!localStorage.getItem("re-user")) {
+      router.push("/login");
+    }
+    //eslint-disable-next-line
+  }, [localStorage.getItem("re-user")]);
 
   return (
     <div>

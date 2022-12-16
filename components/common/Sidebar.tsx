@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React from "react";
+import { logoutUser } from "../../functions";
 
 const Sidebar = () => {
   const router = useRouter();
@@ -69,19 +70,18 @@ const Sidebar = () => {
             </Link>
           </li>
           <li>
-            <Link
-              href="/dashboard?route=logout"
-              className={`flex items-center p-2 text-base font-normal rounded-lg  ${
-                router.query.route === "logout"
-                  ? "bg-red-500 text-white"
-                  : "hover:bg-gray-100 text-gray-900"
-              }`}
+            <div
+              onClick={() => {
+                logoutUser();
+                router.push("/");
+              }}
+              className={`flex cursor-pointer items-center p-2 text-base font-normal rounded-lg  hover:bg-gray-100 text-gray-900`}
             >
               <i className="fa fa-sign-out" aria-hidden="true"></i>
               <span className="flex-1 ml-3 whitespace-nowrap text-sm">
                 Logout
               </span>
-            </Link>
+            </div>
           </li>
         </ul>
       </div>

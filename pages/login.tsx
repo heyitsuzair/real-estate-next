@@ -1,6 +1,6 @@
 import Head from "next/head";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import BreadCrumb from "../components/common/BreadCrumb";
 import Logo from "../assets/img/logo.png";
 import Link from "next/link";
@@ -8,11 +8,16 @@ import SpinnerSmall from "../components/common/SpinnerSmall";
 import { LoginFormSchema } from "../yupSchemas";
 import TextInput from "../components/common/TextInput";
 import { useFormik } from "formik";
+import { authenticateUser } from "../functions";
+import { toast } from "react-toastify";
+import { useRouter } from "next/router";
 
 const Login = () => {
   // ?State For Loading ---------------------------->
   const [isLoading, setIsLoading] = useState<boolean>(false);
   // !State For Loading ---------------------------->
+
+  const router = useRouter();
 
   // ?Configurations For Formik -------------------------->
   const initialValues = {
@@ -24,16 +29,35 @@ const Login = () => {
     useFormik({
       initialValues: initialValues,
       validationSchema: LoginFormSchema,
-      onSubmit: (values, action) => {
+      onSubmit: async (values, action) => {
         setIsLoading(true);
-        console.log(values);
-        setTimeout(() => {
+
+        const isUserLoggedIn = await authenticateUser(values);
+
+        /**
+         * Show An Error If API Returns An Error Else Navigate To Dashboard And Set Token In localStorage
+         */
+        if (isUserLoggedIn.error) {
+          toast.error(isUserLoggedIn.msg);
           setIsLoading(false);
-          action.resetForm();
-        }, 2000);
+          return;
+        }
+
+        localStorage.setItem("re-user", JSON.stringify(isUserLoggedIn.token));
+        router.push("/dashboard?route=myProperties");
       },
     });
   // !Configurations For Formik -------------------------->
+
+  /**
+   * Protected Route
+   */
+  useEffect(() => {
+    if (localStorage.getItem("re-user")) {
+      router.push("/dashboard?route=myProperties");
+    }
+    //eslint-disable-next-line
+  }, []);
 
   return (
     <div>
