@@ -2,6 +2,7 @@ import axios from "axios";
 import {
   addPropertyPoint,
   deletePropertyPoint,
+  getProperties,
   getProperty,
   getSellerProperties,
   updateProperty,
@@ -78,6 +79,14 @@ export const editProperty = async (
         Authorization: token,
       },
     });
+    return data;
+  } catch (error: any) {
+    return error.response.data;
+  }
+};
+export const fetchProperties = async (pageNo: string) => {
+  try {
+    const { data } = await axios.get(getProperties + "/" + pageNo + "/6");
     return data;
   } catch (error: any) {
     return error.response.data;
