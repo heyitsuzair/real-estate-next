@@ -11,3 +11,5 @@ export const updateUserPackage = HOST + "auth/update-user-package/";
 export const addPropertyPoint = HOST + "property/add-property";
 export const getSellerProperties = HOST + "property/get-seller-properties";
 export const deletePropertyPoint = HOST + "property/delete-property/";
+export const getProperty = HOST + "property/get-property/";
+export const updateProperty = HOST + "property/update-property/";

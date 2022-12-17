@@ -6,6 +6,7 @@ import Image from "next/image";
 import { deleteProperty, fetchSellerProperties } from "../../../functions";
 import { toast } from "react-toastify";
 import SpinnerLarge from "../../../components/common/SpinnerLarge";
+import Link from "next/link";
 
 const MyProperties = () => {
   // ?States For Lightbox -------------->
@@ -154,12 +155,12 @@ const MyProperties = () => {
                           {property.property_size} SQFT
                         </td>
                         <td className="py-4 px-6 text-start">
-                          <a
-                            href="#"
+                          <Link
+                            href={`/dashboard?route=editProperty&id=${property._id}`}
                             className="font-medium mr-4 text-blue-600 hover:underline"
                           >
                             Edit
-                          </a>
+                          </Link>
                           <span
                             onClick={() => onDeleteProperty(property._id)}
                             className="font-medium cursor-pointer text-red-600 hover:underline"

@@ -4,6 +4,7 @@ import React, { useEffect } from "react";
 import { toast } from "react-toastify";
 import Sidebar from "../../components/common/Sidebar";
 import AddProperty from "./subcomponents/AddProperty";
+import EditProperty from "./subcomponents/EditProperty";
 import MyProperties from "./subcomponents/MyProperties";
 import Package from "./subcomponents/Package";
 import Settings from "./subcomponents/Settings";
@@ -39,6 +40,9 @@ const Index = () => {
           {router.query.route === "myProperties" && <MyProperties />}
           {router.query.route === "settings" && <Settings />}
           {router.query.route === "addProperties" && <AddProperty />}
+          {router.query.route === "editProperty" && router.query.id && (
+            <EditProperty />
+          )}
           {router.query.route === "package" && <Package />}
         </div>
       </div>

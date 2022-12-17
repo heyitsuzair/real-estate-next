@@ -3,6 +3,7 @@ import GooglePlacesAutocomplete from "react-google-places-autocomplete";
 
 interface PropTypes {
   label: string;
+  value: string;
   error: boolean | "" | undefined;
   errorText: string | undefined;
   handleOnChange: any;
@@ -11,6 +12,7 @@ interface PropTypes {
 const GooglePlacesAutoComplete = ({
   handleOnChange,
   label,
+  value,
   error,
   errorText,
 }: PropTypes) => {
@@ -21,6 +23,7 @@ const GooglePlacesAutoComplete = ({
         selectProps={{
           onChange: handleOnChange,
           name: "property_address",
+          defaultInputValue: value,
           id: "places-autocomplete",
           placeholder: "Please Enter Address",
           styles: {

@@ -12,7 +12,7 @@ import { AminitiesCheckbox } from "../../checkboxes";
 import { Button } from "@material-tailwind/react";
 import ButtonRedWithIcon from "./ButtonRedWithIcon";
 import FloorFields from "./FloorFields";
-import { addProperty } from "../../functions";
+import { addProperty, editProperty } from "../../functions";
 import { toast } from "react-toastify";
 import { useRouter } from "next/router";
 import { geocodeByPlaceId } from "react-google-places-autocomplete";
@@ -45,7 +45,7 @@ interface PropTypes {
     }[];
   };
   state: "update" | "add";
-  property_id: undefined | number;
+  property_id: string | string[] | undefined;
   yupSchema: any;
 }
 
@@ -182,6 +182,20 @@ const PropertyForm = ({
         }
 
         toast.success(isPropertyAdded.msg, {
+          position: "bottom-center",
+        });
+        setIsLoading(false);
+        router.push("/dashboard?route=myProperties");
+      } else {
+        const isPropertyUpdated = await editProperty(values, property_id);
+
+        if (isPropertyUpdated.error) {
+          toast.error(isPropertyUpdated.msg);
+          setIsLoading(false);
+          return;
+        }
+
+        toast.success(isPropertyUpdated.msg, {
           position: "bottom-center",
         });
         setIsLoading(false);
@@ -433,6 +447,7 @@ const PropertyForm = ({
             <div className="col-span-12 pt-1">
               <GooglePlacesAutoComplete
                 label="Property Address*"
+                value={values.property_address}
                 error={errors.property_address && touched.property_address}
                 errorText={errors.property_address}
                 handleOnChange={handleAddressChange}
@@ -548,8 +563,23 @@ const PropertyForm = ({
               type="submit"
               className="text-white bg-red-500 hover:bg-red-600 focus:outline-none font-medium rounded-lg text-sm px-8 py-2.5 text-center flex items-center gap-2"
             >
-              <span>Add Property</span>
-              <i className="fa fa-plus-circle mt-0.5" aria-hidden="true"></i>
+              {state === "add" ? (
+                <>
+                  <span>Add Property</span>
+                  <i
+                    className="fa fa-plus-circle mt-0.5"
+                    aria-hidden="true"
+                  ></i>
+                </>
+              ) : (
+                <>
+                  <span>Update Property</span>
+                  <i
+                    className="fa fa-check-circle mt-0.5"
+                    aria-hidden="true"
+                  ></i>
+                </>
+              )}
             </button>
           )}
         </form>
