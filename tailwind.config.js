@@ -25,6 +25,9 @@ module.exports = withMT({
       minWidth: {
         2: "2rem",
       },
+      minHeight: {
+        18: "18rem",
+      },
     },
   },
   plugins: [],

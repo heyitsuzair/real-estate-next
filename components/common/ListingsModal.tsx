@@ -11,14 +11,15 @@ import { useRouter } from "next/router";
 interface Proptypes {
   size: any;
   handleOpen: any;
+  property: any;
 }
 
-const ListingsModal = ({ size, handleOpen }: Proptypes) => {
+const ListingsModal = ({ size, handleOpen, property }: Proptypes) => {
   const router = useRouter();
 
   // ?Handle When Someone Clicks On See Full Info Button ---------------->
-  const handleVisitListing = () => {
-    router.push("/property/1");
+  const handleVisitListing = (id: string) => {
+    router.push("/property/" + id);
   };
   // !Handle When Someone Clicks On See Full Info Button ---------------->
 
@@ -43,29 +44,31 @@ const ListingsModal = ({ size, handleOpen }: Proptypes) => {
         ></i>
       </DialogHeader>
       <DialogBody className="flex flex-col items-start gap-16 lg:gap-8 justify-center lg:flex-row lg:justify-start lg:items-center">
-        <Image
-          src={Home}
-          className="lg:w-80 h-80 object-contain"
-          alt="Loading..."
-        />
+        <div className="image h-full">
+          <img
+            src={property.listing_media[0]}
+            alt="Loading..."
+            className="min-h-18 rounded-md object-cover"
+          />
+        </div>
         <div className="listing-info flex flex-col w-full gap-3">
           <div className="w-64">
-            <StarRating justify="justify-start" rating={2.403} reviews={95} />
+            <StarRating
+              justify="justify-start"
+              rating={property.property_average_rating}
+              reviews={property.property_total_reviews}
+            />
           </div>
           <div className="product-name text-black">
-            <h1 className="text-2xl poppins font-semibold">
-              Lorem Ipsum is simply dummy text of the printing and typesetting
-              industry.
-            </h1>
+            <h1 className="text-2xl poppins font-semibold">{property.title}</h1>
           </div>
           <div className="product-price text-red-500">
-            <TextLarge text="Rs 20000" />
+            <TextLarge text={`Rs ${property.price}`} />
           </div>
           <div className="product-categories border-y-2 py-4 poppins border-gray-300">
             <span className="text-md">
-              <strong className="text-black">Categories:</strong> &nbsp;
-              <span>mppwdmwdpmw</span>
-              <span>mppwdmwdpmw</span>
+              <strong className="text-black">Seller:</strong> &nbsp;
+              <span>{property.seller_id.name}</span>
             </span>
           </div>
           <div className="product-link poppins flex gap-6">
@@ -75,7 +78,7 @@ const ListingsModal = ({ size, handleOpen }: Proptypes) => {
                 width="inherit"
                 icon="fa-solid fa-arrow-up-right-from-square"
                 iconPosition="right"
-                handleClick={() => handleVisitListing()}
+                handleClick={() => handleVisitListing(property._id)}
               />
             </div>
           </div>
