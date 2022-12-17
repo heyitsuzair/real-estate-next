@@ -3,6 +3,7 @@ import Author from "../../assets/img/author.jpg";
 import Image from "next/image";
 import StarRating from "../common/StarRatings";
 import ButtonRedWithIcon from "./ButtonRedWithIcon";
+import randomcolor from "randomcolor";
 
 interface PropTypes {
   ownerName: string;
@@ -11,17 +12,20 @@ interface PropTypes {
 }
 
 const OwnerProfile = ({ ownerName, ownerHobby, isSticky }: PropTypes) => {
+  const color = randomcolor();
+
   return (
     <div
       className={`profile px-6 border-2 ${
         isSticky && "sticky top-32"
       } rounded text-center py-10`}
     >
-      <Image
-        src={Author}
-        alt="Loading..."
-        className="w-40 h-40 object-cover rounded-full mx-auto"
-      />
+      <div
+        style={{ backgroundColor: color }}
+        className="w-28 h-28  flex items-center justify-center mx-auto rounded-full"
+      >
+        <strong className="text-white text-2xl">I</strong>
+      </div>
       <h1 className="text-2xl font-semibold mt-4">{ownerName}</h1>
       <p className="text-slate-400 text-md">{ownerHobby}</p>
       <div className="my-4">

@@ -56,21 +56,25 @@ const AddReviewForm = ({ propertyId }: { propertyId: number }) => {
     <div className="bg-slate-100 rounded-md p-10">
       <h1 className="text-xl font-semibold">Add A Review</h1>
       <form onSubmit={handleSubmit}>
-        <h1 className="font-semibold my-5 flex items-center gap-3">
-          <span className="mt-1">Your Ratings:</span>
-          <StarRatings
-            rating={values.stars}
-            starRatedColor="red"
-            changeRating={handleChangeRating}
-            numberOfStars={5}
-            name="stars"
-            starDimension="20px"
-            starSpacing="2px"
-          />
+        <div className="flex flex-col md:flex-row md:items-center md:gap-3">
+          <h1 className="font-semibold my-5 flex items-center gap-3">
+            <span className="mt-1">Your Ratings:</span>
+            <div className="mt-0.5">
+              <StarRatings
+                rating={values.stars}
+                starRatedColor="red"
+                changeRating={handleChangeRating}
+                numberOfStars={5}
+                name="stars"
+                starDimension="20px"
+                starSpacing="2px"
+              />
+            </div>
+          </h1>
           {errors.stars && touched.stars && (
             <p className="text-red-500 text-sm">{errors.stars}</p>
           )}
-        </h1>
+        </div>
         <div className="my-5">
           <Textarea
             name="msg"
