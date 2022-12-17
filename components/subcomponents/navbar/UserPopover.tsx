@@ -47,7 +47,7 @@ const UserPopover = () => {
         <div
           className={`absolute ${
             popover
-              ? "opacity-100 -right-16 top-16 sm:top-14 sm:-right-0 visible"
+              ? "opacity-100 -right-14 top-16 sm:top-14 sm:-right-0 visible"
               : "opacity-0 -right-16 top-24 sm:-right-0 invisible"
           } transition-all duration-300 bg-white rounded-lg ease-in-out px-6 shadow-2xl py-3 right-0`}
         >
@@ -56,34 +56,28 @@ const UserPopover = () => {
               <Link
                 href={"/dashboard?route=myProperties"}
                 onClick={() => setPopover(!popover)}
-                className="text-black hover:text-red-500 transition-all duration-300 border-b-2 hover:border-red-500 pb-2 block my-6 font-semibold w-[13vw]"
+                className="text-black hover:text-red-500 transition-all duration-300 border-b-2 hover:border-red-500 pb-2 px-8 text-sm block my-6 font-semibold "
               >
-                My Properties
+                Properties
               </Link>
-              <Link
-                href={"/dashboard?route=addProperties"}
-                onClick={() => setPopover(!popover)}
-                className="text-black hover:text-red-500 transition-all duration-300 border-b-2 hover:border-red-500 pb-2 block my-6 font-semibold w-[13vw]"
-              >
-                Add Property
-              </Link>
+
               <Link
                 href={"/dashboard?route=package"}
                 onClick={() => setPopover(!popover)}
-                className="text-black hover:text-red-500 transition-all duration-300 border-b-2 hover:border-red-500 pb-2 block my-6 font-semibold w-[13vw]"
+                className="text-black hover:text-red-500 transition-all duration-300 border-b-2 hover:border-red-500 pb-2 px-8 text-sm block my-6 font-semibold "
               >
                 Package
               </Link>
               <Link
                 href={"/dashboard?route=settings"}
                 onClick={() => setPopover(!popover)}
-                className="text-black hover:text-red-500 transition-all duration-300 border-b-2 hover:border-red-500 pb-2 block my-6 font-semibold w-[13vw]"
+                className="text-black hover:text-red-500 transition-all duration-300 border-b-2 hover:border-red-500 pb-2 px-8 text-sm block my-6 font-semibold "
               >
                 Settings
               </Link>
               <div
                 onClick={handleLogout}
-                className="text-black hover:text-red-500 cursor-pointer transition-all duration-300 border-b-2 hover:border-red-500 pb-2 block my-6 font-semibold w-[13vw]"
+                className="text-black hover:text-red-500 cursor-pointer transition-all duration-300 border-b-2 hover:border-red-500 pb-2 px-8 text-sm block my-6 font-semibold "
               >
                 Logout
               </div>
@@ -93,14 +87,14 @@ const UserPopover = () => {
               <Link
                 href={"/login"}
                 onClick={() => setPopover(!popover)}
-                className="text-black hover:text-red-500 transition-all duration-300 border-b-2 hover:border-red-500 pb-2 block my-6 font-semibold w-[13vw]"
+                className="text-black hover:text-red-500 transition-all duration-300 border-b-2 hover:border-red-500 pb-2 px-8 text-sm block my-6 font-semibold"
               >
                 Login
               </Link>
               <Link
                 href={"/register"}
                 onClick={() => setPopover(!popover)}
-                className="text-black hover:text-red-500 transition-all duration-300 border-b-2 hover:border-red-500 pb-2 block my-6 font-semibold w-[13vw]"
+                className="text-black hover:text-red-500 transition-all duration-300 border-b-2 hover:border-red-500 pb-2 px-8 text-sm block my-6 font-semibold"
               >
                 Register
               </Link>

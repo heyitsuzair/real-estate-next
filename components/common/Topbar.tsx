@@ -4,9 +4,9 @@ import Link from "next/link";
 const Topbar = () => {
   return (
     <>
-      <div className="grid items-center grid-cols-12 bg-slate-800 lg:px-12 md:px-12 sm:px-12">
+      <div className="grid items-center grid-cols-12 bg-slate-800  md:px-6 lg:px-12 sm:px-12">
         <div className="mx-6 topbar-left-col col-span-12 lg:col-span-6 md:col-span-6 sm:col-span-12 text-white">
-          <div className="flex items-center gap-2 justify-center md:justify-start lg:justify-start sm:justify-center sm:my-5 md:my-0 lg:my-0">
+          <div className="flex flex-col sm:flex-row items-center gap-2 justify-center sm:justify-center sm:my-5 md:my-0 lg:my-0 lg:justify-start">
             <div className="item-1 flex gap-1 items-center">
               <i className="fa-regular fa-envelope text-red-500"></i>
               <span className="text-sm">
