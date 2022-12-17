@@ -13,7 +13,7 @@ const AddProperty = () => {
     status: "",
     type: "",
     listing_media: [],
-    property_place_id: "",
+    property_address: "",
     property_size: "",
     property_lot_size: "",
     property_rooms: "",

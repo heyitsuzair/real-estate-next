@@ -3,7 +3,7 @@ const nextConfig = {
   reactStrictMode: false,
   swcMinify: true,
   images: {
-    domains: ["techcrunch.com"],
+    domains: ["techcrunch.com", "res.cloudinary.com"],
     formats: ["image/avif", "image/webp"],
   },
 };

@@ -15,6 +15,7 @@ import FloorFields from "./FloorFields";
 import { addProperty } from "../../functions";
 import { toast } from "react-toastify";
 import { useRouter } from "next/router";
+import { geocodeByPlaceId } from "react-google-places-autocomplete";
 
 interface PropTypes {
   initialValues: {
@@ -27,7 +28,7 @@ interface PropTypes {
     status: string;
     type: string;
     listing_media: string[];
-    property_place_id: string;
+    property_address: string;
     property_size: string;
     property_lot_size: string;
     property_rooms: string;
@@ -86,7 +87,7 @@ const PropertyForm = ({
 
   // ?Handle When Value Of Google Places Autocomplete Change -------------->
   const handleAddressChange = (e: any) => {
-    setFieldValue("property_place_id", e.value.place_id);
+    setFieldValue("property_address", e.value.description);
   };
   // !Handle When Value Of Google Places Autocomplete Change -------------->
 
@@ -432,8 +433,8 @@ const PropertyForm = ({
             <div className="col-span-12 pt-1">
               <GooglePlacesAutoComplete
                 label="Property Address*"
-                error={errors.property_place_id && touched.property_place_id}
-                errorText={errors.property_place_id}
+                error={errors.property_address && touched.property_address}
+                errorText={errors.property_address}
                 handleOnChange={handleAddressChange}
               />
             </div>
