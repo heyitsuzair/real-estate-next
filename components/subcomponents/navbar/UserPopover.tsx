@@ -48,7 +48,7 @@ const UserPopover = () => {
           className={`absolute ${
             popover
               ? "opacity-100 -right-14 top-16 sm:top-14 sm:-right-0 visible"
-              : "opacity-0 -right-16 top-24 sm:-right-0 invisible"
+              : "opacity-0 -right-14 top-24 sm:-right-0 invisible"
           } transition-all duration-300 bg-white rounded-lg ease-in-out px-6 shadow-2xl py-3 right-0`}
         >
           {user ? (

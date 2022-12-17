@@ -17,7 +17,7 @@ const Navbar = () => {
   // State Search Visibility ---------------->
 
   return (
-    <div className="sticky shadow-lg top-0" style={{ zIndex: 12 }}>
+    <div className="sticky shadow-lg top-0" style={{ zIndex: 21 }}>
       <SearchForm
         setIsSearchVisible={setIsSearchVisible}
         isSearchVisible={isSearchVisible}
