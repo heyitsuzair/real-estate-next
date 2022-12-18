@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Slider from "react-slick";
+import { fetchProperties } from "../../../functions";
 import ListingsCard from "../../common/ListingsCard";
 
 const HomeCarousel = () => {
+  const [properties, setProperties] = useState([]);
+
   const settings = {
     dots: true,
     infinite: true,
@@ -64,28 +67,29 @@ const HomeCarousel = () => {
     ],
   };
 
+  /**
+   * Fetch Properties Of First Page Pagination
+   */
+  const getProperties = async () => {
+    const properties = await fetchProperties("1");
+    setProperties(properties.docs);
+  };
+
+  useEffect(() => {
+    getProperties();
+  }, []);
+
   return (
     <div>
       <div className="mt-16">
         <Slider {...settings}>
-          <div>
-            <ListingsCard />
-          </div>
-          <div>
-            <ListingsCard />
-          </div>
-          <div>
-            <ListingsCard />
-          </div>
-          <div>
-            <ListingsCard />
-          </div>
-          <div>
-            <ListingsCard />
-          </div>
-          <div>
-            <ListingsCard />
-          </div>
+          {properties.map((property: any) => {
+            return (
+              <div key={property._id}>
+                <ListingsCard property={property} />
+              </div>
+            );
+          })}
         </Slider>
       </div>
     </div>
