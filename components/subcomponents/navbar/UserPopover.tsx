@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { useRouter } from "next/router";
 import React, { MouseEventHandler, useEffect, useState } from "react";
-import { logoutUser } from "../../../functions";
+import { fetchSellerProperties, logoutUser } from "../../../functions";
 import styles from "../../../styles/Navbar.module.css";
 
 const UserPopover = () => {
@@ -13,6 +13,7 @@ const UserPopover = () => {
 
   const router = useRouter();
   const [user, setUser] = useState<string | null>(null);
+  const [totalProperties, setTotalProperties] = useState<number>(0);
 
   /**
    * Handle When Someone Clicks Logout (Only For Logged In User)
@@ -22,11 +23,21 @@ const UserPopover = () => {
     router.push("/");
     setUser(null);
   };
+  /**
+   * Fetch Seller Properties To Show Number Of Properties In Orange Circle
+   */
+  const getSellerProperties = async () => {
+    const totalProperties = await fetchSellerProperties();
+    setTotalProperties(totalProperties.length);
+  };
 
   useEffect(() => {
     if (typeof window !== "undefined") {
       // Perform localStorage action
-      setUser(localStorage.getItem("re-user"));
+      if (localStorage.getItem("re-user")) {
+        setUser(localStorage.getItem("re-user"));
+        getSellerProperties();
+      }
     }
     //eslint-disable-next-line
   }, [user]);
@@ -40,7 +51,7 @@ const UserPopover = () => {
           onClick={() => setPopover(!popover)}
         >
           <span className={`absolute ${styles.cartCountSpan}`}>
-            {user ? 99 : 0}
+            {totalProperties}
           </span>
           <i className="fa-regular fa-user"></i>
         </div>

@@ -9,7 +9,7 @@ import {
 } from "../../utils/api/endPoints";
 
 export const addProperty = async (values: any) => {
-  let token: null | string = null;
+  let token: null | string = "";
   if (typeof window !== "undefined") {
     token = JSON.parse(localStorage.getItem("re-user") || "");
   }
