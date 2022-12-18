@@ -5,6 +5,7 @@ import {
   getProperties,
   getProperty,
   getSellerProperties,
+  searchProperties,
   updateProperty,
 } from "../../utils/api/endPoints";
 
@@ -86,7 +87,24 @@ export const editProperty = async (
 };
 export const fetchProperties = async (pageNo: string) => {
   try {
-    const { data } = await axios.get(getProperties + "/" + pageNo + "/6");
+    /**
+     * Here "/6" Is Limit
+     */
+    const { data } = await axios.get(getProperties + pageNo + "/6");
+    return data;
+  } catch (error: any) {
+    return error.response.data;
+  }
+};
+export const findProperties = async (
+  pageNo: string,
+  query: string | string[] | undefined
+) => {
+  try {
+    /**
+     * Here "/6" Is Limit
+     */
+    const { data } = await axios.get(searchProperties + query + "/6/" + pageNo);
     return data;
   } catch (error: any) {
     return error.response.data;

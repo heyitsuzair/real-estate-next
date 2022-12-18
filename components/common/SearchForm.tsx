@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { FormEvent, useState } from "react";
 import { Input } from "@material-tailwind/react";
 import { useRouter } from "next/router";
 interface PropTypes {
@@ -11,12 +11,16 @@ const SearchForm = ({ setIsSearchVisible, isSearchVisible }: PropTypes) => {
 
   const router = useRouter();
 
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setQuery("");
+    setIsSearchVisible(false);
+    router.push("/search?query=" + encodeURIComponent(query));
+  };
+
   return (
     <form
-      onSubmit={(e) => {
-        e.preventDefault();
-        router.push("/search?query=" + query);
-      }}
+      onSubmit={(e) => handleSubmit(e)}
       className="absolute search px-10 w-full gap-4 h-full items-center justify-start bg-white"
       style={{ zIndex: 13, display: isSearchVisible ? "flex" : "none" }}
     >

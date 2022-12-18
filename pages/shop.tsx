@@ -39,6 +39,9 @@ const Shop = ({ properties }: any) => {
 };
 
 export async function getServerSideProps(context: any) {
+  /**
+   * Here "1" Is Default Page No
+   */
   const properties = await fetchProperties("1");
 
   return {

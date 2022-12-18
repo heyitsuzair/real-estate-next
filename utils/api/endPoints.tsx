@@ -13,4 +13,5 @@ export const getSellerProperties = HOST + "property/get-seller-properties";
 export const deletePropertyPoint = HOST + "property/delete-property/";
 export const getProperty = HOST + "property/get-property/";
 export const updateProperty = HOST + "property/update-property/";
-export const getProperties = HOST + "property/get-properties";
+export const getProperties = HOST + "property/get-properties/";
+export const searchProperties = HOST + "property/search-properties/";
