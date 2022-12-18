@@ -4,7 +4,11 @@ import Slider from "react-slick";
 import img from "../../assets/img/logo-og.png";
 import ReactImageLightbox from "../common/ReactImageLightbox";
 import SliderArrows from "../common/SliderArrows";
-const PropertyPicCarousel = () => {
+const PropertyPicCarousel = ({
+  property_pics,
+}: {
+  property_pics: string[];
+}) => {
   const slider = React.useRef<null>(null);
 
   // State For React Image Lightbox ---------------------->
@@ -12,7 +16,7 @@ const PropertyPicCarousel = () => {
   // State For React Image Lightbox ---------------------->
 
   // ?Open Lightbox When Someone Clicks On Image ------------->
-  const handleImageClick = () => {
+  const handleImageClick = (index: number) => {
     setIsOpen(true);
   };
   // !Open Lightbox When Someone Clicks On Image ------------->
@@ -42,43 +46,23 @@ const PropertyPicCarousel = () => {
     <>
       <ReactImageLightbox
         setIsOpen={setIsOpen}
-        imagesArray={[]}
+        imagesArray={property_pics}
         isOpen={isOpen}
       />
       <div className="mb-24 slider relative">
         <Slider ref={slider} {...settings}>
-          <div className="overflow-hidden">
-            <Image
-              alt="Loading..."
-              className="mx-auto w-full h-96 object-cover cursor-pointer transition-all duration-500 hover:scale-150"
-              src={img}
-              onClick={(e) => handleImageClick()}
-            />
-          </div>
-          <div className="overflow-hidden">
-            <Image
-              alt="Loading..."
-              className="mx-auto w-full h-96 object-cover cursor-pointer transition-all duration-500 hover:scale-150"
-              src={img}
-              onClick={(e) => handleImageClick()}
-            />
-          </div>
-          <div className="overflow-hidden">
-            <Image
-              alt="Loading..."
-              className="mx-auto w-full h-96 object-cover cursor-pointer transition-all duration-500 hover:scale-150"
-              src={img}
-              onClick={(e) => handleImageClick()}
-            />
-          </div>
-          <div className="overflow-hidden">
-            <Image
-              alt="Loading..."
-              className="mx-auto w-full h-96 object-cover cursor-pointer transition-all duration-500 hover:scale-150"
-              src={img}
-              onClick={(e) => handleImageClick()}
-            />
-          </div>
+          {property_pics.map((picture: any, index: number) => {
+            return (
+              <div className="overflow-hidden" key={index}>
+                <img
+                  alt="Loading..."
+                  className="mx-auto w-full h-96 object-cover cursor-pointer transition-all duration-500 hover:scale-125"
+                  src={picture}
+                  onClick={(e) => handleImageClick()}
+                />
+              </div>
+            );
+          })}
         </Slider>
         <SliderArrows slider={slider} top="top-40" />
       </div>

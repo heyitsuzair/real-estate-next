@@ -10,6 +10,7 @@ interface PropTypes {
 
 const ReactImageLightbox = ({ isOpen, setIsOpen, imagesArray }: PropTypes) => {
   const images = imagesArray;
+
   const [photoIndex, setPhotoIndex] = useState<number>(0);
 
   return (
