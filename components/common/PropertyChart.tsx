@@ -1,6 +1,6 @@
 import React from "react";
 
-const PropertyChart = () => {
+const PropertyChart = ({ property }: any) => {
   return (
     <div className="property-details-chart my-10">
       <div className="chart bg-slate-100 p-8 sm:p-0 rounded-md shadow-md">
@@ -9,27 +9,29 @@ const PropertyChart = () => {
             <div className="detail-item flex gap-14 sm:gap-8 my-4">
               <div className="detail-key flex flex-col gap-7">
                 <span className="detail-key text-sm text-gray-600">
-                  Property ID:
-                </span>
-                <span className="detail-key text-sm text-gray-600">
                   Home Area:
                 </span>
                 <span className="detail-key text-sm text-gray-600">Baths:</span>
-                <span className="detail-key text-sm text-gray-600">Rooms:</span>
+                <span className="detail-key text-sm text-gray-600">
+                  Bed Rooms:
+                </span>
                 <span className="detail-key text-sm text-gray-600">
                   Year Built:
                 </span>
               </div>
               <div className="detail-value flex flex-col gap-7">
                 <span className="detail-value text-sm font-semibold">
-                  051151
+                  {property.property_size} SQFT
                 </span>
                 <span className="detail-value text-sm font-semibold">
-                  150 SQFT
+                  {property.property_bath_rooms}
                 </span>
-                <span className="detail-value text-sm font-semibold">10</span>
-                <span className="detail-value text-sm font-semibold">16</span>
-                <span className="detail-value text-sm font-semibold">2001</span>
+                <span className="detail-value text-sm font-semibold">
+                  {property.property_bed_rooms}
+                </span>
+                <span className="detail-value text-sm font-semibold">
+                  {property.property_year_built}
+                </span>
               </div>
             </div>
           </div>
@@ -38,27 +40,35 @@ const PropertyChart = () => {
             <div className="detail-item flex gap-8 my-4">
               <div className="detail-key flex flex-col gap-7">
                 <span className="detail-key text-sm text-gray-600">
-                  Lot Area:
+                  Lot Size:
+                </span>
+
+                <span className="detail-key text-sm text-gray-600">
+                  Garages:
                 </span>
                 <span className="detail-key text-sm text-gray-600">
-                  Lot Dimension
+                  Garages Size:
                 </span>
-                <span className="detail-key text-sm text-gray-600">Beds</span>
-                <span className="detail-key text-sm text-gray-600">Price</span>
                 <span className="detail-key text-sm text-gray-600">
-                  Property Status
+                  Property Status:
                 </span>
               </div>
               <div className="detail-value flex flex-col gap-7">
                 <span className="detail-value text-sm font-semibold">
-                  051151
+                  {property.property_lot_size} SQFT
+                </span>
+
+                <span className="detail-value text-sm font-semibold">
+                  {property.property_garages}
                 </span>
                 <span className="detail-value text-sm font-semibold">
-                  150 SQFT
+                  {property.property_garages_size} SQFT
                 </span>
-                <span className="detail-value text-sm font-semibold">10</span>
-                <span className="detail-value text-sm font-semibold">16</span>
-                <span className="detail-value text-sm font-semibold">2001</span>
+                <span className="detail-value text-sm font-semibold">
+                  {property.status !== "sold" && "For"}{" "}
+                  {property.status.charAt(0).toUpperCase() +
+                    property.status.slice(1)}
+                </span>
               </div>
             </div>
           </div>
