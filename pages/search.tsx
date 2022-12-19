@@ -1,9 +1,9 @@
-import { GetServerSideProps } from "next";
 import Head from "next/head";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import BreadCrumb from "../components/common/BreadCrumb";
 import PropertiesInfinite from "../components/common/PropertiesInfinite";
+import SpinnerLarge from "../components/common/SpinnerLarge";
 import SpinnerSmall from "../components/common/SpinnerSmall";
 import { findProperties } from "../functions";
 
@@ -53,11 +53,13 @@ const Search = () => {
           content="Real Estate Site My Muhammad Uzair. Shop"
         />
       </Head>
-      <BreadCrumb text={"Search Results For " + query} />
+      {router.isReady && <BreadCrumb text={"Search Results For " + query} />}
       {isLoading ? (
-        <div className="text-center">
-          <SpinnerSmall />
-        </div>
+        <>
+          <div className="mt-20 mb-40 text-center">
+            <SpinnerLarge />
+          </div>
+        </>
       ) : propertiesData.docs.length > 0 ? (
         <PropertiesInfinite
           fetchNextData={fetchNextData}

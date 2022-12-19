@@ -32,13 +32,13 @@ interface PackagesType {
   __v: number;
 }
 
-const Register = ({ packagesArray }: PropTypes) => {
+const Register = () => {
   // ?State For Loading ---------------------------->
   const [isLoading, setIsLoading] = useState<boolean>(false);
   // !State For Loading ---------------------------->
 
   // ?State For Packages ---------------------------->
-  const [packages, setPackages] = useState<PackagesType[]>(packagesArray);
+  const [packages, setPackages] = useState<PackagesType[]>([]);
   // !State For Packages ---------------------------->
 
   const router = useRouter();
@@ -79,13 +79,20 @@ const Register = ({ packagesArray }: PropTypes) => {
     });
   // !Configurations For Formik -------------------------->
 
+  const getPackages = async () => {
+    const packagesArray = await fetchPackages();
+    setPackages(packagesArray);
+  };
+
   /**
    * Protected Route
    */
   useEffect(() => {
     if (localStorage.getItem("re-user")) {
       router.push("/dashboard?route=myProperties");
+      return;
     }
+    getPackages();
     //eslint-disable-next-line
   }, []);
 
@@ -216,13 +223,5 @@ const Register = ({ packagesArray }: PropTypes) => {
     </div>
   );
 };
-
-export async function getServerSideProps(context: any) {
-  const packagesArray = await fetchPackages();
-
-  return {
-    props: { packagesArray }, // will be passed to the page component as props
-  };
-}
 
 export default Register;

@@ -2,17 +2,24 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import BreadCrumb from "../../components/common/BreadCrumb";
+import SpinnerLarge from "../../components/common/SpinnerLarge";
 import MainContent from "../../components/property/MainContent";
 import PropertyPicCarousel from "../../components/property/PropertyPicCarousel";
 import { fetchProperty } from "../../functions";
 
-const SinglePropertyPage = ({ property }: any) => {
-  const [propertyData, setPropertyData] = useState(property);
+const SinglePropertyPage = () => {
+  const [propertyData, setPropertyData] = useState({
+    property: {
+      listing_media: [""],
+    },
+    reviews: 0,
+  });
 
   const router = useRouter();
   const { id } = router.query;
 
   const [isCommentAdded, setisCommentAdded] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   /**
    * Fetch Data From API Again When Comment Is Added
@@ -21,6 +28,7 @@ const SinglePropertyPage = ({ property }: any) => {
   const getProperty = async () => {
     const property = await fetchProperty(id);
     setPropertyData(property);
+    setIsLoading(false);
     /**
      * Set Is Comment Added Back To False So In Next Comment Addition It Can Be Changed So Component Will Remount Using useEffect With Updated Data ABout Owner Profile And Property Rating
      */
@@ -28,9 +36,11 @@ const SinglePropertyPage = ({ property }: any) => {
   };
 
   useEffect(() => {
-    getProperty();
+    if (router.isReady) {
+      getProperty();
+    }
     //eslint-disable-next-line
-  }, [isCommentAdded]);
+  }, [isCommentAdded, router.isReady]);
 
   return (
     <>
@@ -43,28 +53,25 @@ const SinglePropertyPage = ({ property }: any) => {
       </Head>
       <div className="product-details">
         <BreadCrumb text="Product Details" />
-        <PropertyPicCarousel property_pics={property.property.listing_media} />
-        <MainContent
-          setIsCommentAdded={setisCommentAdded}
-          property={propertyData.property}
-          comments={propertyData.reviews}
-        />
+        {isLoading ? (
+          <div className="mt-20 mb-40 text-center">
+            <SpinnerLarge />
+          </div>
+        ) : (
+          <>
+            <PropertyPicCarousel
+              property_pics={propertyData.property.listing_media}
+            />
+            <MainContent
+              setIsCommentAdded={setisCommentAdded}
+              property={propertyData.property}
+              comments={propertyData.reviews}
+            />
+          </>
+        )}
       </div>
     </>
   );
 };
-
-export async function getServerSideProps(context: any) {
-  /**
-   * Property ID From Router Query
-   */
-  const { id } = context.query;
-
-  const property = await fetchProperty(id);
-
-  return {
-    props: { property }, // will be passed to the page component as props
-  };
-}
 
 export default SinglePropertyPage;
