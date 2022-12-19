@@ -5,12 +5,19 @@ import { useFormik } from "formik";
 import { AddReviewFormSchema } from "../../yupSchemas";
 import { toast } from "react-toastify";
 import SpinnerSmall from "./SpinnerSmall";
+import { submitReview } from "../../functions/review";
 
 const StarRatings = dynamic(() => import("react-star-ratings"), {
   ssr: false,
 });
 
-const AddReviewForm = ({ propertyId }: { propertyId: number }) => {
+const AddReviewForm = ({
+  propertyId,
+  setIsCommentAdded,
+}: {
+  propertyId: string;
+  setIsCommentAdded?: (obj: any) => void;
+}) => {
   // ?State For Loading ---------------------------->
   const [isLoading, setIsLoading] = useState<boolean>(false);
   // !State For Loading ---------------------------->
@@ -39,16 +46,31 @@ const AddReviewForm = ({ propertyId }: { propertyId: number }) => {
   } = useFormik({
     initialValues: initialValues,
     validationSchema: AddReviewFormSchema,
-    onSubmit: (values, action) => {
+    onSubmit: async (values, action) => {
       setIsLoading(true);
 
-      setTimeout(() => {
-        toast.success("Review Added!", {
-          position: "bottom-center",
-        });
+      const isReviewAdded = await submitReview(values, propertyId);
+
+      /**
+       * If API Returns Any Error, Show It In Toast Else Show Success Message In Toast
+       */
+      if (isReviewAdded.error) {
+        toast.error(isReviewAdded.msg);
         setIsLoading(false);
-        action.resetForm();
-      }, 2000);
+        return;
+      }
+      /**
+       * Set Is Comment Added To True So Component Will Remount And Will Fetch New Ratings
+       */
+      if (typeof setIsCommentAdded !== "undefined") {
+        setIsCommentAdded(true);
+      }
+
+      toast.success(isReviewAdded.msg, {
+        position: "bottom-center",
+      });
+      setIsLoading(false);
+      action.resetForm();
     },
   });
   // !Configurations For Formik -------------------------->

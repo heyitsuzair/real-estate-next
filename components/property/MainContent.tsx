@@ -18,7 +18,7 @@ import Comment from "../common/Comment";
 import AddReviewForm from "../common/AddReviewForm";
 import jwtDecode from "jwt-decode";
 
-const MainContent = ({ property }: any) => {
+const MainContent = ({ property, setIsCommentAdded }: any) => {
   const [userId, setUserId] = useState<string | null>(null);
 
   /**
@@ -48,7 +48,7 @@ const MainContent = ({ property }: any) => {
             <BadgeFilled
               text={`${property.status !== "sold" ? "For" : ""} ${status}`}
             />
-            <Date date={property.updatedAt} />
+            <Date date={property.createdAt} />
             <CommentsCount
               totalComments={property.property_total_reviews}
               link="comments"
@@ -137,7 +137,11 @@ const MainContent = ({ property }: any) => {
             <HeadingLeftBordered heading="Customer Reviews" />
             <div className="my-10 grid grid-cols-12">
               <div className="col-span-12">
-                <StarRating justify="justify-start" rating={4.5} reviews={10} />
+                <StarRating
+                  justify="justify-start"
+                  rating={property.property_average_rating}
+                  reviews={property.property_total_reviews}
+                />
               </div>
             </div>
             <Comment />
@@ -152,7 +156,10 @@ const MainContent = ({ property }: any) => {
                 </h1>
               </div>
             ) : (
-              <AddReviewForm propertyId={1} />
+              <AddReviewForm
+                setIsCommentAdded={setIsCommentAdded}
+                propertyId={property._id}
+              />
             )}
           </div>
         </div>

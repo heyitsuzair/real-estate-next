@@ -94,14 +94,18 @@ const PropertyForm = ({
 
   // ?Handle When Value Of Google Places Autocomplete Change -------------->
   const handleAddressChange = async (e: any) => {
-    const geometry = await geocodeByAddress(e.value.description);
+    try {
+      const geometry = await geocodeByAddress(e.value.description);
 
-    const address = {
-      address: e.value.description,
-      lat: geometry[0].geometry.location.lat(),
-      lng: geometry[0].geometry.location.lng(),
-    };
-    setFieldValue("property_address", address);
+      const address = {
+        address: e.value.description,
+        lat: geometry[0].geometry.location.lat(),
+        lng: geometry[0].geometry.location.lng(),
+      };
+      setFieldValue("property_address", address);
+    } catch (error) {
+      toast.error("Something Went Wrong! Please Refresh Page");
+    }
   };
   // !Handle When Value Of Google Places Autocomplete Change -------------->
 

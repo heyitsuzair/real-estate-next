@@ -15,3 +15,4 @@ export const getProperty = HOST + "property/get-property/";
 export const updateProperty = HOST + "property/update-property/";
 export const getProperties = HOST + "property/get-properties/";
 export const searchProperties = HOST + "property/search-properties/";
+export const addReview = HOST + "review/add-review/";

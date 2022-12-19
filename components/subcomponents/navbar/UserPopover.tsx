@@ -23,6 +23,7 @@ const UserPopover = () => {
     setPopover(false);
     router.push("/");
     setUser(null);
+    setTotalProperties(0);
   };
   /**
    * Fetch Seller Properties To Show Number Of Properties In Orange Circle
