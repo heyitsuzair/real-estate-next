@@ -31,10 +31,13 @@ const Floor = ({ floors }: PropTypes) => {
 
   // Data For Tab ------------------->
 
+  /**
+   * Pushing Each Floor To "data" array variable
+   */
   floors.forEach((floor: floors, index: number) => {
     data.push({
       label: numberToString(index + 1) + " Floor",
-      value: parseInt(index + 1) + "-floor",
+      value: index + 1 + "-floor",
       desc: (
         <TabItem
           text={floor.floor_description}
@@ -50,14 +53,14 @@ const Floor = ({ floors }: PropTypes) => {
   return (
     <Tabs value="1-floor">
       <TabsHeader>
-        {data.map(({ label, value }) => (
+        {data.map(({ label, value }: { value: string; label: string }) => (
           <Tab className="poppins" key={value} value={value}>
             {label}
           </Tab>
         ))}
       </TabsHeader>
       <TabsBody>
-        {data.map(({ value, desc }) => (
+        {data.map(({ value, desc }: { value: string; desc: string }) => (
           <TabPanel
             key={value}
             className="bg-slate-100 mt-3 p-0 rounded-md"
