@@ -21,8 +21,10 @@ const MyProperties = () => {
   const [properties, setProperties] = useState([]);
 
   const getSellerProperties = async () => {
+    setIsLoading(true);
     const data = await fetchSellerProperties();
     setProperties(data);
+    setIsLoading(false);
   };
 
   /**
@@ -62,13 +64,15 @@ const MyProperties = () => {
 
   return (
     <>
-      <h1 className="text-3xl mx-5 poppins font-bold my-5">My Properties</h1>
       {isLoading ? (
         <div className="text-center h-[80vh] flex items-center justify-center">
           <SpinnerLarge />
         </div>
       ) : (
         <>
+          <h1 className="text-3xl mx-5 poppins font-bold my-5">
+            My Properties
+          </h1>
           <ReactImageLightbox
             isOpen={isOpen}
             setIsOpen={setIsOpen}

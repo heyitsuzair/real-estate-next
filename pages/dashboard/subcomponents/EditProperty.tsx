@@ -57,18 +57,22 @@ const EditProperty = () => {
 
   return (
     <>
-      <h1 className="text-3xl mx-5 poppins font-bold my-5">Edit Property</h1>
       {isLoading ? (
-        <div className="text-center h-[80vh] flex items-center justify-center">
+        <div className="text-center h-screen flex items-center justify-center">
           <SpinnerLarge />
         </div>
       ) : (
-        <PropertyForm
-          initialValues={initialValues}
-          yupSchema={AddPropertySchema}
-          state="update"
-          property_id={id}
-        />
+        <>
+          <h1 className="text-3xl mx-5 poppins font-bold my-5">
+            Edit Property
+          </h1>
+          <PropertyForm
+            initialValues={initialValues}
+            yupSchema={AddPropertySchema}
+            state="update"
+            property_id={id}
+          />
+        </>
       )}
     </>
   );

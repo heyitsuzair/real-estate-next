@@ -7,7 +7,7 @@ const Sidebar = () => {
   const router = useRouter();
 
   return (
-    <aside className="w-100" aria-label="Sidebar">
+    <aside className="fixed" aria-label="Sidebar" style={{ width: "16%" }}>
       <div className="overflow-y-auto py-4 px-3 bg-gray-50 h-screen rounded dark:bg-gray-800">
         <ul className="space-y-2">
           <li>
@@ -35,6 +35,21 @@ const Sidebar = () => {
               <i className="fa fa-plus" aria-hidden="true"></i>
               <span className="flex-1 ml-3 whitespace-nowrap text-sm">
                 Add Properties
+              </span>
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/dashboard?route=reviews"
+              className={`flex items-center p-2 text-base font-normal rounded-lg  ${
+                router.query.route === "reviews"
+                  ? "bg-red-500 text-white"
+                  : "hover:bg-gray-100 text-gray-900"
+              }`}
+            >
+              <i className="fa fa-star" aria-hidden="true"></i>
+              <span className="flex-1 ml-3 whitespace-nowrap text-sm">
+                Reviews
               </span>
             </Link>
           </li>

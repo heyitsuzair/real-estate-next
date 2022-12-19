@@ -8,6 +8,7 @@ import EditProperty from "./subcomponents/EditProperty";
 import MyProperties from "./subcomponents/MyProperties";
 import Package from "./subcomponents/Package";
 import Settings from "./subcomponents/Settings";
+import Reviews from "./subcomponents/Reviews";
 
 const Index = () => {
   const router = useRouter();
@@ -40,6 +41,7 @@ const Index = () => {
           {router.query.route === "myProperties" && <MyProperties />}
           {router.query.route === "settings" && <Settings />}
           {router.query.route === "addProperties" && <AddProperty />}
+          {router.query.route === "reviews" && <Reviews />}
           {router.query.route === "editProperty" && router.query.id && (
             <EditProperty />
           )}
