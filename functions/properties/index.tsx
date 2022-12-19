@@ -125,9 +125,16 @@ export const getFliteredProperties = async (
     /**
      * Here "/6" Is Limit
      */
-    const { data } = await axios.get(filterProperties + pageNo + "/6", {
-      data: values,
-    });
+    const { data } = await axios.get(
+      filterProperties +
+        pageNo +
+        "/6/" +
+        values.area +
+        "/" +
+        values.status +
+        "/" +
+        values.type
+    );
     return data;
   } catch (error: any) {
     return error.response.data;

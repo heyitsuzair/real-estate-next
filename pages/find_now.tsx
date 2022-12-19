@@ -1,19 +1,32 @@
 import Head from "next/head";
 import { useRouter } from "next/router";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import BreadCrumb from "../components/common/BreadCrumb";
 import PropertiesInfinite from "../components/common/PropertiesInfinite";
+import SpinnerLarge from "../components/common/SpinnerLarge";
 
-import { fetchProperties, getFliteredProperties } from "../functions";
+import { getFliteredProperties } from "../functions";
 import { capitalizeFirstLetter } from "../utils";
 
-const FindNow = ({ properties }: any) => {
+interface PropertiesDataTypes {
+  docs: any[];
+  hasNextPage: boolean;
+  nextPage: string;
+}
+
+const FindNow = () => {
   const router = useRouter();
   const { area } = router.query;
   const { status } = router.query;
   const { type } = router.query;
 
-  const [propertiesData, setPropertiesData] = useState(properties);
+  const [propertiesData, setPropertiesData] = useState<PropertiesDataTypes>({
+    docs: [],
+    hasNextPage: false,
+    nextPage: "",
+  });
+
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   const fetchNextData = async () => {
     const values = {
@@ -21,7 +34,6 @@ const FindNow = ({ properties }: any) => {
       status,
       type,
     };
-
     /**
      * Fetching More Data By Passing Page Number That We Got From Previous Response
      */
@@ -36,6 +48,28 @@ const FindNow = ({ properties }: any) => {
     });
   };
 
+  // eslint-disable-next-line
+  const getFilteredData = async () => {
+    const values = {
+      area,
+      status,
+      type,
+    };
+    /**
+     * Here "1" Is Default Page No
+     */
+    const properties = await getFliteredProperties("1", values);
+    setPropertiesData(properties);
+    setIsLoading(false);
+  };
+
+  useEffect(() => {
+    if (router.isReady) {
+      getFilteredData();
+    }
+    //eslint-disable-next-line
+  }, [router.isReady]);
+
   return (
     <div>
       <Head>
@@ -45,10 +79,16 @@ const FindNow = ({ properties }: any) => {
           content="Real Estate Site My Muhammad Uzair. Find Now"
         />
       </Head>
-      <BreadCrumb
-        text={`Search Results For (${capitalizeFirstLetter(area)})`}
-      />
-      {propertiesData.docs.length > 0 ? (
+      {router.isReady && (
+        <BreadCrumb
+          text={`Search Results For (${capitalizeFirstLetter(area)})`}
+        />
+      )}
+      {isLoading ? (
+        <div className="mt-20 mb-40 text-center">
+          <SpinnerLarge />
+        </div>
+      ) : propertiesData.docs.length > 0 ? (
         <PropertiesInfinite
           fetchNextData={fetchNextData}
           propertiesData={propertiesData}
@@ -65,26 +105,5 @@ const FindNow = ({ properties }: any) => {
     </div>
   );
 };
-
-export async function getServerSideProps(context: any) {
-  const { area } = context.query;
-  const { status } = context.query;
-  const { type } = context.query;
-
-  const values = {
-    area,
-    status,
-    type,
-  };
-
-  /**
-   * Here "1" Is Default Page No
-   */
-  const properties = await getFliteredProperties("1", values);
-
-  return {
-    props: { properties }, // will be passed to the page component as props
-  };
-}
 
 export default FindNow;
