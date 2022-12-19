@@ -18,7 +18,18 @@ import Comment from "../common/Comment";
 import AddReviewForm from "../common/AddReviewForm";
 import jwtDecode from "jwt-decode";
 
-const MainContent = ({ property, setIsCommentAdded }: any) => {
+interface CommentTypes {
+  _id: string;
+  stars: number;
+  msg: string;
+  name: string;
+  website: string;
+  property_id: string;
+  createdAt: string;
+  updatedAt: string;
+}
+
+const MainContent = ({ property, setIsCommentAdded, comments }: any) => {
   const [userId, setUserId] = useState<string | null>(null);
 
   /**
@@ -144,9 +155,9 @@ const MainContent = ({ property, setIsCommentAdded }: any) => {
                 />
               </div>
             </div>
-            <Comment />
-            <Comment />
-            <Comment />
+            {comments.map((comment: CommentTypes) => {
+              return <Comment key={comment._id} comment={comment} />;
+            })}
           </div>
           <div className="property-add-review my-10">
             {userId === property.seller_id._id ? (

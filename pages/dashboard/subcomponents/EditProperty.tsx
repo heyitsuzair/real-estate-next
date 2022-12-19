@@ -46,7 +46,7 @@ const EditProperty = () => {
 
   const getProperty = async () => {
     const property = await fetchProperty(id);
-    setInitialValues(property);
+    setInitialValues(property.property);
     setIsLoading(false);
   };
 

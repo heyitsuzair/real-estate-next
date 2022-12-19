@@ -70,6 +70,7 @@ const AddReviewForm = ({
         position: "bottom-center",
       });
       setIsLoading(false);
+
       action.resetForm();
     },
   });

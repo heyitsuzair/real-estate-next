@@ -18,6 +18,10 @@ import "react-toastify/dist/ReactToastify.css";
 export default function App({ Component, pageProps }: AppProps) {
   const [progress, setProgress] = useState<number>(0);
 
+  // ?Firebase PN Token -------->
+  const [isTokenFound, setTokenFound] = useState(false);
+  // !Firebase PN Token -------->
+
   const router = useRouter();
 
   useEffect(() => {
@@ -34,6 +38,7 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
       <ReactToastifyContainer />
+
       <ProgressBar progress={progress} />
       {!router.pathname.includes("/dashboard") && (
         <>

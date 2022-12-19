@@ -43,10 +43,11 @@ const SinglePropertyPage = ({ property }: any) => {
       </Head>
       <div className="product-details">
         <BreadCrumb text="Product Details" />
-        <PropertyPicCarousel property_pics={property.listing_media} />
+        <PropertyPicCarousel property_pics={property.property.listing_media} />
         <MainContent
           setIsCommentAdded={setisCommentAdded}
-          property={propertyData}
+          property={propertyData.property}
+          comments={propertyData.reviews}
         />
       </div>
     </>
