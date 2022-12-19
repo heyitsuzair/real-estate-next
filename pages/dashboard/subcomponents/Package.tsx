@@ -77,10 +77,10 @@ const Package = () => {
   // !Configurations For Formik -------------------------->
 
   const getPackages = async () => {
-    setIsLoadingAPI(false);
+    setIsLoadingAPI(true);
     const packages = await fetchPackages();
     setPackages(packages);
-    setIsLoadingAPI(true);
+    setIsLoadingAPI(false);
   };
   const getUser = async () => {
     const user = await fetchUserProfile();
@@ -91,7 +91,7 @@ const Package = () => {
     getPackages();
     getUser();
     //eslint-disable-next-line
-  }, [remainingListings]);
+  }, []);
 
   return (
     <>
