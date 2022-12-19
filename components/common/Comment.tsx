@@ -16,7 +16,7 @@ const Comment = () => {
           style={{ backgroundColor: color }}
           className="w-28 h-28  flex items-center justify-center mx-auto rounded-full"
         >
-          <strong className="text-white text-2xl">U</strong>
+          <strong className="text-white text-4xl">U</strong>
         </div>
       </div>
       <div className="details col-span-12 md:col-span-10">

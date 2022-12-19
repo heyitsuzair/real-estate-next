@@ -131,8 +131,10 @@ const MyProperties = () => {
                               <div className="location">
                                 <PropertyLocation
                                   location={
-                                    property.property_address.substring(0, 25) +
-                                    "..."
+                                    property.property_address.address.substring(
+                                      0,
+                                      25
+                                    ) + "..."
                                   }
                                 />
                               </div>

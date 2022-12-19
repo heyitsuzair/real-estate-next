@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import BadgeFilled from "../common/BadgeFilled";
 import CommentsCount from "../common/CommentsCount";
 import Date from "../common/Date";
@@ -16,13 +16,29 @@ import FloorTabs from "../common/FloorTabs";
 import StarRating from "../common/StarRatings";
 import Comment from "../common/Comment";
 import AddReviewForm from "../common/AddReviewForm";
+import jwtDecode from "jwt-decode";
 
 const MainContent = ({ property }: any) => {
+  const [userId, setUserId] = useState<string | null>(null);
+
   /**
    * Capitalize First Letter
    */
   const status =
     property.status.charAt(0).toUpperCase() + property.status.slice(1);
+
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      // Perform localStorage action
+      if (localStorage.getItem("re-user")) {
+        const extractUserID: { user_id: string; iat: number } = jwtDecode(
+          localStorage.getItem("re-user") || ""
+        );
+        setUserId(extractUserID.user_id);
+      }
+    }
+    //eslint-disable-next-line
+  }, []);
 
   return (
     <div className="container mx-auto px-7 pt-2 lg:px-14 lg:pt-12 pb-32">
@@ -42,7 +58,7 @@ const MainContent = ({ property }: any) => {
             <TextSemiLarge text={property.title} />
           </div>
           <div className="property-location my-10">
-            <PropertyLocation location={property.property_address} />
+            <PropertyLocation location={property.property_address.address} />
           </div>
           <div className="description">
             <HeadingLeftBordered heading="Description" />
@@ -59,7 +75,7 @@ const MainContent = ({ property }: any) => {
           <div className="property-from-gallery">
             <HeadingLeftBordered heading="From Our Gallery" />
             <div className="my-10">
-              <PropertyPicsGrid />
+              <PropertyPicsGrid media={property.listing_media} />
             </div>
           </div>
           <div className="property-from-gallery">
@@ -67,6 +83,20 @@ const MainContent = ({ property }: any) => {
             <div className="my-7">
               <div className="amenities-checkboxes -ml-3 grid grid-cols-12">
                 {AminitiesCheckbox.map((checkbox) => {
+                  // ?Check Whether The Checkbox Value Is Present In "property.property_amenitites" Array
+                  const valueLength = property.property_amenities.find(
+                    (item: string) => {
+                      return checkbox.value === item;
+                    }
+                  )?.length;
+
+                  let checked = false;
+
+                  if (valueLength !== undefined && valueLength > 0) {
+                    checked = true;
+                  }
+                  // !Check Whether The Checkbox Value Is Present In "property.property_amenitites" Array
+
                   return (
                     <div
                       className="col-span-12 md:col-span-4"
@@ -75,7 +105,7 @@ const MainContent = ({ property }: any) => {
                       <MaterialCheckbox
                         name={checkbox.name}
                         value={checkbox.value}
-                        checked={true}
+                        checked={checked}
                         handleChange={undefined}
                       />
                     </div>
@@ -88,11 +118,11 @@ const MainContent = ({ property }: any) => {
             <HeadingLeftBordered heading="Location" />
             <div className="my-10">
               <Map
-                zoom={11}
+                zoom={15}
                 height="400px"
                 center={{
-                  lat: 31.5204,
-                  lng: 74.3587,
+                  lat: property.property_address.lat,
+                  lng: property.property_address.lng,
                 }}
               />
             </div>
@@ -115,14 +145,25 @@ const MainContent = ({ property }: any) => {
             <Comment />
           </div>
           <div className="property-add-review my-10">
-            <AddReviewForm propertyId={1} />
+            {userId === property.seller_id._id ? (
+              <div className="bg-slate-100 text-center rounded-md p-10">
+                <h1 className="text-xl font-semibold">
+                  You Cannot Add Review To Your Own Property
+                </h1>
+              </div>
+            ) : (
+              <AddReviewForm propertyId={1} />
+            )}
           </div>
         </div>
         <div className="col-span-12 order-1 xl:order-2 xl:col-span-4">
           <OwnerProfile
             ownerHobby="Property Seller"
-            ownerName="Muhammad Uzair"
+            ownerName={property.seller_id.name}
             isSticky={true}
+            reviews={property.seller_id.total_reviews}
+            rating={property.seller_id.rating}
+            contact={property.seller_id.phone_no}
           />
         </div>
       </div>

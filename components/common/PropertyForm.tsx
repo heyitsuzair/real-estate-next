@@ -15,7 +15,10 @@ import FloorFields from "./FloorFields";
 import { addProperty, editProperty } from "../../functions";
 import { toast } from "react-toastify";
 import { useRouter } from "next/router";
-import { geocodeByPlaceId } from "react-google-places-autocomplete";
+import {
+  geocodeByAddress,
+  geocodeByPlaceId,
+} from "react-google-places-autocomplete";
 
 interface PropTypes {
   initialValues: {
@@ -28,7 +31,11 @@ interface PropTypes {
     status: string;
     type: string;
     listing_media: string[];
-    property_address: string;
+    property_address: {
+      address: string;
+      lat: number;
+      lng: number;
+    };
     property_size: string;
     property_lot_size: string;
     property_rooms: string;
@@ -86,8 +93,15 @@ const PropertyForm = ({
   // !Handle When Values Of Material Select With Validation Changes -------------->
 
   // ?Handle When Value Of Google Places Autocomplete Change -------------->
-  const handleAddressChange = (e: any) => {
-    setFieldValue("property_address", e.value.description);
+  const handleAddressChange = async (e: any) => {
+    const geometry = await geocodeByAddress(e.value.description);
+
+    const address = {
+      address: e.value.description,
+      lat: geometry[0].geometry.location.lat(),
+      lng: geometry[0].geometry.location.lng(),
+    };
+    setFieldValue("property_address", address);
   };
   // !Handle When Value Of Google Places Autocomplete Change -------------->
 
@@ -447,9 +461,12 @@ const PropertyForm = ({
             <div className="col-span-12 pt-1">
               <GooglePlacesAutoComplete
                 label="Property Address*"
-                value={values.property_address}
-                error={errors.property_address && touched.property_address}
-                errorText={errors.property_address}
+                value={values.property_address?.address}
+                error={
+                  errors.property_address?.address &&
+                  touched.property_address?.address
+                }
+                errorText={errors.property_address?.address}
                 handleOnChange={handleAddressChange}
               />
             </div>

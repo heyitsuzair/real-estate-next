@@ -20,6 +20,7 @@ const UserPopover = () => {
    */
   const handleLogout = () => {
     logoutUser();
+    setPopover(false);
     router.push("/");
     setUser(null);
   };
