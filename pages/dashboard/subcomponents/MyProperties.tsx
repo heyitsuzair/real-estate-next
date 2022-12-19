@@ -65,7 +65,7 @@ const MyProperties = () => {
   return (
     <>
       {isLoading ? (
-        <div className="text-center h-[80vh] flex items-center justify-center">
+        <div className="text-center h-screen flex items-center justify-center">
           <SpinnerLarge />
         </div>
       ) : (
