@@ -16,7 +16,7 @@ const PropertyPicCarousel = ({
   // State For React Image Lightbox ---------------------->
 
   // ?Open Lightbox When Someone Clicks On Image ------------->
-  const handleImageClick = (index: number) => {
+  const handleImageClick = () => {
     setIsOpen(true);
   };
   // !Open Lightbox When Someone Clicks On Image ------------->
