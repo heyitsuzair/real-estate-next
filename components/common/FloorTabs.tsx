@@ -8,30 +8,47 @@ import {
 import { numberToString } from "../../utils";
 import TabItem from "../subcomponents/FloorTabs/TabItem";
 
-const Floor = () => {
+interface PropTypes {
+  floors: {
+    floor_heading: string;
+    floor_description: string;
+    floor_media: string;
+  }[];
+}
+
+interface floors {
+  floor_heading: string;
+  floor_description: string;
+  floor_media: string;
+}
+
+const Floor = ({ floors }: PropTypes) => {
   // A Function That Converts Provided Number To Deca String ---------------->
   const first: string = numberToString(1);
   // A Function That Converts Provided Number To Deca String ---------------->
 
+  const data: any = [];
+
   // Data For Tab ------------------->
-  const data = [
-    {
-      label: first + " Floor",
-      value: "first-floor",
+
+  floors.forEach((floor: floors, index: number) => {
+    data.push({
+      label: numberToString(index + 1) + " Floor",
+      value: parseInt(index + 1) + "-floor",
       desc: (
         <TabItem
-          text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Earum fuga
-      cupiditate dignissimos, consequatur optio fugiat architecto ut harum
-      cum aliquid."
-          heading="First Floor"
+          text={floor.floor_description}
+          media={floor.floor_media}
+          heading={floor.floor_heading}
         />
       ),
-    },
-  ];
+    });
+  });
+
   // Data For Tab ------------------->
 
   return (
-    <Tabs value="first-floor">
+    <Tabs value="1-floor">
       <TabsHeader>
         {data.map(({ label, value }) => (
           <Tab className="poppins" key={value} value={value}>

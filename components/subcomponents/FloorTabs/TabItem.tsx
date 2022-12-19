@@ -6,17 +6,18 @@ import TextSemiLarge from "../../common/TextSemiLarge";
 interface PropTypes {
   text: string;
   heading: string;
+  media: string;
 }
 
-const TabItem = ({ text, heading }: PropTypes) => {
+const TabItem = ({ text, heading, media }: PropTypes) => {
   return (
     <div className="floor-tab-item">
       <div className="grid grid-cols-12 items-center justify-center gap-8">
         <div className="col-span-12 lg:col-span-6">
-          <Image
+          <img
             alt="Loading..."
             className="rounded-md object-cover h-[40vh] sm:h-[50vh] md:h-[60vh] lg:[h-70vh]"
-            src={Plan}
+            src={media}
           />
         </div>
         <div className="floor-info text-center px-14 pb-14 lg:text-start col-span-12  lg:col-span-6 text-black poppins">

@@ -130,7 +130,7 @@ const MainContent = ({ property }: any) => {
           <div className="property-floors">
             <HeadingLeftBordered heading="Floor Plans" />
             <div className="my-10">
-              <FloorTabs />
+              <FloorTabs floors={property.property_floors} />
             </div>
           </div>
           <div className="property-reviews" id="comments">
