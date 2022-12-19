@@ -48,7 +48,9 @@ const New_Password = () => {
           return;
         }
 
-        toast.success(isPasswordChanged.msg);
+        toast.success(isPasswordChanged.msg, {
+          position: "bottom-center",
+        });
         router.push("/login");
       },
     });

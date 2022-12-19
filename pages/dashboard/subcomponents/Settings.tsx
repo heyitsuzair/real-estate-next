@@ -45,7 +45,9 @@ const Settings = () => {
         return;
       }
 
-      toast.success(isProfileUpdated.msg);
+      toast.success(isProfileUpdated.msg, {
+        position: "bottom-center",
+      });
       setIsLoading(false);
       setFieldValue("password", "");
     },
