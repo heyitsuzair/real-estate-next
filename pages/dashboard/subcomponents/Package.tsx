@@ -10,6 +10,7 @@ import {
   fetchUserProfile,
 } from "../../../functions";
 import { toast } from "react-toastify";
+import SpinnerLarge from "../../../components/common/SpinnerLarge";
 
 interface PackageTypes {
   _id: string;
@@ -22,6 +23,10 @@ interface PackageTypes {
 const Package = () => {
   // ?State For Loading ---------------------------->
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  // !State For Loading ---------------------------->
+
+  // ?State For Loading ---------------------------->
+  const [isLoadingAPI, setIsLoadingAPI] = useState<boolean>(false);
   // !State For Loading ---------------------------->
 
   // ?State For Packages ------------------>
@@ -72,8 +77,10 @@ const Package = () => {
   // !Configurations For Formik -------------------------->
 
   const getPackages = async () => {
+    setIsLoadingAPI(false);
     const packages = await fetchPackages();
     setPackages(packages);
+    setIsLoadingAPI(true);
   };
   const getUser = async () => {
     const user = await fetchUserProfile();
@@ -88,57 +95,65 @@ const Package = () => {
 
   return (
     <>
-      <div className="flex items-center">
-        <h1 className="text-3xl mx-5 poppins font-bold my-5">My Package</h1>
-        <span className="bg-red-500 transition-all duration-500 hover:bg-slate-800 cursor-pointer rounded-full py-2 text-sm text-white px-4">
-          {remainingListings} Listings Remaining
-        </span>
-      </div>
-
-      <div className="m-4 shadow-xl sm:rounded-lg p-10">
-        <div className="mb-5">
-          <span className="text-md font-bold">Note:</span>
-          <span className="text-gray-500">
-            &nbsp; Updating Package Will Update Remaining Listings By Adding
-            Your Remaining Listings With The New Quantity According To The
-            Package You Choose
-          </span>
+      {isLoadingAPI ? (
+        <div className="text-center h-screen flex items-center justify-center">
+          <SpinnerLarge />
         </div>
-        <form
-          className="space-y-4 md:space-y-6"
-          onSubmit={handleSubmit}
-          action="#"
-        >
-          <div className="-ml-3">
-            <Packages
-              packages={packages}
-              errors={errors}
-              value={values.package}
-              touched={touched}
-              handleChange={handleChange}
-            />
+      ) : (
+        <>
+          <div className="flex items-center">
+            <h1 className="text-3xl mx-5 poppins font-bold my-5">My Package</h1>
+            <span className="bg-red-500 transition-all duration-500 hover:bg-slate-800 cursor-pointer rounded-full py-2 text-sm text-white px-4">
+              {remainingListings} Listings Remaining
+            </span>
           </div>
-          <CreditCardForm
-            values={values}
-            handleBlur={handleBlur}
-            handleChange={handleChange}
-            errors={errors}
-            touched={touched}
-          />
-          {isLoading ? (
-            <div className="text-start">
-              <SpinnerSmall />
+
+          <div className="m-4 shadow-xl sm:rounded-lg p-10">
+            <div className="mb-5">
+              <span className="text-md font-bold">Note:</span>
+              <span className="text-gray-500">
+                &nbsp; Updating Package Will Update Remaining Listings By Adding
+                Your Remaining Listings With The New Quantity According To The
+                Package You Choose
+              </span>
             </div>
-          ) : (
-            <button
-              type="submit"
-              className="text-white bg-red-600 hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center "
+            <form
+              className="space-y-4 md:space-y-6"
+              onSubmit={handleSubmit}
+              action="#"
             >
-              Update
-            </button>
-          )}
-        </form>
-      </div>
+              <div className="-ml-3">
+                <Packages
+                  packages={packages}
+                  errors={errors}
+                  value={values.package}
+                  touched={touched}
+                  handleChange={handleChange}
+                />
+              </div>
+              <CreditCardForm
+                values={values}
+                handleBlur={handleBlur}
+                handleChange={handleChange}
+                errors={errors}
+                touched={touched}
+              />
+              {isLoading ? (
+                <div className="text-start">
+                  <SpinnerSmall />
+                </div>
+              ) : (
+                <button
+                  type="submit"
+                  className="text-white bg-red-600 hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center "
+                >
+                  Update
+                </button>
+              )}
+            </form>
+          </div>
+        </>
+      )}
     </>
   );
 };
