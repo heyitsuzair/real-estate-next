@@ -6,3 +6,4 @@ export * from "./reviewForm/AddReviewFormSchema";
 export * from "./dashboard/SettingsSchema";
 export * from "./dashboard/AddPropertySchema";
 export * from "./dashboard/PackagesSchema";
+export * from "./hero/FindNowSchema";

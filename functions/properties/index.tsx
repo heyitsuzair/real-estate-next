@@ -2,12 +2,19 @@ import axios from "axios";
 import {
   addPropertyPoint,
   deletePropertyPoint,
+  filterProperties,
   getProperties,
   getProperty,
   getSellerProperties,
   searchProperties,
   updateProperty,
 } from "../../utils/api/endPoints";
+
+interface getFliteredPropertiesProps {
+  area: string | string[] | undefined;
+  status: string | string[] | undefined;
+  type: string | string[] | undefined;
+}
 
 export const addProperty = async (values: any) => {
   let token: null | string = "";
@@ -105,6 +112,22 @@ export const findProperties = async (
      * Here "/6" Is Limit
      */
     const { data } = await axios.get(searchProperties + query + "/6/" + pageNo);
+    return data;
+  } catch (error: any) {
+    return error.response.data;
+  }
+};
+export const getFliteredProperties = async (
+  pageNo: string,
+  values: getFliteredPropertiesProps
+) => {
+  try {
+    /**
+     * Here "/6" Is Limit
+     */
+    const { data } = await axios.get(filterProperties + pageNo + "/6", {
+      data: values,
+    });
     return data;
   } catch (error: any) {
     return error.response.data;

@@ -17,6 +17,7 @@ import StarRating from "../common/StarRatings";
 import Comment from "../common/Comment";
 import AddReviewForm from "../common/AddReviewForm";
 import jwtDecode from "jwt-decode";
+import { capitalizeFirstLetter } from "../../utils";
 
 interface CommentTypes {
   _id: string;
@@ -35,8 +36,7 @@ const MainContent = ({ property, setIsCommentAdded, comments }: any) => {
   /**
    * Capitalize First Letter
    */
-  const status =
-    property.status.charAt(0).toUpperCase() + property.status.slice(1);
+  const status = capitalizeFirstLetter(property.status);
 
   useEffect(() => {
     if (typeof window !== "undefined") {

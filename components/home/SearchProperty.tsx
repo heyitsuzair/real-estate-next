@@ -1,77 +1,113 @@
-import React from "react";
-import MaterialSelect from "../common/MaterialSelect";
+import React, { ChangeEvent } from "react";
 import { AreaMenu, PropertyStatus, PropertyType } from "../../menus";
-import { useState } from "react";
 import ButtonRed from "../common/ButtonRed";
+import { FindNowSchema } from "../../yupSchemas";
+import { useFormik } from "formik";
+import MaterialSelectWithValidation from "../common/MaterialSelectWithValidation";
+import { useRouter } from "next/router";
 
 const SearchProperty = () => {
-  // Fields For Material Select -------------->
-  const [area, setArea] = useState<string>("");
-  const [status, setStatus] = useState<string>("");
-  const [type, setType] = useState<string>("");
-  // Fields For Material Select -------------->
+  const router = useRouter();
 
-  // ?Handle Area Change -------------->
-  const handleAreaChange = (e: string) => {
-    const newValue = e;
-    setArea(newValue);
-  };
-  // !Handle Area Change -------------->
+  // ?Configurations For Formik -------------------------->
 
-  // ?Handle Status Change -------------->
-  const handleStatusChange = (e: string) => {
-    const newValue = e;
-    setStatus(newValue);
+  const initialValues = {
+    type: "",
+    area: "",
+    status: "",
   };
-  // !Handle Status Change -------------->
 
-  // ?Handle Type Change -------------->
-  const handleTypeChange = (e: string) => {
-    const newValue = e;
-    setType(newValue);
+  // ?Handle When Values Of Material Select With Validation Changes -------------->
+  const handleChangeMaterialSelectArea = (
+    e: ChangeEvent<HTMLSelectElement>
+  ) => {
+    setFieldValue("area", e);
   };
-  // !Handle Type Change -------------->
+  const handleChangeMaterialSelectStatus = (
+    e: ChangeEvent<HTMLSelectElement>
+  ) => {
+    setFieldValue("status", e);
+  };
+  const handleChangeMaterialSelectType = (
+    e: ChangeEvent<HTMLSelectElement>
+  ) => {
+    setFieldValue("type", e);
+  };
+  // !Handle When Values Of Material Select With Validation Changes -------------->
+
+  const {
+    values,
+    touched,
+    errors,
+
+    handleSubmit,
+    setFieldValue,
+  } = useFormik({
+    initialValues: initialValues,
+    validationSchema: FindNowSchema,
+    onSubmit: (values, action) => {
+      /**
+       * Push To Find Now Page
+       */
+      router.push(
+        "/find_now?status=" +
+          values.status +
+          "&type=" +
+          values.type +
+          "&area=" +
+          values.area
+      );
+    },
+  });
+  // !Configurations For Formik -------------------------->
 
   return (
     <div className="p-4 mb-8">
-      <div
-        className={`left-0 top-87 width-90 right-0 mx-auto absolute bg-white p-10 rounded-lg search-property-box shadow-2xl shadow-slate-300 grid grid-cols-12 gap-4 items-center`}
-      >
-        <div className="col-span-12 sm:col-span-12 md:col-span-6 lg:col-span-3 text-center">
-          <MaterialSelect
+      <div className="left-0 top-87 width-90 right-0 mx-auto absolute bg-white p-10 rounded-lg search-property-box shadow-2xl shadow-slate-300 grid grid-cols-12 gap-4 items-start">
+        <div className="col-span-12 sm:col-span-12 md:col-span-6 lg:col-span-3">
+          <MaterialSelectWithValidation
             color="red"
             size="lg"
             variant="outlined"
             label="Choose Area"
             options={AreaMenu}
-            change={handleAreaChange}
+            onChange={handleChangeMaterialSelectArea}
+            error={touched.area && errors.area}
+            errorText={errors.area}
             disabled={false}
+            value={values.area}
           />
         </div>
-        <div className="col-span-12 sm:col-span-12 md:col-span-6 lg:col-span-3 text-center">
-          <MaterialSelect
+        <div className="col-span-12 sm:col-span-12 md:col-span-6 lg:col-span-3">
+          <MaterialSelectWithValidation
             color="red"
             size="lg"
             variant="outlined"
             label="Property Status"
             options={PropertyStatus}
-            change={handleStatusChange}
+            error={touched.status && errors.status}
+            errorText={errors.status}
+            onChange={handleChangeMaterialSelectStatus}
             disabled={false}
+            value={values.status}
           />
         </div>
-        <div className="col-span-12 sm:col-span-12 md:col-span-6 lg:col-span-3 text-center">
-          <MaterialSelect
+        <div className="col-span-12 sm:col-span-12 md:col-span-6 lg:col-span-3">
+          <MaterialSelectWithValidation
             color="red"
             size="lg"
             variant="outlined"
             label="Property Type"
             options={PropertyType}
-            change={handleTypeChange}
+            error={touched.type && errors.type}
+            errorText={errors.type}
+            onChange={handleChangeMaterialSelectType}
             disabled={false}
+            value={values.type}
           />
         </div>
-        <div className="col-span-12 sm:col-span-12 md:col-span-6 lg:col-span-3 text-center flex">
-          <ButtonRed width="full" text="Find Now" handleClick={""} />
+        <div className="col-span-12 sm:col-span-12 md:col-span-6 lg:col-span-3 flex">
+          <ButtonRed width="full" text="Find Now" handleClick={handleSubmit} />
         </div>
       </div>
     </div>
