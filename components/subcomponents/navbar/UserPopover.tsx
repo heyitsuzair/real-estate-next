@@ -73,13 +73,19 @@ const UserPopover = () => {
               >
                 Properties
               </Link>
-
               <Link
                 href={"/dashboard?route=package"}
                 onClick={() => setPopover(!popover)}
                 className="text-black hover:text-red-500 transition-all duration-300 border-b-2 hover:border-red-500 pb-2 px-8 text-sm block my-6 font-semibold "
               >
                 Package
+              </Link>
+              <Link
+                href={"/dashboard?route=reviews"}
+                onClick={() => setPopover(!popover)}
+                className="text-black hover:text-red-500 transition-all duration-300 border-b-2 hover:border-red-500 pb-2 px-8 text-sm block my-6 font-semibold "
+              >
+                Reviews
               </Link>
               <Link
                 href={"/dashboard?route=settings"}
