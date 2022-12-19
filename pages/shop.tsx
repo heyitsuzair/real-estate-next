@@ -1,9 +1,11 @@
+import axios from "axios";
 import Head from "next/head";
 import React, { useState } from "react";
 import BreadCrumb from "../components/common/BreadCrumb";
 import PropertiesInfinite from "../components/common/PropertiesInfinite";
 
 import { fetchProperties } from "../functions";
+import { getProperties } from "../utils/api/endPoints";
 
 const Shop = ({ properties }: any) => {
   const [propertiesData, setPropertiesData] = useState(properties);
@@ -39,10 +41,16 @@ const Shop = ({ properties }: any) => {
 };
 
 export async function getServerSideProps(context: any) {
-  /**
-   * Here "1" Is Default Page No
-   */
-  const properties = await fetchProperties("1");
+  let properties = [];
+  try {
+    /**
+     * Here "/6" Is Limit
+     */
+    const { data } = await axios.get(getProperties + "1" + "/6");
+    properties = data;
+  } catch (error: any) {
+    console.log(error.response.data);
+  }
 
   return {
     props: { properties }, // will be passed to the page component as props
