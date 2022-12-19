@@ -21,7 +21,11 @@ const EditProperty = () => {
     status: "",
     type: "",
     listing_media: [],
-    property_address: "",
+    property_address: {
+      address: "",
+      lat: 0,
+      lng: 0,
+    },
     property_size: "",
     property_lot_size: "",
     property_rooms: "",
