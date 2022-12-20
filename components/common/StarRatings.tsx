@@ -21,7 +21,9 @@ const StarRating = ({
         starDimension="25px"
         starSpacing="1px"
       />
-      <span className="ml-2 poppins text-red-500">({reviews} Reviews)</span>
+      <span className="ml-2 poppins mt-1 text-red-500">
+        ({reviews} Reviews)
+      </span>
     </div>
   );
 };

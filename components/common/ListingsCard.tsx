@@ -37,13 +37,11 @@ export default function ListingsCard({ property }: any) {
       <ListingsModal size={size} property={property} handleOpen={handleOpen} />
       <Link href={"/property/" + property._id}>
         <Card className="mx-4">
-          <CardHeader className="relative h-56">
-            <img
-              src={property.listing_media[0]}
-              alt="Loading..."
-              className="w-full h-full object-cover"
-            />
-          </CardHeader>
+          <img
+            src={property.listing_media[0]}
+            alt="Loading..."
+            className="w-full h-full object-cover rounded-t-xl"
+          />
           <CardBody className="text-center">
             <Typography
               variant="h6"

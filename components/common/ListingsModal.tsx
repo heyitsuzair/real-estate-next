@@ -1,12 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import { Dialog, DialogHeader, DialogBody } from "@material-tailwind/react";
-import StarRatings from "react-star-ratings";
-import Home from "../../assets/img/21.png";
-import Image from "next/image";
-import TextLarge from "./TextLarge";
+
 import ButtonRedWithIcon from "./ButtonRedWithIcon";
 import StarRating from "./StarRatings";
 import { useRouter } from "next/router";
+import TextSemiLarge from "./TextSemiLarge";
 
 interface Proptypes {
   size: any;
@@ -43,15 +41,17 @@ const ListingsModal = ({ size, handleOpen, property }: Proptypes) => {
           className="fa-solid fa-xmark cursor-pointer text-white text-lg px-4 py-2 rounded-full bg-red-500"
         ></i>
       </DialogHeader>
-      <DialogBody className="flex flex-col items-start gap-16 lg:gap-8 justify-center lg:flex-row lg:justify-start lg:items-center">
-        <div className="image h-full">
-          <img
-            src={property.listing_media[0]}
-            alt="Loading..."
-            className="min-h-18 rounded-md object-cover"
-          />
+      <DialogBody className="grid gap-8 grid-cols-12 items-center">
+        <div className="col-span-12 lg:col-span-6">
+          <div className="img">
+            <img
+              src={property.listing_media[0]}
+              alt="Loading..."
+              className="min-h-18 rounded-md object-cover"
+            />
+          </div>
         </div>
-        <div className="listing-info flex flex-col w-full gap-3">
+        <div className="listing-info col-span-12 lg:col-span-6 flex flex-col gap-4">
           <div className="w-64">
             <StarRating
               justify="justify-start"
@@ -62,8 +62,14 @@ const ListingsModal = ({ size, handleOpen, property }: Proptypes) => {
           <div className="product-name text-black">
             <h1 className="text-2xl poppins font-semibold">{property.title}</h1>
           </div>
-          <div className="product-price text-red-500">
-            <TextLarge text={`Rs ${property.price}`} />
+          <div className="product-price flex items-center text-red-500">
+            {property.before_price_label && (
+              <span className="mt-2">{property.before_price_label}/ </span>
+            )}
+            <TextSemiLarge text={`Rs ${property.price}`} />
+            {property.after_price_label && (
+              <span className="mt-2"> /{property.after_price_label}</span>
+            )}
           </div>
           <div className="product-categories border-y-2 py-4 poppins border-gray-300">
             <span className="text-md">
