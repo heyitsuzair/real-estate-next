@@ -57,7 +57,7 @@ export default function ListingsCard({ property }: any) {
             </Typography>
             <Typography
               variant="h4"
-              className="my-4 text-start poppins text-black font-semibold"
+              className="my-4 text-start poppins min-h-4 max-h-16 text-black font-semibold"
             >
               {property.title}
             </Typography>
