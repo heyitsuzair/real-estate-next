@@ -40,7 +40,7 @@ export default function ListingsCard({ property }: any) {
           <img
             src={property.listing_media[0]}
             alt="Loading..."
-            className="w-full h-full object-cover rounded-t-xl max-h-60 min-h-60"
+            className="w-full h-full object-cover rounded-t-xl max-h-60 min-h-15"
           />
           <CardBody className="text-center">
             <Typography
