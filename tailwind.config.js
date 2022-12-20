@@ -26,13 +26,9 @@ module.exports = withMT({
         2: "2rem",
       },
       minHeight: {
-        18: "18rem",
-      },
-      minHeight: {
-        15: "15rem",
-      },
-      minHeight: {
         4: "4rem",
+        15: "15rem",
+        18: "18rem",
       },
     },
   },
