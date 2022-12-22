@@ -51,8 +51,8 @@ const SinglePropertyPage = () => {
           content="Real Estate Site My Muhammad Uzair. Property"
         />
       </Head>
-      <div className="product-details">
-        <BreadCrumb text="Product Details" />
+      <div className="property-details">
+        <BreadCrumb text="Property Details" />
         {isLoading ? (
           <div className="mt-20 mb-40 text-center">
             <SpinnerLarge />
