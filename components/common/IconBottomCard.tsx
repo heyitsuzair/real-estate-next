@@ -36,7 +36,7 @@ const IconBottomCard = ({ headerIcon, text, link, footerIcon }: Proptypes) => {
         <TextMedium text={text} />
         <div className="icon absolute top-0 -right-4 -rotate-45">
           <span
-            className="bg-white transition-all rounded-full px-4 py-3"
+            className="bg-white transition-all rounded-full px-3 py-2 sm:px-4 sm:py-3"
             ref={ref}
           >
             <i className={footerIcon}></i>
