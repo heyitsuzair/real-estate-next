@@ -34,7 +34,7 @@ const IconBottomCard = ({ headerIcon, text, link, footerIcon }: Proptypes) => {
       >
         <IconCircle icon={headerIcon} />
         <TextMedium text={text} />
-        <div className="icon absolute top-0 -right-4 -rotate-45">
+        <div className="icon absolute hidden sm:block top-0 -right-4 -rotate-45">
           <span
             className="bg-white transition-all rounded-full px-4 py-3"
             ref={ref}

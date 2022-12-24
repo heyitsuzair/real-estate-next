@@ -18,7 +18,7 @@ const OurAminities = () => {
           return (
             <div
               key={card.text}
-              className="col-span-9 sm:col-span-6 md:col-span-4 lg:col-span-3 mb-8"
+              className="col-span-12 sm:col-span-6 md:col-span-4 lg:col-span-3 mb-8"
             >
               <IconBottomCard
                 text={card.text}
