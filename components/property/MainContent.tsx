@@ -18,6 +18,7 @@ import Comment from "../common/Comment";
 import AddReviewForm from "../common/AddReviewForm";
 import jwtDecode from "jwt-decode";
 import { capitalizeFirstLetter } from "../../utils";
+import FloatingBtn from "../common/FloatingBtn";
 
 interface CommentTypes {
   _id: string;
@@ -53,6 +54,12 @@ const MainContent = ({ property, setIsCommentAdded, comments }: any) => {
 
   return (
     <div className="container mx-auto px-7 pt-2 lg:px-14 lg:pt-12 pb-32">
+      <FloatingBtn
+        icon="fa fa-phone-alt"
+        handleClick={() =>
+          window.open(`tel:${property.seller_id.phone_no}`, "_self")
+        }
+      />
       <div className="grid grid-cols-12 gap-6">
         <div className="col-span-12 order-2 xl:order-1 xl:col-span-8">
           <div className="meta flex flex-col sm:flex-row gap-6 items-center">
